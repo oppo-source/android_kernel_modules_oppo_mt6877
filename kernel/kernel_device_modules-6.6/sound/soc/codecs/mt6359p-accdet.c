@@ -943,7 +943,6 @@ static void send_key_event(u32 keycode, u32 flag)
 static void send_status_event(u32 cable_type, u32 status)
 {
 	int report = 0;
-
 	switch (cable_type) {
 	case HEADSET_NO_MIC:
 #if IS_ENABLED(CONFIG_SND_SOC_FSA)

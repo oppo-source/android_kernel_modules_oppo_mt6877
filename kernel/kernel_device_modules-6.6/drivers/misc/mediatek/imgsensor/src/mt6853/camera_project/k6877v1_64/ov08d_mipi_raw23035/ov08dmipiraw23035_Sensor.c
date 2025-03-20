@@ -1622,6 +1622,7 @@ static kal_uint32 open(void)
 	imgsensor.dummy_pixel = 0;
 	imgsensor.dummy_line = 0;
 	imgsensor.ihdr_en = 0;
+	imgsensor.test_pattern = KAL_FALSE;
 	imgsensor.current_fps = imgsensor_info.pre.max_framerate;
 	spin_unlock(&imgsensor_drv_lock);
 
@@ -1964,9 +1965,9 @@ static kal_uint32 control(enum MSDK_SCENARIO_ID_ENUM scenario_id,
 		return ERROR_INVALID_SCENARIO_ID;
 	}
 
-	if ( imgsensor.test_pattern ) {
-		set_test_pattern_mode(imgsensor.test_pattern);
-	}
+//	if ( imgsensor.test_pattern ) {
+//		set_test_pattern_mode(imgsensor.test_pattern);
+//	}
 	return ERROR_NONE;
 } /* control() */
 

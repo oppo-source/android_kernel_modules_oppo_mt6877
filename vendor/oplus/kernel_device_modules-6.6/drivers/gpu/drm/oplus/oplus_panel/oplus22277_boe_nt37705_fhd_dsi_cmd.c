@@ -703,7 +703,6 @@ static struct mtk_panel_params ext_params_120Hz = {
 	.dyn_fps = {
                 .switch_en = 1, .vact_timing_fps = 120,
         },
-	
 };
 
 static int panel_ata_check(struct drm_panel *panel)

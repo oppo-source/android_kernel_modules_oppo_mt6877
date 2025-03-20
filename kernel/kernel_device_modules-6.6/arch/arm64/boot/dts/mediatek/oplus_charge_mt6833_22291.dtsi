@@ -776,6 +776,17 @@
 	};
 };
 
+&u2port0 {
+		mediatek,eye-vrt = <6>; /* 0~7 */
+		mediatek,eye-term = <7>; /* 0~7 */
+		mediatek,rev6 = <3>; /* 0~3 */
+		mediatek,discth = <0xF>; /* 0~8 */
+		mediatek,eye-vrt-host = <7>; /* 0~7 */
+		mediatek,eye-term-host = <5>; /* 0~7 */
+		mediatek,rev6-host = <3>; /* 0~3 */
+		mediatek,disc-host = <0xB>; /* 0~8 */
+};
+
 &odm {
 	mediatek_phy_tuning: mediatek_phy_tuning {
 		phy_tuning {

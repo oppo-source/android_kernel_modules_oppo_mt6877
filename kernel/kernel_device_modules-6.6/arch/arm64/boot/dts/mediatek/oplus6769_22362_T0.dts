@@ -667,6 +667,8 @@
 		label = "lcd-backlight";
 		max-brightness = <4095>;
 		max-hw-brightness = <4095>;
+		min-hw-brightness = <1>;
+		min-brightness = <1>;
 		led-bits = <12>;
 		trans-bits = <12>;
 		default-state = "on";
@@ -843,6 +845,24 @@
 	rxpin = <95>;
 	txpin = <96>;
 };
+
+&odm {
+	oplus_mm_config: oplus,mm_config {
+		compatible = "oplus,mm_osvelte-config";
+		ram-4g {
+			oplus_boost_pool {
+				feature-disable;
+			};
+			oplus_bsp_uxmem_opt {
+				feature-disable;
+			};
+			oplus_bsp_zram_opt {
+				balance_anon_file_reclaim_always_true;
+			};
+		};
+	};
+};
+
 #include <oplus6769_22362_T0/cust.dtsi>
 #include "mediatek/cust_mt6769_camera_atom_T0.dtsi"
 #include "mediatek/cust_mt6769_touch_1080x2400.dtsi"

@@ -1864,8 +1864,6 @@ def get_overlay_modules_list():
         mgk_64_device_modules.append("drivers/gpu/drm/oplus/oplus_panel/oplus23703_ili9883c_dj_hdp_dsi_vdo.ko")
         mgk_64_device_modules.append("drivers/gpu/drm/oplus/oplus_panel/oplus23703_ili9883c_hkc_hdp_dsi_vdo.ko")
         mgk_64_device_modules.append("drivers/gpu/drm/oplus/oplus_panel/oplus23703_ft8057p_xx_hdp_dsi_vdo.ko")
-        mgk_64_device_modules.append("drivers/gpu/drm/oplus/oplus_panel/oplus24713_nt36528b_txdhkc_hdp_dsi_vdo.ko")
-        mgk_64_device_modules.append("drivers/gpu/drm/oplus/oplus_panel/oplus24713_ili9883c_xxcsot_hdp_dsi_vdo.ko")
 
         mgk_64_device_modules.append("drivers/misc/mediatek/qos/mtk_qos_legacy.ko")
 

@@ -364,6 +364,7 @@ static inline void getnstimeofday(struct timespec *ts)
 #define NOTIFY_ALLOW_READING_ERR		26
 #define NOTIFY_ANTI_EXPANSION_WARNING		28
 #define NOTIFY_ANTI_EXPANSION_ERROR		29
+#define NOTIFY_FASTCHG_CHECK_FAIL		30
 
 #define OPLUS_CHG_500_CHARGING_CURRENT	500
 #define OPLUS_CHG_900_CHARGING_CURRENT	900
@@ -1125,6 +1126,9 @@ struct oplus_chg_chip {
 	atomic_t mos_lock;
 	int mos_test_result;
 	bool mos_test_started;
+	bool fastchg_check_first_time;
+	long check_time_sec;
+	int non_standard_chg_switch;
 
 	int alarm_clockid;
 	bool usbtemp_wq_init_finished;
@@ -1585,6 +1589,7 @@ struct oplus_chg_chip {
 	int usbtemp_temp_gap_with_batt_temp_in_over_hot;
 	bool anti_expansion_warning;
 	bool anti_expansion_error;
+	int pre_chg_up_limit_mmi_val;
 };
 
 #define TTF_UPDATE_UEVENT_BIT		BIT(30)

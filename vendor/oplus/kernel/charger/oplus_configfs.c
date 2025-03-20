@@ -3282,6 +3282,42 @@ static ssize_t read_gauge_reg_store(struct device *dev,
 }
 static DEVICE_ATTR_RW(read_gauge_reg);
 
+static ssize_t non_standard_chg_switch_show(struct device *dev, struct device_attribute *attr, char *buf)
+{
+	struct oplus_chg_chip *chip = NULL;
+	chip = (struct oplus_chg_chip *)dev_get_drvdata(oplus_common_dir);
+
+	if (!chip) {
+		chg_err("chip is NULL\n");
+		return -EINVAL;
+	}
+
+	return sprintf(buf, "%d\n", chip->non_standard_chg_switch);
+}
+
+static ssize_t non_standard_chg_switch_store(struct device *dev, struct device_attribute *attr,
+					const char *buf, size_t count)
+{
+	int val = 0;
+	struct oplus_chg_chip *chip = NULL;
+
+	chip = (struct oplus_chg_chip *)dev_get_drvdata(oplus_common_dir);
+	if (!chip) {
+		chg_err("chip is NULL\n");
+		return -EINVAL;
+	}
+
+	if (kstrtos32(buf, 0, &val)) {
+		chg_err("buf error\n");
+		return -EINVAL;
+	}
+
+	chip->non_standard_chg_switch = val;
+	chg_info("rus value store, rus switch = %d\n", chip->non_standard_chg_switch);
+	return count;
+}
+static DEVICE_ATTR_RW(non_standard_chg_switch);
+
 static struct device_attribute *oplus_common_attributes[] = {
 #ifdef OPLUS_CHG_ADB_ROOT_ENABLE
 	&dev_attr_charge_parameter,
@@ -3305,6 +3341,7 @@ static struct device_attribute *oplus_common_attributes[] = {
 	&dev_attr_device_power,
 	&dev_attr_cpa_power,
 	&dev_attr_chg_up_limit,
+	&dev_attr_non_standard_chg_switch,
 	NULL
 };
 #ifdef OPLUS_FEATURE_CHG_BASIC

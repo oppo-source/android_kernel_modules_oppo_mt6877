@@ -79,8 +79,8 @@
 };
 
 &subpmic_mtk {
-	mt6360,intr_gpio_num = <4>; /* direct defined GPIO num */
-	mt6360,intr_gpio = <&pio 4 0x0>;
+	mt6360,intr-gpio_num = <4>; /* direct defined GPIO num */
+	mt6360,intr-gpio = <&pio 4 0x0>;
 	disable_lpsd = <1>;
 
 	chg {
@@ -93,7 +93,7 @@
 
 &mt6360_typec {
 	mt6360pd,intr-gpio-num = <5>; /* direct defined GPIO num */
-	mt6360pd,intr_gpio = <&pio 5 0x0>;
+	mt6360pd,intr-gpio = <&pio 5 0x0>;
 	mt-tcpc,role-def = <1>; /* 0: Unknown, 1: SNK only, 2: SRC only, 3: DRP, 4: Try.SRC, 5: Try.SNK */
 	mt-tcpc,rp-level = <0>; /* 0: Default, 1: 1.5, 2: 3.0 */
 	mt-tcpc,vconn-supply  = <1>; /* 0: Never, 1: Always, 2: EMarkOnly, 3: StartOnly */
@@ -117,8 +117,11 @@
 		};
 	};
 
-	dpm_caps {
-		attemp-discover-svid;
+	dpm-caps {
+		attempt-enter-dp-mode;
+		attempt-discover-cable;
+		attempt-discover-id;
+		attempt-discover-svids;
 	};
 };
 
@@ -537,13 +540,13 @@
 	IS_4450MV_BATTERY_SUPPORT = <0>;
 	IS_SUBBOARD_TEMP_SUPPORT = <(0)>;
 	ENABLE_IS_FORCE_FULL = <1>;
-	EMBEDDED_SEL = <(1)>;
-	R_FG_VALUE = <(2)>;
-	CAR_TUNE_VALUE = <(98)>;
+	embedded-sel = <(1)>;
+	r-fg-value = <(2)>;
+	car-tune-value = <(98)>;
 	AGING_FACTOR_MIN = <(93)>;
 	AGING_FACTOR_DIFF = <(1)>;
 
-	KEEP_100_PERCENT = <(0)>;
+	keep-100-percent = <(0)>;
 	KEEP_100_PERCENT_MINSOC =  <(9500)>;
 	DIM2_TABLE_DISTINGUISH = <1>;
 

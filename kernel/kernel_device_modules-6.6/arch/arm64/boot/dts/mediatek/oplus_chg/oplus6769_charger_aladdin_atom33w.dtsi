@@ -265,6 +265,11 @@
 	qcom,usbtemp_cool_down_recover_ntc_high = <60>;
 	qcom,usbtemp_cool_down_recover_gap_low = <6>;
 	qcom,usbtemp_cool_down_recover_gap_high = <15>;
+	/* Feature avoid battery swelling caused by high temp */
+	oplus,poweroff_high_batt_temp = <720>;
+	oplus,poweroff_emergency_batt_temp = <770>;
+	oplus,usbtemp_batt_temp_over_hot = <60>;
+	oplus,usbtemp_temp_gap_with_batt_temp_in_over_hot = <15>;
  };
 
 &i2c5 {
@@ -306,6 +311,7 @@
 		sc,vpmid-ovp-otg-dis = <0>;
 		sc,vbat-ovp-buck-dis = <0>;
 		sc,ibat-ocp = <1>;    /* 0:12A , 1:16A */
+		ovp_reg = <0x36>; /* 4850mv */
 		sc,charge-detect-enable;
 		sc,disable-qc;
 		/*
@@ -703,6 +709,9 @@
 	cdp_temp_warm_fastchg_current = <2200>;
 
 	hot_bat_decidegc = <53>;
+	high-temp-scheme;
+	over_high_temp_thr = <60>;
+	is_support_sc6607;
 };
 
 &pio {
@@ -822,12 +831,12 @@
 &u2port0 {
 		mediatek,eye-vrt = <7>; /* 0~7 */
 		mediatek,eye-term = <5>; /* 0~7 */
-		mediatek,eye-rev6 = <3>; /* 0~3 */
-		mediatek,eye-disc = <0xF>; /* 0~8 */
-		mediatek,host-eye-vrt = <7>; /* 0~7 */
-		mediatek,host-eye-term = <5>; /* 0~7 */
-		mediatek,host-eye-rev6 = <3>; /* 0~3 */
-		mediatek,host-eye-disc = <0xB>; /* 0~8 */
+		mediatek,rev6 = <3>; /* 0~3 */
+		mediatek,discth = <0xF>; /* 0~8 */
+		mediatek,eye-vrt-host = <7>; /* 0~7 */
+		mediatek,eye-term-host = <5>; /* 0~7 */
+		mediatek,rev6-host = <3>; /* 0~3 */
+		mediatek,disc-host = <0xB>; /* 0~8 */
 };
 
 &mtk_ctd {

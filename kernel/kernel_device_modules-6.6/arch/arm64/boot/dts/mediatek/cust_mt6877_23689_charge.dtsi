@@ -501,7 +501,6 @@
 	embedded-sel = <(1)>;
 	r-fg-value = <(2)>;
 	car-tune-value = <(99)>;
-	SUPPORT_NTC_01C_PRECISION = <(1)>;
 	keep-100-percent = <(3)>;
 	g-fg-pseudo100-t0 = <(95)>;
 	g-fg-pseudo100-t1 = <(95)>;

@@ -32,7 +32,6 @@
 #include "sa_group.h"
 #endif
 
-
 #define OPLUS_SCHEDULER_PROC_DIR		"oplus_scheduler"
 #define OPLUS_SCHEDASSIST_PROC_DIR		"sched_assist"
 
@@ -66,7 +65,6 @@ unsigned int top_app_type;
 struct proc_dir_entry *d_oplus_scheduler;
 struct proc_dir_entry *d_sched_assist;
 
-static int disable_setting = 1;
 
 #ifdef CONFIG_OPLUS_FEATURE_TICK_GRAN
 static u64 last_total_instr;
@@ -253,12 +251,6 @@ static ssize_t proc_ux_task_write(struct file *file, const char __user *buf,
 	int ux_state = 0, ux_orig = 0;
 	int err = 0;
 	static DEFINE_MUTEX(sa_ux_mutex);
-
-	int uid = task_uid(current).val;
-	/* only accept ux from system server or performance binder */
-	if (SYSTEM_UID != uid && ROOT_UID != uid && disable_setting) {
-		return -EFAULT;
-	}
 
 	memset(buffer, 0, sizeof(buffer));
 
@@ -953,41 +945,6 @@ static ssize_t proc_sched_impt_task_read(struct file *file, char __user *buf,
 	return simple_read_from_buffer(buf, count, ppos, buffer, len);
 }
 
-static ssize_t proc_disable_setting_write(struct file *file, const char __user *buf,
-		size_t count, loff_t *ppos)
-{
-	char buffer[8];
-	int err, val;
-
-	memset(buffer, 0, sizeof(buffer));
-
-	if (count > sizeof(buffer) - 1)
-		count = sizeof(buffer) - 1;
-
-	if (copy_from_user(buffer, buf, count))
-		return -EFAULT;
-
-	buffer[count] = '\0';
-	err = kstrtoint(strstrip(buffer), 10, &val);
-	if (err)
-		return err;
-
-	disable_setting = val;
-
-	return count;
-}
-
-static ssize_t proc_disable_setting_read(struct file *file, char __user *buf,
-		size_t count, loff_t *ppos)
-{
-	char buffer[20];
-	size_t len = 0;
-
-	len = snprintf(buffer, sizeof(buffer), "%d\n", disable_setting);
-
-	return simple_read_from_buffer(buf, count, ppos, buffer, len);
-}
-
 static ssize_t proc_silver_perf_core_write(struct file *file, const char __user *buf,
 		size_t count, loff_t *ppos)
 {
@@ -1159,12 +1116,6 @@ static const struct proc_ops proc_sched_impt_task_fops = {
 	.proc_lseek		= default_llseek,
 };
 
-static const struct proc_ops proc_disable_setting_fops = {
-	.proc_write		= proc_disable_setting_write,
-	.proc_read		= proc_disable_setting_read,
-	.proc_lseek		= default_llseek,
-};
-
 static const struct proc_ops proc_silver_perf_core_fops = {
 	.proc_write		= proc_silver_perf_core_write,
 	.proc_read		= proc_silver_perf_core_read,
@@ -1195,7 +1146,6 @@ extern void oplus_lb_proc_deinit(struct proc_dir_entry *pde);
 int oplus_sched_assist_proc_init(void)
 {
 	struct proc_dir_entry *proc_node;
-	struct device_node *device_node = NULL;
 
 	d_oplus_scheduler = proc_mkdir(OPLUS_SCHEDULER_PROC_DIR, NULL);
 	if (!d_oplus_scheduler) {
@@ -1263,12 +1213,6 @@ int oplus_sched_assist_proc_init(void)
 		remove_proc_entry("sched_impt_task", d_sched_assist);
 	}
 
-	proc_node = proc_create("disable_setting", 0666, d_sched_assist, &proc_disable_setting_fops);
-	if (!proc_node) {
-		ux_err("failed to create proc node disable_setting\n");
-		remove_proc_entry("disable_setting", d_sched_assist);
-	}
-
 	proc_node = proc_create("silver_perf_core", 0666, d_sched_assist, &proc_silver_perf_core_fops);
 	if (!proc_node) {
 		ux_err("failed to create proc node silver_perf_core\n");
@@ -1294,10 +1238,6 @@ int oplus_sched_assist_proc_init(void)
 		ux_err("failed to create proc node lowend_plat_opt\n");
 		remove_proc_entry("lowend_plat_opt", d_sched_assist);
 	}
-
-	device_node = of_find_compatible_node(NULL, NULL, "oplus,sched_assit");
-	if (device_node)
-		disable_setting = 0;
 
 #ifdef CONFIG_OPLUS_SCHED_GROUP_OPT
 	oplus_sched_group_init(d_sched_assist);

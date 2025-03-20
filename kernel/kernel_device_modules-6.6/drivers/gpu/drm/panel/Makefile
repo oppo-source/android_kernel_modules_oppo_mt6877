@@ -54,8 +54,6 @@ obj-$(CONFIG_DRM_PANEL_NT36672C_TM_FHD_DSI_VDO_DPHY) += ../oplus/oplus_panel/nt3
 obj-$(CONFIG_DRM_PANEL_OPLUS23703_ILI9883C_DJ_HDP_DSI_VDO) += ../oplus/oplus_panel/oplus23703_ili9883c_dj_hdp_dsi_vdo.o
 obj-$(CONFIG_DRM_PANEL_OPLUS23703_ILI9883C_HKC_HDP_DSI_VDO) += ../oplus/oplus_panel/oplus23703_ili9883c_hkc_hdp_dsi_vdo.o
 obj-$(CONFIG_DRM_PANEL_OPLUS23703_FT8057P_XX_HDP_DSI_VDO) += ../oplus/oplus_panel/oplus23703_ft8057p_xx_hdp_dsi_vdo.o
-obj-$(CONFIG_DRM_PANEL_OPLUS24713_NT36528B_TXDHKC_HDP_DSI_VDO) += ../oplus/oplus_panel/oplus24713_nt36528b_txdhkc_hdp_dsi_vdo.o
-obj-$(CONFIG_DRM_PANEL_OPLUS24713_ILI9883C_XXCSOT_HDP_DSI_VDO) += ../oplus/oplus_panel/oplus24713_ili9883c_xxcsot_hdp_dsi_vdo.o
 #endif /* OPLUS_FEATURE_DISPLAY */
 
 obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35695B_VDO) += panel-nt35695b-auo-vdo.o

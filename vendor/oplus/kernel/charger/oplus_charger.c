@@ -8285,6 +8285,7 @@ void oplus_chg_variables_reset(struct oplus_chg_chip *chip, bool in)
 	chip->adsp_notify_ap_suspend = 0;
 	chip->stop_voter = 0x00;
 	chip->charging_state = CHARGING_STATUS_CCCV;
+	chip->pre_chg_up_limit_mmi_val = 0;
 #ifndef SELL_MODE
 	if (chip->mmi_fastchg == 0) {
 		chip->mmi_chg = 0;
@@ -8298,6 +8299,8 @@ void oplus_chg_variables_reset(struct oplus_chg_chip *chip, bool in)
 #endif /* SELL_MODE */
 	chip->unwakelock_chg = 0;
 	chip->notify_code = 0;
+	chip->check_time_sec = 0;
+	chip->fastchg_check_first_time = true;
 	if (!((chip->charger_type == POWER_SUPPLY_TYPE_USB_DCP) || (oplus_vooc_get_fastchg_started() == true) ||
 	      (oplus_vooc_get_fastchg_to_warm() == true) || (oplus_vooc_get_fastchg_dummy_started() == true) ||
 	      (oplus_vooc_get_adapter_update_status() == ADAPTER_FW_NEED_UPDATE) ||
@@ -8466,6 +8469,9 @@ static void oplus_chg_variables_init(struct oplus_chg_chip *chip)
 	chip->soc = 0;
 	chip->ui_soc = 50;
 	chip->notify_code = 0;
+	chip->check_time_sec = 0;
+	chip->non_standard_chg_switch = 0;
+	chip->fastchg_check_first_time = true;
 	chip->notify_flag = 0;
 	chip->cool_down = 0;
 	chip->tbatt_pre_shake = TBATT_PRE_SHAKE_INVALID;
@@ -8644,6 +8650,7 @@ static void oplus_chg_variables_init(struct oplus_chg_chip *chip)
 	chip->input_current_limit = 0;
 	chip->charging_current = 0;
 	chip->read_by_reg = 0;
+	chip->pre_chg_up_limit_mmi_val = 0;
 }
 
 static void oplus_chg_fail_action(struct oplus_chg_chip *chip)
@@ -9778,9 +9785,73 @@ void oplus_comm_set_anti_expansion_status(struct oplus_chg_chip *chip, int val)
 	chip->anti_expansion_error = (val & (1 << NOTIFY_ANTI_EXPANSION_ERROR));
 }
 
+#define NOTIFY_FASTCHG_CHECK_TIME  30
+static void battery_notify_fastchg_check(struct oplus_chg_chip *chip)
+{
+	struct timespec time_now = current_kernel_time();
+
+	if (!chip)
+		return;
+
+	if (chip->non_standard_chg_switch <= 0) {
+		chg_debug("RUS switch control %d\n", chip->non_standard_chg_switch);
+		return;
+	}
+
+	if (chip->wireless_support && (oplus_chg_is_wls_present() || oplus_wpc_get_wireless_charge_start())) {
+		chg_debug("in wireless charging\n");
+		return;
+	}
+
+	if (oplus_vooc_get_fastchg_dummy_started() || !chip->fastchg_check_first_time) {
+		chg_debug("dummy started or not first time\n");
+		return;
+	}
+
+	if (chip->chg_ops->check_pdphy_ready && chip->chg_ops->check_pdphy_ready() == false) {
+		chg_debug("PD phy not ready\n");
+		return;
+	}
+
+	if (oplus_pps_get_chg_status() != PPS_NOT_SUPPORT && chip->pps_force_svooc == false) {
+		if (chip->chg_ops->oplus_chg_get_pd_type) {
+			if (chip->chg_ops->oplus_chg_get_pd_type() == PD_PPS_ACTIVE) {
+				chip->fastchg_check_first_time = false;
+				return;
+			}
+		}
+	}
+
+	if (oplus_is_pps_charging()) {
+		chip->fastchg_check_first_time = false;
+		chg_debug("PPS charging\n");
+		return;
+	}
+
+	if (oplus_is_ufcs_charging()) {
+		chip->fastchg_check_first_time = false;
+		chg_debug("ufcs charging\n");
+		return;
+	}
+
+	if (oplus_vooc_get_fast_chg_type() != 0 || oplus_vooc_get_fastchg_started() == true) {
+		chip->fastchg_check_first_time = false;
+		chg_debug("VOOC/SVOOC charging\n");
+		return;
+	}
+
+	if (chip->check_time_sec == 0) {
+		chip->check_time_sec = time_now.tv_sec;
+	} else if (time_now.tv_sec - chip->check_time_sec >= NOTIFY_FASTCHG_CHECK_TIME) {
+		chip->notify_code |= 1 << NOTIFY_FASTCHG_CHECK_FAIL;
+		chip->fastchg_check_first_time = false;
+	}
+}
+
 static void oplus_chg_battery_notify_check(struct oplus_chg_chip *chip)
 {
 	chip->notify_code = 0x0000;
+	battery_notify_fastchg_check(chip);
 	battery_notify_tbat_check(chip);
 	battery_notify_authenticate_check(chip);
 	battery_notify_hmac_check(chip);
@@ -10563,15 +10634,14 @@ int oplus_enforce_chg_up_limit_result(struct oplus_chg_chip *chip, bool cut_off_
 {
 	int val = cut_off_charge;
 	int rc = 0;
-	static int pre_val = 0;
 	static int pre_is_force_charge_limit = 0;
 
-	chg_info("oplus_enforce_chg_up_limit_result begain %d %d %d %d\n", val, pre_val,
+	chg_info("oplus_enforce_chg_up_limit_result begain %d %d %d %d\n", val, chip->pre_chg_up_limit_mmi_val,
 		chg_up_limit_data.is_force_set_charge_limit, pre_is_force_charge_limit);
-	if (val == pre_val && chg_up_limit_data.is_force_set_charge_limit == pre_is_force_charge_limit)
+	if (val == chip->pre_chg_up_limit_mmi_val && chg_up_limit_data.is_force_set_charge_limit == pre_is_force_charge_limit)
 		return rc;
 
-	pre_val = val;
+	chip->pre_chg_up_limit_mmi_val = val;
 	pre_is_force_charge_limit = chg_up_limit_data.is_force_set_charge_limit;
 
 	if (chg_up_limit_data.is_force_set_charge_limit == 0) {
