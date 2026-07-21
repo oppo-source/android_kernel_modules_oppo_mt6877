@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: GPL-2.0-only
+#
+# check gpio of white card
+#
+
+config OPLUS_WIFI_SWTP
+	tristate "Check Gpio of White Card on MTK Platform"
+	help
+	  This enables the check gpio status of white card.
+	  If unsure, say N.

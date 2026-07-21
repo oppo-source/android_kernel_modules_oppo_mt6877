@@ -1,0 +1,193 @@
+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+/*
+ * Copyright (C) 2022 MediaTek Inc.
+ */
+#include <dt-bindings/gpio/gpio.h>
+
+&pio {
+    icc_spi_bypass_default: icc_spi_bypass_default{
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO91__FUNC_GPIO91>;
+            bias-disable;
+            drive-strength = <3>;
+            output-high;
+        };
+    };
+
+    icc_spi_goodpin_default: icc_spi_goodpin_default{
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO48__FUNC_GPIO48>;
+            input-enable;
+            bias-disable;
+            drive-strength = <0>;
+        };
+    };
+
+    icc_spi_readirq_default: icc_spi_readirq_default{
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO95__FUNC_GPIO95>;
+            input-disable;
+            bias-disable;
+            drive-strength = <2>;
+        };
+    };
+
+    icc_spi_bypass_active: icc_spi_bypass_active{
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO91__FUNC_GPIO91>;
+            output-low;
+            bias-disable;
+            drive-strength = <3>;
+        };
+    };
+
+    icc_spi_goodpin_active: icc_spi_goodpin_active{
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO48__FUNC_GPIO48>;
+            input-enable;
+            bias-disable;
+            drive-strength = <0>;
+        };
+    };
+
+    icc_spi_readirq_active: icc_spi_readirq_active{
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO95__FUNC_GPIO95>;
+            input-enable;
+            bias-disable;
+            drive-strength = <2>;
+        };
+    };
+
+    spi_icc_clk_sleep: spi_icc_clk_sleep{
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO98__FUNC_GPIO98>;
+            bias-disable; /* NO pull */
+            input-enable; /*set all gpios input mode& no pull when sleep */
+            drive-strength = <0>;
+        };
+    };
+
+    spi_icc_csn_sleep: spi_icc_csn_sleep{
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO99__FUNC_GPIO99>;
+            output-low;
+            drive-strength = <0>;
+        };
+    };
+
+    spi_icc_mosi_sleep: spi_icc_mosi_sleep{
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO100__FUNC_GPIO100>;
+            bias-disable; /* NO pull */
+            input-enable; /*set all gpios input mode& no pull when sleep */
+            drive-strength = <0>;
+        };
+    };
+
+    spi_icc_miso_sleep: spi_icc_miso_sleep{
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO97__FUNC_GPIO97>;
+            bias-disable; /* NO pull */
+            input-enable; /*set all gpios input mode& no pull when sleep */
+            drive-strength = <0>;
+        };
+    };
+
+    spi_icc_clk_active: spi_icc_clk_active{
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO98__FUNC_SPI6_B_CLK>;
+            bias-disable;
+            drive-strength = <2>;
+        };
+    };
+
+    spi_icc_csn_active: spi_icc_csn_active{
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO99__FUNC_SPI6_B_CSB>;
+            bias-disable;
+            drive-strength = <2>;
+        };
+    };
+
+    spi_icc_mosi_active: spi_icc_mosi_active{
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO100__FUNC_SPI6_B_MO>;
+            bias-disable;
+            drive-strength = <2>;
+        };
+    };
+
+    spi_icc_miso_active: spi_icc_miso_active{
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO97__FUNC_SPI6_B_MI>;
+            input-enable;
+            bias-disable; /* NO pull */
+            drive-strength = <2>;
+        };
+    };
+
+    uart1_rx_pin_uart_mode: uart1_rx_pin_uart_mode {
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO158__FUNC_URXD1>; /* URXD1 */
+            input-enable;
+            bias-pull-down;
+        };
+    };
+
+    uart1_rx_pins_gpio_mode: uart1_rx_pins_gpio_mode {
+        pins_cmd_dat {
+            pinmux = <PINMUX_GPIO158__FUNC_GPIO158>;
+            input-disable;
+            bias-disable;
+        };
+    };
+};
+
+&uart1 {
+
+    pinctrl-names = "default","sleep";
+    pinctrl-0 = <&uart1_rx_pin_uart_mode>;
+    pinctrl-1 = <&uart1_rx_pins_gpio_mode>;
+    status = "okay";
+    rxpin = <158>;
+
+};
+
+
+&spi6 {
+    mediatek,pad-select = <1>;
+    status = "okay";
+    #address-cells = <1>;
+    #size-cells = <0>;
+    pinctrl-names = "default", "sleep";
+    pinctrl-0 = <&spi_icc_clk_active>,<&spi_icc_csn_active>,<&spi_icc_mosi_active>,<&spi_icc_miso_active>;
+    pinctrl-1 = <&spi_icc_clk_sleep>,<&spi_icc_csn_sleep>,<&spi_icc_mosi_sleep>,<&spi_icc_miso_sleep>;
+    icc_spi_dev@0 {
+        compatible = "oplus,icc_mcu_dev";
+        reg = <0x0>;
+        interrupts = <95 0x2008>;
+        /* spi read irq */
+        spi-irq-gpio = <&pio 95 0x2008>;
+        /* mcu runtime status irq */
+        icc,irq-gpio = <&pio 48 GPIO_ACTIVE_LOW>;
+        icc,rst-gpio = <&pio 177 GPIO_ACTIVE_HIGH>;
+        reset-r-pu-always-on = <0>;//pull-up resistor use always-on power or not
+        icc,bypass-gpio = <&pio 91 GPIO_ACTIVE_LOW>;
+        spi-max-frequency = <52000000>;
+        icc-vcc-power-type = <1>;
+        platform = <0>; // 0 represents mtk,1 represents qualcomm
+        /*
+            1:GPIO Mode,then you need set the pwr-en-gpio like below
+            icc,pwr-en-gpio = <&pio 184 GPIO_ACTIVE_HIGH>;
+            2: LDO Mode, the you need set the reference ldo like below
+            vdd-supply = <&mt6661_3_ln60_5>;
+        */
+        icc,pwr-en-gpio = <&pio 157 GPIO_ACTIVE_HIGH>;
+        pinctrl-names = "default", "active";
+        pinctrl-0 = <&icc_spi_bypass_default>, <&icc_spi_goodpin_default>,
+                    <&icc_spi_readirq_default>;
+        pinctrl-1 = <&icc_spi_bypass_active>,<&icc_spi_goodpin_active>,
+                    <&icc_spi_readirq_active>;
+    };
+};

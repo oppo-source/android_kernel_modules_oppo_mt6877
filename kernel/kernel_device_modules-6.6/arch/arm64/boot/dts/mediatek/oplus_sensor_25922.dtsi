@@ -1,0 +1,273 @@
+&odm {
+	sensor_fb: sensor_fb {
+		compatible = "oplus,sensor-feedback";
+	};
+	ssc_interactive: ssc_interactive {
+		report_brightness = <1>;
+		support_pwm_turbo = <1>;
+		support_bri_to_scp = <1>;
+		need_to_sync_lcd_rate = <0>;
+		report_blank_mode = <1>;
+		receive_screenshot_info = <1>;
+	};
+/* hall */
+	mha100kn_hall1: mha100kn_hall1 {
+		compatible = "oplus,mha100kn_hall";
+		hall-id = <1>;
+		pinctrl-names = "mha100kn_hall1_active" , "mha100kn_hall1_sleep";
+
+		pinctrl-0 = <&mha100kn_hall1_active>;
+		pinctrl-1 = <&mha100kn_hall1_sleep>;
+
+		interrupt-parent = <&pio>;
+		interrupts = <27 0x2003>;      //both rising and falling edge
+		irq-gpio = <&pio 27 0x2003>;
+		irq_active_low;
+	};
+/* hall */
+	oplus_sensor:oplus_sensor {
+		compatible = "oplus,sensor-devinfo";
+		als-row-coe = <1000>;
+		/* sensor start */
+		/*
+		enum {
+			LIS3DH,
+			LSM6DS3,
+			BMI160,
+			LIS2HH12,
+			LSM6DSM,
+			BMI2XY,
+			LSM6DSO,
+			ICM4X6XX,
+			ICM4263X,
+			ICM4N607,
+			BMI22X,
+			SC7A20,
+			MC34X9,
+		};
+		*/
+		gsensor_1: gsensor_1 {
+			status = "okay";
+			sensor_name = <9>;//ICM4N607
+			device_name = "icm4n607";
+			i2c_num = <1>;
+			direction = <3>;
+			eint_num = <7>;
+			gyro_cali_version= <2>;
+			gyro_cali_range =<350>;
+			acc_cali_range= <300 300 300>;
+			sup_range_change = <0>;
+			max_gyro_bias = <70>;
+		};
+		/*
+		enum {
+			AKM09911,
+			MMC3530,
+			MMC5603,
+			MXG4300,
+			AKM09918,
+			AKM09919,
+		};
+		*/
+		msensor_1: msensor_1 {
+			status = "okay";
+			sensor_name = <3>;//MXG4300
+			i2c_num = <0>;
+			i2c_addr = <0x0c>;
+			direction = <3>;
+			eint_num = <0>;
+			soft-mag-parameter = <9600 0 74 0 148 1 46 1 9780 0 326 0 277 1 197 1 10259 0>;
+			sup_uncali_raw_mag = <1>;
+		};
+		/*
+		enum {
+			TMD2725,
+			APSD9922,
+			STK3335,
+			STK3331,
+			STK2232,
+			TCS3701,
+			STK32600,
+			STK33502,
+			MN78911,
+			TCS3720,
+		};
+		*/
+		cct_1: cct_1 {
+			status = "okay";
+			sensor_name = <1>;//STK37600_CCT
+			i2c_num = <0>;
+			i2c_addr = <0x48>;
+			direction = <0>;
+			eint_num = <28>;
+			available_sensor = <3>; // bit 0: rear als, bit 1: rear cct, bit 2: rear flicker
+			enable_als_gain_level = <3>;
+			device_name = "stk37600";
+		};
+		cct_panel_P_7_1: cct_panel_P_7_1 {
+			product_num = <2>;
+		};
+		cct_panel_P_7_2_1: cct_panel_P_7_2_1 {
+			product_num = <3>;
+		};
+		light_1: light_1 {
+			device_name = "stk3b6x cct";
+			gold_cct_channels = <5>;
+		};
+		als_panel_P_7_1: als_panel_P_7_1 {
+			status = "okay";
+			device_name = "stk3b6x cct";
+			support_panel = <12>; // 12-P_7-TM
+			gold_cct_3k = <18234 33355 1683 647 60110>; // 3000k gold parameter
+			gold_cct_6k = <11739 24860 3303 419 51232>;  // 6000k gold parameter
+		};
+		als_panel_P_7_2_1: als_panel_P_7_2_1 {
+			status = "okay";
+			device_name = "stk3b6x cct";
+			support_panel = <17>; // 17-P_7-Soft light screen of TM
+			gold_cct_3k = <18234 33355 1683 647 60110>; // 3000k gold parameter
+			gold_cct_6k = <11739 24860 3303 419 51232>;  // 6000k gold parameter
+		};
+		pick_up: pick_up {
+			status = "okay";
+			use-proximity = <1>;
+		};
+		lux_aod: lux_aod {
+			status = "okay";
+			use-proximity = <1>;
+		};
+		alsps_arch: alsps_arch {
+			status = "okay";
+			new-arch-supported = <1>;
+		};
+		cali_arch: cali_arch {
+			status = "okay";
+			new-arch-supported = <1>;
+		};
+		oplus_fusion: oplus_fusion {
+			status = "okay";
+			use_sub_accgyro = <0>;
+			fusion_style = <1>; // 0:vendor fusion; 1:oppo fusion; 2:mix fusion
+		};
+		smart_prox: smart_prox {
+			status = "okay";
+			support_smart_prox = <1>;
+		};
+		ap_timer: ap_timer {
+			status = "okay";
+			support_ap_timer = <0>;
+		};
+		pocket: pocket {
+			status = "okay";
+			support_pocket = <1>;
+			use_sub_accgyro = <0>;
+			need_als = <0>;
+		};
+		lay_detect: lay_detect{
+			status = "okay";
+			max_angel = <90>;
+			min_angel = <30>;
+			lay_in_time = <10>;
+			lay_out_time = <3>;
+		};
+		free_fall: free_fall{
+			status = "okay";
+			static_judge_length = <400>;
+			static_judge_acc_thresh = <1>;
+			freefall_judge_length = <80>;
+			freefall_judge_acc_thresh = <20>;
+			move_judge_length = <60>;
+			move_judge_acc_thresh = <1>;
+			freefall_start_judge_length  = <50>;
+			freefall_start_acc_thresh = <70>;
+			freefall_throw_judge_length = <700>;
+			freefall_throw_acc_thresh = <50>;
+			freefall_end_acc_thresh = <30>;
+			freefall_valid_time_length = <1000>;
+			freefall_peek_time_length = <200>;
+			freefall_peek_acc_thresh = <98>;
+			freefall_material_thresh = <900>;
+			valid_peek_interval_thresh = <10000>;
+		};
+		oplus_measurement: oplus_measurement{
+			status = "okay";
+			support_oplus_measurement = <1>;
+		};
+		oplus_sleep: oplus_sleep{
+			status = "okay";
+			sup_oplus_sleep = <1>;
+		};
+		shaking: shaking{
+			status = "okay";
+			is_available = <1>;
+			is_sup_s_ois = <1>;
+			is_sup_tele_ois = <0>;
+			is_detect_gyro = <1>;
+
+			ag_para_index = <0>;
+			shaking_cnt = <1>;
+			static_cnt = <3>;
+			shaking_timeout = <60>;
+			shaking_buffer_size = <40>;
+			acc_static_length = <100>;
+			acc_move_threshold = <600>;
+			acc_move_length = <10>;
+		};
+		chop: chop {
+			status = "okay";
+			is_available = <1>;
+			is_sup_chop = <1>;
+
+			acc_static_length = <100>;
+			acc_move_threshold = <600>;
+			acc_move_length = <3>;
+			ax_max = <20>;
+			ax_min = <20>;
+			ax_delta = <70>;
+			ax_peek_cnt = <1>;
+			ax_extra_cnt = <2>;
+			chop_cnt = <2>;
+			chop_between_ms = <250>;
+			chop_timeout_ms = <700>;
+			chop_buffer_size = <10>;
+		};
+		elevator: elevator {
+			status = "okay";
+			sup_accel_rpt = <1>;
+		};
+		oplus_usnd_prox: oplus_usnd_prox {
+			status = "okay";
+			support_usnd = <1>;
+		};
+		oplus_pedometer_minute: oplus_pedometer_minute{
+			status = "okay";
+			sup_mag_cal_on = <0>;
+			sup_gyro_cal_on = <1>;
+		};
+		oplus_motion_recognition_v2: oplus_motion_recognition_v2{
+			status = "okay";
+			is_pad_project = <1>;
+		};
+		dev_ori: dev_ori {
+			status = "okay";
+			fast_mode = <1>;
+		};
+	};
+/* sensor end */
+};
+/* hall */
+&pio {
+	mha100kn_hall1_active: mha100kn_hall1_active {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO27__FUNC_GPIO27>;
+			bias-pull-up;
+		};
+	};
+	mha100kn_hall1_sleep: mha100kn_hall1_sleep {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO27__FUNC_GPIO27>;
+			bias-pull-up;
+		};
+	};
+};
+/* hall */

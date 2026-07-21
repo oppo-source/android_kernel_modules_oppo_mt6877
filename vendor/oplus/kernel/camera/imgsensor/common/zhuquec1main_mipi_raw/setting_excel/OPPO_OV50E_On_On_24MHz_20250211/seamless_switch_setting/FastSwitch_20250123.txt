@@ -1,0 +1,56 @@
+;Seamless switch has two cases, linear to other formats and stagger(incldues DCG+VS) to other formats										
+;linear format is full, SCG, DCG										
+;stagger format is STG, DCG+VS										
+
+
+@@ linear to other				
+6c 3208 01 ;group 1				
+6c 3016 f3				
+6c 3014 f1				
+6c 3017 f2				
+6c 301f 9b				
+6c 382e 49				
+				
+;add linear or STG format setting 			
+				
+6c 301f 98				
+6c 3017 f0				
+6c 3014 f0				
+6c 3016 f0				
+6c 3046 01				
+6c 3208 11								
+			
+6c 3208 a1 ;launch group 1	Switch in VB from linear To other formats
+
+
+@@STG to other
+6c 3208 02 ;group 2        
+6c 3016 f3          
+6c 3014 f1          
+6c 3017 f2          
+6c 301f 9b          
+6c 382e 49         
+               
+;add format setting          
+               
+6c 301f 98          
+6c 3017 f0          
+6c 3014 f0          
+6c 3016 f0          
+6c 3046 01         
+6c 3208 12         
+               
+6c 3208 01 ;group 1        
+6c 4220 00         
+6c 4222 01 ;sensor mask frame N+1
+6c 4223 20         
+6c 3208 11         
+6c 320d 01         
+6c 3209 00 ;stay 0 frame on group 0
+6c 320a 01 ;stay 1 frame on group 1
+6c 320b 01 ;stay 1 frame on group 2
+6c 320d 92 ;switch back to group 2
+6c 320e a1 ;context switch launch group 1
+	
+				
+				

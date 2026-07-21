@@ -1,0 +1,4 @@
+
+config OPLUS_FEATURE_FLAT_DETECT
+	tristate "flat_detecthub for MediaTek package"
+	default n

@@ -1,0 +1,40 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+* Copyright (C) 2021-2020 Oplus. All rights reserved.
+*/
+#include <dt-bindings/iio/mt635x-auxadc.h>
+#include <dt-bindings/pinctrl/mt6991-pinfunc.h>
+#include <dt-bindings/pinctrl/mt65xx.h>
+
+/* charge start */
+&regulator_vibrator{
+	status = "disabled";
+};
+
+&ssusb {
+	maximum-speed = "super-speed";
+};
+
+&u2port0 {
+	mediatek,eye-vrt = <7>;
+	mediatek,eye-term = <7>;
+	mediatek,rev6 = <3>;
+	mediatek,eye-vrt-host = <7>;
+	mediatek,eye-term-host = <7>;
+	mediatek,rev6-host = <3>;
+	mediatek,discth = <0xb>;
+	mediatek,rx-sqth = <0x2>;
+	mediatek,rx-sqd = <0x2>;
+	mediatek,host-rx-sqth = <0xc>;
+	mediatek,host-rx-sqd = <0x3>;
+};
+
+&u3port0 {
+	mediatek,tx-lctxc0 = <18>;
+	mediatek,tx-lctxcp1 = <6>;
+};
+
+&usb_dp_selector {
+	use-gpio-ctrl-dp-sbu-switch;
+	oplus,usb-dp-sbu-switch-gpio = <&pio 178 0x00>;
+};

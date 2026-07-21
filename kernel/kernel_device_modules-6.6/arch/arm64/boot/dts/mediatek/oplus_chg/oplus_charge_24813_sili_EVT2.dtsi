@@ -1,0 +1,226 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+* Copyright (C) 2024 Oplus. All rights reserved.
+*/
+#include "oplus_chg.h"
+
+/* charge start */
+
+&lk_charger {
+	/* for silicon battery */
+	is_silicon_battery;
+	max-term-voltage-mv = <3350>;
+	min-term-voltage-mv = <3050>;
+	dcp-boot-thd-inc-mv = <(-100)>;
+	cdp-boot-thd-inc-mv = <(50)>;
+	sdp-boot-thd-inc-mv = <(50)>;
+	nochg-boot-thd-inc-mv = <(50)>;
+	max-boot-thd-mv = <(3400)>;
+	min-boot-thd-mv = <(3150)>;
+	dcp-max-boot-thd-mv = <(3400)>;
+	dcp-min-boot-thd-mv = <(3050)>;
+	prechg1-thd-mv = <3000>;
+	prechg1-current-ma = <500>; /* dual-cell configuration value is twice the ibat-ma */
+	temp-low-inc1 = <500>; /* < -20 */
+	temp-low-inc2 = <500>; /* -20 ~ -10 */
+	temp-low-inc3 = <500>; /* -10 ~ 0 */
+	temp-low-inc4 = <100>; /* 0 ~ 20 */
+	temp-low-inc5 = <0>; /* > 20 */
+	/* silicon battery end */
+};
+
+&oplus_mms_gauge {
+	deep_spec,support;
+	deep_spec,uv_thr = <3000>;
+	deep_spec,count_thr = <50>;
+	deep_spec,vbat_soc = <20>;
+	deep_spec,count_step = <0 10 0
+				350 12 1
+				450 15 2
+				530 20 3>;
+	deep_spec,term_coeff = <3050 900  6
+				3080 1000 7
+				3100 1000 7
+				3155 1000 9
+				3250 1200 12
+				3350 1300 12>;
+	deep_spec,ddrc_strategy_name = "ddrc_curve";
+	deep_spec,volt_step = <20>;
+	deep_spec,ddbc_curve {
+		oplus,temp_type = <OPLUS_STRATEGY_USE_BATT_TEMP>;
+		oplus,temp_range = <(-100) 50 200>;
+		deep_spec,ddbc_temp_cold =   <500   3250 5
+						  10000 3200 2>;
+		deep_spec,ddbc_temp_cool =   <500   3250 5
+						  10000 3200 2>;
+		deep_spec,ddbc_temp_normal = <500   3350 5
+						  10000 3300 2>;
+		deep_spec,ddbc_temp_warm =   <500   3350 5
+						  10000 3300 2>;
+	};
+	ddrc_strategy {
+		oplus,temp_type = <OPLUS_STRATEGY_USE_BATT_TEMP>;
+		oplus,ratio_range = <20 30 50 70 90>;
+		oplus,temp_range = <(-50) 100 200>;
+		strategy_ratio_range_min { /* 0 ~ 0.2 */
+			strategy_temp_cold =	<0    3000 3050 0
+						 15   3000 3080 1
+						 800  3000 3100 2
+						 1200 3100 3155 3
+						 1600 3200 3250 4
+						 2000 3300 3350 5>;
+			strategy_temp_cool =	<0    3000 3050 0
+						 15   3000 3080 1
+						 500  3000 3100 2
+						 1000 3100 3155 3
+						 1500 3200 3250 4
+						 2000 3300 3350 5>;
+			strategy_temp_normal =	<0    3000 3050 0
+						 15   3000 3050 1
+						 500  3100 3155 2
+						 1000 3200 3250 3
+						 1500 3300 3350 4>;
+			strategy_temp_warm =	<0    3000 3050 0
+						 15   3000 3050 1
+						 500  3100 3155 2
+						 1000 3200 3250 3
+						 1500 3300 3350 4>;
+		};
+		strategy_ratio_range_low { /* 0.2 ~ 0.3 */
+			strategy_temp_cold =	<0    3000 3050 0
+						 15   3000 3080 1
+						 600  3000 3100 2
+						 1000 3100 3155 3
+						 1300 3200 3250 4
+						 1600 3300 3350 5>;
+			strategy_temp_cool =	<0    3000 3050 0
+						 15   3000 3050 1
+						 400  3000 3080 2
+						 800  3100 3155 3
+						 1200 3200 3250 4
+						 1600 3300 3350 5>;
+			strategy_temp_normal =	<0    3000 3050 0
+						 15   3000 3050 1
+						 400  3100 3155 2
+						 800  3200 3250 3
+						 1200 3300 3350 4>;
+			strategy_temp_warm =	<0    3000 3050 0
+						 15   3000 3050 1
+						 400  3100 3155 2
+						 800  3200 3250 3
+						 1200 3300 3350 4>;
+		};
+		strategy_ratio_range_mid_low { /* 0.3 ~ 0.5 */
+			strategy_temp_cold =	<0    3000 3050 0
+						 15   3000 3080 1
+						 500  3000 3100 2
+						 600  3100 3155 3
+						 900  3200 3250 4
+						 1200 3300 3350 5>;
+			strategy_temp_cool =	<0    3000 3050 0
+						 15   3000 3050 1
+						 300  3000 3080 2
+						 600  3100 3155 3
+						 900  3200 3250 4
+						 1200 3300 3350 5>;
+			strategy_temp_normal =	<0    3000 3050 0
+						 15   3000 3050 1
+						 300  3100 3155 2
+						 600  3200 3250 3
+						 900  3300 3350 4>;
+			strategy_temp_warm =	<0    3000 3050 0
+						 15   3000 3050 1
+						 300  3100 3155 2
+						 600  3200 3250 3
+						 900  3300 3350 4>;
+		};
+		strategy_ratio_range_mid { /* 0.5 ~ 0.7 */
+			strategy_temp_cold =	<0    3000 3050 0
+						 15   3000 3080 1
+						 350  3000 3100 2
+						 400  3100 3155 3
+						 700  3200 3250 4
+						 1000 3300 3350 5>;
+			strategy_temp_cool =	<0   3000 3050 0
+						 100 3000 3050 1
+						 200 3100 3155 2
+						 500 3200 3250 3
+						 800 3300 3350 4>;
+			strategy_temp_normal =	<0   3000 3050 0
+						 100 3100 3155 1
+						 200 3200 3250 2
+						 500 3300 3350 3>;
+			strategy_temp_warm =	<0   3000 3050 0
+						 100 3100 3155 1
+						 200 3200 3250 2
+						 500 3300 3350 3>;
+		};
+		strategy_ratio_range_mid_high { /* 0.7 ~ 0.9 */
+			strategy_temp_cold =	<0    3000 3050 0
+						 15   3000 3050 1
+						 100  3000 3080 2
+						 150  3100 3155 3
+						 300  3200 3250 4
+						 500  3300 3350 5>;
+			strategy_temp_cool =	<0    3000 3050 0
+						 50   3000 3050 1
+						 100  3100 3155 2
+						 150  3200 3250 3
+						 300  3300 3350 4>;
+			strategy_temp_normal =	<0    3000 3050 0
+						 50   3100 3155 1
+						 100  3200 3250 2
+						 150  3300 3350 3>;
+			strategy_temp_warm =	<0    3000 3050 0
+						 50   3100 3155 1
+						 100  3200 3250 2
+						 150  3300 3350 3>;
+		};
+		strategy_ratio_range_high { /* 0.9 ~ 1 */
+			strategy_temp_cold =	<0    3000 3050 0
+						 15   3000 3050 1
+						 100  3000 3080 2
+						 150  3100 3155 3
+						 300  3200 3250 4
+						 500  3300 3350 5>;
+			strategy_temp_cool =	<0    3000 3050 0
+						 50   3000 3050 1
+						 100  3100 3155 2
+						 150  3200 3250 3
+						 300  3300 3350 4>;
+			strategy_temp_normal =	<0    3000 3050 0
+						 50   3100 3155 1
+						 100  3200 3250 2
+						 150  3300 3350 3>;
+			strategy_temp_warm =	<0    3000 3050 0
+						 50   3100 3155 1
+						 100  3200 3250 2
+						 150  3300 3350 3>;
+		};
+	};
+};
+
+&oplus_virtual_buck {
+	oplus,buck_ic = <&charger &byb_tps6128xd &byb_tps6128xd_second &byb_tps6128xd_third>;
+	oplus,buck_ic_index = <0 1 2 3>;
+	oplus,buck_ic_current_ratio = <100 0 0 0>;
+	oplus,buck_ic_connect = <OPLUS_CHG_IC_CONNECT_PARALLEL>;
+	oplus,main_charger = <0>;
+	oplus,buck_ic_func_group = <&mtk_6991_groups &byb_tps6128xd_groups &byb_tps6128xd_groups &byb_tps6128xd_groups>;
+};
+
+&i2c10 {
+	status = "okay";
+	clock-frequency = <400000>;
+
+	byb_tps6128xd_third: byb-tps6128xd@75 {
+		status = "okay";
+		compatible = "oplus,byb-tps6128xd";
+		reg = <0x75>;
+		oplus,ic_type = <OPLUS_CHG_IC_BOOST>;
+		oplus,ic_index = <2>;
+		oplus,vout-mv = <3050>;
+		oplus,ilim-ma = <4500>;
+	};
+};
+//#endif OPLUS_FEATURE_CHG_BASIC

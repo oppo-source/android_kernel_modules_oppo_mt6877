@@ -1,0 +1,801 @@
+&panel_ab968_p_3_a0026_dsi_vdo {
+	oplus,dsi-display-panel@0 {
+		reg = <0>;
+		oplus,dsi-vendor-name = "A0026";
+		oplus,dsi-manufacture = "P_3";
+		oplus,dsi-display-timings {
+			timing@sa_fhd_60 {
+				cell-index = <0>;
+				oplus,dsi-panel-framerate = <60>;
+				oplus,dsi-panel-pllclk = <584>;
+				oplus,cmd-null-pkt-en = <0>;
+				oplus,cmd-null-pkt-len = <0>;
+				/* OPLUS_FEATURE_DISPLAY_ONSCREENFINGERPRINT */
+				//oplus,ofp_need_keep_apart_backlight;
+				#include "panel-ab968-p-3-a0026-dsi-vdo-common.dtsi"
+				oplus,dsi-timing-switch-command = [
+					39 00 00 00 00 00 02 2F 03
+				];
+
+				oplus,dsi-on-command = [
+					//Video trim OSC2 to 160Mhz,
+					//For other setting refer OP manual Ch 4.3
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					39 00 00 40 00 00 02 6F 04
+					39 00 00 40 00 00 02 C3 0A
+					39 00 00 40 00 00 02 6F 09
+					39 00 00 40 00 00 02 C3 0A
+					39 00 00 40 00 00 02 EA C0
+					39 00 00 40 00 00 02 6F 11
+					39 00 00 40 00 00 02 EA C0
+					39 00 00 40 00 00 02 6F 07
+					39 00 00 40 00 00 0B EA 01 02 01 34 01 34 01 34 04 D1
+					39 00 00 40 00 00 02 6F 18
+					39 00 00 40 00 00 0B EA 01 79 01 C4 01 C4 01 C4 07 0F
+
+					//VGXP by pad cap
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					39 00 00 40 00 00 02 6F 1F
+					39 00 00 40 00 00 02 F4 0F
+					39 00 00 40 00 00 02 6F 20
+					39 00 00 40 00 00 02 F4 0F
+					39 00 00 40 00 00 02 6F 08
+					39 00 00 40 00 00 02 FC 01
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					39 00 00 40 00 00 02 6F 24
+					39 00 00 00 00 00 02 F8 FF
+
+					// For Idle enter BIST
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 C0 00
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					39 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 02 D2 00
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					39 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 02 F8 02
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					39 00 00 40 00 00 02 F2 15
+
+					//LCTC Constraint For ESD Improve
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					39 00 00 40 00 00 02 6F A9
+					39 00 00 40 00 00 02 F4 F3
+
+					//FOD OFF
+					39 00 00 40 00 00 06 F0 55 AA 52 08 09
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 03 8B 00 00
+					39 00 00 00 00 00 02 87 00
+
+					//Resolution Setting
+					39 00 00 40 00 00 05 2A 00 00 04 FF
+					39 00 00 40 00 00 05 2B 00 00 0A EF
+
+					//VESA1.2 10 bit 3.75 DSC Setting
+					// For other refer OP manual Ch 4.4
+					39 00 00 40 00 00 02 90 03
+					39 00 00 40 00 00 02 6F 01
+					39 00 00 40 00 00 02 90 43
+					39 00 00 40 00 00 13 91 AB A8 00 28 D2 00 02 5C 04 06 00 08 02 AB 02 20 10 E0
+
+					//Dimming OFF
+					39 00 00 40 00 00 02 53 20
+
+					//Video Mode Ext_VFP VBPF Setting
+					39 00 00 40 00 00 11 3B 00 1c 00 74 00 1c 00 7C 00 1c 04 54 00 1c 00 7C
+					39 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 05 3B 00 1C 00 7C
+
+					//DPC Temperature Setting
+					39 00 00 40 00 00 03 81 01 19
+
+					//FPR1 EN
+					39 00 00 40 00 00 02 88 01
+
+					//60Hz Sleep Out
+					//For other refer OP manual Ch 5.4.3
+					39 00 00 40 00 00 02 2F 03
+
+					//TE ON
+					39 00 00 40 00 00 02 35 00
+
+					//Setting Loading Effect x1.0
+					39 00 00 40 00 00 03 5F 00 00
+
+					//pmic initial voltage setting
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 03
+					39 00 00 40 00 00 02 B5 D5
+
+					//VINIP1 off
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					39 00 00 40 00 00 02 6F 00
+					39 00 00 00 00 00 02 F9 00
+					//Optimize water ripples
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					39 00 00 40 00 00 02 6F 1F
+					39 00 00 40 00 00 02 F4 0F
+					39 00 00 40 00 00 02 6F 20
+					39 00 00 40 00 00 02 F4 0F
+					39 00 00 40 00 00 02 6F 08
+					39 00 00 00 00 00 02 FC 01
+					//LHBM BL setting
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 25
+					39 00 00 00 00 00 07 DF 3B 8C 3B 8C 3B 8C
+
+					39 00 00 40 00 00 06 F0 55 AA 52 08 08
+					39 00 00 40 00 00 05 E0 41 01 01 01
+					39 00 00 40 00 00 02 6F 06
+					39 00 00 40 00 00 03 E0 00 00
+					39 00 00 40 00 00 02 6F 13
+					39 00 00 40 00 00 13 E0 00 01 01 2C 01 9B 02 52 03 CB 04 10 04 40 08 51 0B 6A
+					39 00 00 40 00 00 0F E1 06 0D 20 1A 1A 1A 1A 1A 1A 15 0C 07 07 0C
+					39 00 00 40 00 00 0F E2 0A 15 20 2A 2A 2A 2A 2A 23 1D 12 0E 0D 0D
+					39 00 00 40 00 00 0F E3 00 00 00 07 07 07 07 07 07 07 07 08 0B 06
+					39 00 00 40 00 00 02 6F 0E
+					39 00 00 40 00 00 0F E1 04 08 0B 0F 0F 0F 0F 0F 07 07 06 06 09 0B
+					39 00 00 40 00 00 02 6F 0E
+					39 00 00 40 00 00 0F E2 05 0A 0B 13 13 13 13 13 0A 07 06 06 07 09
+					39 00 00 40 00 00 02 6F 0E
+					39 00 00 40 00 00 0F E3 00 00 00 00 00 00 00 00 00 00 0A 0B 0E 11
+					39 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 0F E1 02 04 12 07 07 07 07 07 04 03 06 07 0B 0E
+					39 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 0F E2 03 06 12 0D 0D 0C 0C 0C 06 06 06 07 09 0B
+					39 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 0F E3 00 00 00 00 00 00 00 00 00 0B 0A 0B 0D 10
+					39 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 0F E1 02 04 08 08 07 06 05 04 03 05 08 09 0C 10
+					39 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 0F E2 03 06 08 0D 0B 0A 08 06 04 05 06 08 0A 0E
+					39 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 0F E3 00 00 00 00 00 00 00 00 04 07 09 0C 0F 13
+					39 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 0F E1 02 04 00 07 06 05 04 03 05 08 0B 0C 0D 11
+					39 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 0F E2 02 04 00 08 07 06 05 04 05 07 09 0B 0C 0E
+					39 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 0F E3 00 00 00 02 02 02 02 02 05 08 09 0A 0C 0F
+					39 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 0F E1 02 03 06 06 06 05 04 04 06 09 0A 0B 0D 11
+					39 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 0F E2 02 03 06 06 06 05 04 04 05 07 09 0B 0B 0E
+					39 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 0F E3 00 00 00 00 01 02 03 04 05 09 0A 0B 0C 0F
+					39 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 0F E1 02 03 04 06 06 05 04 04 06 0A 0B 0C 0E 11
+					39 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 0F E2 02 04 04 08 07 06 05 04 06 08 0A 0B 0C 0F
+					39 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 0F E3 00 00 00 03 03 04 04 04 06 09 0A 0B 0D 10
+					39 00 00 40 00 00 02 6F 62
+					39 00 00 40 00 00 0F E1 00 01 02 02 02 03 04 04 07 08 0A 0C 0E 13
+					39 00 00 40 00 00 02 6F 62
+					39 00 00 40 00 00 0F E2 00 01 02 02 02 03 04 04 06 08 09 0B 0D 10
+					39 00 00 40 00 00 02 6F 62
+					39 00 00 40 00 00 0F E3 00 00 00 02 02 03 04 04 06 09 0C 0E 11 16
+					39 00 00 40 00 00 02 6F 70
+					39 00 00 40 00 00 0F E1 00 01 01 02 02 03 04 04 06 08 0B 0D 0F 14
+					39 00 00 40 00 00 02 6F 70
+					39 00 00 40 00 00 0F E2 00 01 01 02 02 03 04 04 05 07 09 0C 0F 13
+					39 00 00 40 00 00 02 6F 70
+					39 00 00 00 00 00 0F E3 00 00 00 02 02 03 04 04 06 09 0B 0F 11 15
+
+					//Modified to vrgh8.5V
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					39 00 00 40 00 00 03 B0 37 37
+					39 00 00 40 00 00 05 B2 AA 2A 55 15
+					39 00 00 00 00 00 08 B7 2D 2D 2D 2D 2D 00 2D
+					//Switch DBV to 00
+					39 00 00 40 00 00 08 A9 02 00 C0 0B 0C 64 00
+					39 00 00 00 00 00 03 51 00 00
+					//Shuibowen
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					39 00 00 40 00 00 02 6F 47
+					39 00 00 40 00 00 02 F2 21
+					05 00 00 00 78 00 01 11 // Sleep out
+					05 00 00 00 00 00 01 29 // Display out
+					39 00 00 00 00 00 07 A9 01 00 2F 00 00 03
+				];
+
+				oplus,dsi-timing-switch-command-state = "dsi_ls_mode";
+				oplus,dsi-on-command-state = "dsi_lp_mode";
+
+				oplus,dsc-params-entries = <&dsc_params>;
+				//oplus,phy-timcon {
+				//	hs-trail = <14>;
+				//	clk-trail = <15>;
+				//};
+				oplus,dyn-fps {
+					switch_en = <1>;
+					vact_timing_fps = <60>;
+					dyn_fps_data_rate;
+					oplus_dyn_fps_dfps_cmd_table0 = [00 3D A9 02 08 E0 00 00 40 02 08 E1 01 01 20 02 08 E2 01 01 20 02 08 E1 10 10 0B 02 08 E2 10 10 0B 02 08 E1 1E 1E 12 02 08 E2 1E 1E 12 02 08 E1 2C 2C 08 02 08 E2 2C 2C 08 02 08 E1 3A 3A 00];
+					oplus_dyn_fps_dfps_cmd_table1 = [00 3D A9 02 08 E2 3A 3A 00 02 08 E1 48 48 06 02 08 E2 48 48 06 02 08 E1 56 56 04 02 08 E2 56 56 04 02 08 E1 64 64 02 02 08 E2 64 64 02 02 08 E1 72 72 01 02 08 E2 72 72 01 02 08 E0 00 00 41];
+					oplus_dyn_fps_dfps_cmd_table2 = [00 07 A9 01 00 2F 00 00 03];
+				};
+				oplus,display-mode {
+					display-mode@0 {
+						hdisplay = <1280>;
+						vdisplay = <2800>;
+						fhd-hfp = <112>;
+						fhd-hsa = <4>;
+						fhd-hbp = <4>;
+						fhd-vfp = <3076>;
+						fhd-vsa = <2>;
+						fhd-vbp = <26>;
+						hskew = <STANDARD_ADFR>;
+					};
+					display-mode@1 {
+						hdisplay = <1080>;
+						vdisplay = <2362>;
+						fhd-hfp = <112>;
+						fhd-hsa = <4>;
+						fhd-hbp = <4>;
+						fhd-vfp = <3076>;
+						fhd-vsa = <2>;
+						fhd-vbp = <26>;
+						hskew = <STANDARD_ADFR>;
+					};
+				};
+			};
+			timing@sa_fhd_90 {
+				cell-index = <1>;
+				oplus,dsi-panel-framerate = <90>;
+				oplus,dsi-panel-pllclk = <584>;
+				oplus,cmd-null-pkt-en = <1>;
+				oplus,cmd-null-pkt-len = <0>;
+				/* OPLUS_FEATURE_DISPLAY_ONSCREENFINGERPRINT */
+				//oplus,ofp_need_keep_apart_backlight;
+				#include "panel-ab968-p-3-a0026-dsi-vdo-common.dtsi"
+				oplus,dsi-timing-switch-command = [
+					39 00 00 00 00 00 02 2F 02
+				];
+
+				oplus,dsi-on-command = [
+					//Video trim OSC2 to 160Mhz,
+					//For other setting refer OP manual Ch 4.3
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					39 00 00 40 00 00 02 6F 04
+					39 00 00 40 00 00 02 C3 0A
+					39 00 00 40 00 00 02 6F 09
+					39 00 00 40 00 00 02 C3 0A
+					39 00 00 40 00 00 02 EA C0
+					39 00 00 40 00 00 02 6F 11
+					39 00 00 40 00 00 02 EA C0
+					39 00 00 40 00 00 02 6F 07
+					39 00 00 40 00 00 0B EA 01 02 01 34 01 34 01 34 04 D1
+					39 00 00 40 00 00 02 6F 18
+					39 00 00 40 00 00 0B EA 01 79 01 C4 01 C4 01 C4 07 0F
+
+					//VGXP by pad cap
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					39 00 00 40 00 00 02 6F 1F
+					39 00 00 40 00 00 02 F4 0F
+					39 00 00 40 00 00 02 6F 20
+					39 00 00 40 00 00 02 F4 0F
+					39 00 00 40 00 00 02 6F 08
+					39 00 00 40 00 00 02 FC 01
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					39 00 00 40 00 00 02 6F 24
+					39 00 00 00 00 00 02 F8 FF
+
+					// For Idle enter BIST
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 C0 00
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					39 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 02 D2 00
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					39 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 02 F8 02
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					39 00 00 40 00 00 02 F2 15
+
+					//LCTC Constraint For ESD Improve
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					39 00 00 40 00 00 02 6F A9
+					39 00 00 40 00 00 02 F4 F3
+
+					//FOD OFF
+					39 00 00 40 00 00 06 F0 55 AA 52 08 09
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 03 8B 00 00
+					39 00 00 00 00 00 02 87 00
+
+					//Resolution Setting
+					39 00 00 40 00 00 05 2A 00 00 04 FF
+					39 00 00 40 00 00 05 2B 00 00 0A EF
+
+					//VESA1.2 10 bit 3.75 DSC Setting
+					// For other refer OP manual Ch 4.4
+					39 00 00 40 00 00 02 90 03
+					39 00 00 40 00 00 02 6F 01
+					39 00 00 40 00 00 02 90 43
+					39 00 00 40 00 00 13 91 AB A8 00 28 D2 00 02 5C 04 06 00 08 02 AB 02 20 10 E0
+
+					//Dimming OFF
+					39 00 00 40 00 00 02 53 20
+
+					//Video Mode Ext_VFP VBPF Setting
+					39 00 00 40 00 00 11 3B 00 1c 00 74 00 1c 00 7C 00 1c 04 54 00 1c 00 7C
+					39 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 05 3B 00 1C 00 7C
+
+					//DPC Temperature Setting
+					39 00 00 40 00 00 03 81 01 19
+
+					//FPR1 EN
+					39 00 00 40 00 00 02 88 01
+
+					//90Hz Sleep Out
+					//For other refer OP manual Ch 5.4.3
+					39 00 00 40 00 00 02 2F 02
+
+					//TE ON
+					39 00 00 40 00 00 02 35 00
+
+					//Setting Loading Effect x1.0
+					39 00 00 40 00 00 03 5F 00 00
+
+					//pmic initial voltage setting
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 03
+					39 00 00 40 00 00 02 B5 D5
+
+					//VINIP1 off
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					39 00 00 40 00 00 02 6F 00
+					39 00 00 00 00 00 02 F9 00
+					//Optimize water ripples
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					39 00 00 40 00 00 02 6F 1F
+					39 00 00 40 00 00 02 F4 0F
+					39 00 00 40 00 00 02 6F 20
+					39 00 00 40 00 00 02 F4 0F
+					39 00 00 40 00 00 02 6F 08
+					39 00 00 00 00 00 02 FC 01
+					//LHBM BL setting
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 25
+					39 00 00 00 00 00 07 DF 3B 8C 3B 8C 3B 8C
+
+					39 00 00 40 00 00 06 F0 55 AA 52 08 08
+					39 00 00 40 00 00 05 E0 41 01 01 01
+					39 00 00 40 00 00 02 6F 06
+					39 00 00 40 00 00 03 E0 00 00
+					39 00 00 40 00 00 02 6F 13
+					39 00 00 40 00 00 13 E0 00 01 01 2C 01 9B 02 52 03 CB 04 10 04 40 08 51 0B 6A
+					39 00 00 40 00 00 0F E1 06 0D 30 1A 1A 1A 1A 1A 1A 15 0C 07 07 0C
+					39 00 00 40 00 00 0F E2 0A 15 30 2A 2A 2A 2A 2A 23 1D 12 0E 0D 0D
+					39 00 00 40 00 00 0F E3 00 00 00 07 07 07 07 07 07 07 07 08 0B 06
+					39 00 00 40 00 00 02 6F 0E
+					39 00 00 40 00 00 0F E1 04 08 20 0F 0F 0F 0F 0F 07 07 06 06 09 0B
+					39 00 00 40 00 00 02 6F 0E
+					39 00 00 40 00 00 0F E2 05 0A 20 13 13 13 13 13 0A 07 06 06 07 09
+					39 00 00 40 00 00 02 6F 0E
+					39 00 00 40 00 00 0F E3 00 00 00 00 00 00 00 00 00 00 0A 0B 0E 11
+					39 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 0F E1 02 04 1B 07 07 07 07 07 04 03 06 07 0B 0E
+					39 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 0F E2 03 06 1B 0D 0D 0C 0C 0C 06 06 06 07 09 0B
+					39 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 0F E3 00 00 00 00 00 00 00 00 00 0B 0A 0B 0D 10
+					39 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 0F E1 02 04 11 08 07 06 05 04 03 05 08 09 0C 10
+					39 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 0F E2 03 06 11 0D 0B 0A 08 06 04 05 06 08 0A 0E
+					39 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 0F E3 00 00 00 00 00 00 00 00 04 07 09 0C 0F 13
+					39 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 0F E1 02 04 0B 07 06 05 04 03 05 08 0B 0C 0D 11
+					39 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 0F E2 02 04 0B 08 07 06 05 04 05 07 09 0B 0C 0E
+					39 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 0F E3 00 00 00 02 02 02 02 02 05 08 09 0A 0C 0F
+					39 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 0F E1 02 03 09 06 06 05 04 04 06 09 0A 0B 0D 11
+					39 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 0F E2 02 03 09 06 06 05 04 04 05 07 09 0B 0B 0E
+					39 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 0F E3 00 00 00 00 01 02 03 04 05 09 0A 0B 0C 0F
+					39 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 0F E1 02 03 08 06 06 05 04 04 06 0A 0B 0C 0E 11
+					39 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 0F E2 02 04 08 08 07 06 05 04 06 08 0A 0B 0C 0F
+					39 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 0F E3 00 00 00 03 03 04 04 04 06 09 0A 0B 0D 10
+					39 00 00 40 00 00 02 6F 62
+					39 00 00 40 00 00 0F E1 00 01 03 02 02 03 04 04 07 08 0A 0C 0E 13
+					39 00 00 40 00 00 02 6F 62
+					39 00 00 40 00 00 0F E2 00 01 03 02 02 03 04 04 06 08 09 0B 0D 10
+					39 00 00 40 00 00 02 6F 62
+					39 00 00 40 00 00 0F E3 00 00 00 02 02 03 04 04 06 09 0C 0E 11 16
+					39 00 00 40 00 00 02 6F 70
+					39 00 00 40 00 00 0F E1 00 01 02 02 02 03 04 04 06 08 0B 0D 0F 14
+					39 00 00 40 00 00 02 6F 70
+					39 00 00 40 00 00 0F E2 00 01 02 02 02 03 04 04 05 07 09 0C 0F 13
+					39 00 00 40 00 00 02 6F 70
+					39 00 00 00 00 00 0F E3 00 00 00 02 02 03 04 04 06 09 0B 0F 11 15
+
+					//Modified to vrgh8.5V
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					39 00 00 40 00 00 03 B0 37 37
+					39 00 00 40 00 00 05 B2 AA 2A 55 15
+					39 00 00 00 00 00 08 B7 2D 2D 2D 2D 2D 00 2D
+					//Switch DBV to 00
+					39 00 00 40 00 00 08 A9 02 00 C0 0B 0C 64 00
+					39 00 00 00 00 00 03 51 00 00
+					//Shuibowen
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					39 00 00 40 00 00 02 6F 47
+					39 00 00 40 00 00 02 F2 21
+					05 00 00 00 78 00 01 11 // Sleep out
+					05 00 00 00 00 00 01 29 // Display out
+					39 00 00 00 00 00 07 A9 01 00 2F 00 00 02
+				];
+
+				oplus,dsi-timing-switch-command-state = "dsi_ls_mode";
+				oplus,dsi-on-command-state = "dsi_lp_mode";
+
+				oplus,dsc-params-entries = <&dsc_params>;
+				//oplus,phy-timcon {
+				//	hs-trail = <14>;
+				//	clk-trail = <15>;
+				//};
+				oplus,dyn-fps {
+					switch_en = <1>;
+					vact_timing_fps = <90>;
+					dyn_fps_data_rate;
+					oplus_dyn_fps_dfps_cmd_table0 = [00 3D A9 02 08 E0 00 00 40 02 08 E1 01 01 30 02 08 E2 01 01 30 02 08 E1 10 10 20 02 08 E2 10 10 20 02 08 E1 1E 1E 1B 02 08 E2 1E 1E 1B 02 08 E1 2C 2C 11 02 08 E2 2C 2C 11 02 08 E1 3A 3A 0B];
+					oplus_dyn_fps_dfps_cmd_table1 = [00 3D A9 02 08 E2 3A 3A 0B 02 08 E1 48 48 09 02 08 E2 48 48 09 02 08 E1 56 56 08 02 08 E2 56 56 08 02 08 E1 64 64 03 02 08 E2 64 64 03 02 08 E1 72 72 02 02 08 E2 72 72 02 02 08 E0 00 00 41];
+					oplus_dyn_fps_dfps_cmd_table2 = [00 07 A9 01 00 2F 00 00 02];
+				};
+				oplus,display-mode {
+					display-mode@0 {
+						hdisplay = <1280>;
+						vdisplay = <2800>;
+						fhd-hfp = <112>;
+						fhd-hsa = <4>;
+						fhd-hbp = <4>;
+						fhd-vfp = <1108>;
+						fhd-vsa = <2>;
+						fhd-vbp = <26>;
+						hskew = <STANDARD_ADFR>;
+					};
+					display-mode@1 {
+						hdisplay = <1080>;
+						vdisplay = <2362>;
+						fhd-hfp = <112>;
+						fhd-hsa = <4>;
+						fhd-hbp = <4>;
+						fhd-vfp = <1108>;
+						fhd-vsa = <2>;
+						fhd-vbp = <26>;
+						hskew = <STANDARD_ADFR>;
+					};
+				};
+			};
+			timing@sa_fhd_120 {
+				cell-index = <2>;
+				oplus,dsi-panel-framerate = <120>;
+				oplus,dsi-panel-pllclk = <584>;
+				oplus,cmd-null-pkt-en = <1>;
+				oplus,cmd-null-pkt-len = <0>;
+				/* OPLUS_FEATURE_DISPLAY_ONSCREENFINGERPRINT */
+				//oplus,ofp_need_keep_apart_backlight;
+				#include "panel-ab968-p-3-a0026-dsi-vdo-common.dtsi"
+				oplus,dsi-timing-switch-command = [
+					39 00 00 00 00 00 02 2F 01
+				];
+
+				oplus,dsi-on-command = [
+					//Video trim OSC2 to 160Mhz,
+					//For other setting refer OP manual Ch 4.3
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					39 00 00 40 00 00 02 6F 04
+					39 00 00 40 00 00 02 C3 0A
+					39 00 00 40 00 00 02 6F 09
+					39 00 00 40 00 00 02 C3 0A
+					39 00 00 40 00 00 02 EA C0
+					39 00 00 40 00 00 02 6F 11
+					39 00 00 40 00 00 02 EA C0
+					39 00 00 40 00 00 02 6F 07
+					39 00 00 40 00 00 0B EA 01 02 01 34 01 34 01 34 04 D1
+					39 00 00 40 00 00 02 6F 18
+					39 00 00 40 00 00 0B EA 01 79 01 C4 01 C4 01 C4 07 0F
+
+					//VGXP by pad cap
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					39 00 00 40 00 00 02 6F 1F
+					39 00 00 40 00 00 02 F4 0F
+					39 00 00 40 00 00 02 6F 20
+					39 00 00 40 00 00 02 F4 0F
+					39 00 00 40 00 00 02 6F 08
+					39 00 00 40 00 00 02 FC 01
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					39 00 00 40 00 00 02 6F 24
+					39 00 00 00 00 00 02 F8 FF
+
+					// For Idle enter BIST
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 C0 00
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					39 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 02 D2 00
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					39 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 02 F8 02
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					39 00 00 40 00 00 02 F2 15
+
+					//LCTC Constraint For ESD Improve
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					39 00 00 40 00 00 02 6F A9
+					39 00 00 40 00 00 02 F4 F3
+
+					//FOD OFF
+					39 00 00 40 00 00 06 F0 55 AA 52 08 09
+					39 00 00 40 00 00 02 B0 01
+					39 00 00 40 00 00 03 8B 00 00
+					39 00 00 00 00 00 02 87 00
+
+					//Resolution Setting
+					39 00 00 40 00 00 05 2A 00 00 04 FF
+					39 00 00 40 00 00 05 2B 00 00 0A EF
+
+					//VESA1.2 10 bit 3.75 DSC Setting
+					// For other refer OP manual Ch 4.4
+					39 00 00 40 00 00 02 90 03
+					39 00 00 40 00 00 02 6F 01
+					39 00 00 40 00 00 02 90 43
+					39 00 00 40 00 00 13 91 AB A8 00 28 D2 00 02 5C 04 06 00 08 02 AB 02 20 10 E0
+
+					//Dimming OFF
+					39 00 00 40 00 00 02 53 20
+
+					//Video Mode Ext_VFP VBPF Setting
+					39 00 00 40 00 00 11 3B 00 1c 00 74 00 1c 00 7C 00 1c 04 54 00 1c 00 7C
+					39 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 05 3B 00 1C 00 7C
+
+					//DPC Temperature Setting
+					39 00 00 40 00 00 03 81 01 19
+
+					//FPR1 EN
+					39 00 00 40 00 00 02 88 01
+
+					//120Hz Sleep Out
+					//For other refer OP manual Ch 5.4.3
+					39 00 00 40 00 00 02 2F 01
+
+					//TE ON
+					39 00 00 40 00 00 02 35 00
+
+					//Setting Loading Effect x1.0
+					39 00 00 40 00 00 03 5F 00 00
+
+					//pmic initial voltage setting
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 03
+					39 00 00 40 00 00 02 B5 D5
+
+					//VINIP1 off
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					39 00 00 40 00 00 02 6F 00
+					39 00 00 00 00 00 02 F9 00
+					//Optimize water ripples
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					39 00 00 40 00 00 02 6F 1F
+					39 00 00 40 00 00 02 F4 0F
+					39 00 00 40 00 00 02 6F 20
+					39 00 00 40 00 00 02 F4 0F
+					39 00 00 40 00 00 02 6F 08
+					39 00 00 00 00 00 02 FC 01
+					//LHBM BL setting
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 25
+					39 00 00 00 00 00 07 DF 3B 8C 3B 8C 3B 8C
+
+					39 00 00 40 00 00 06 F0 55 AA 52 08 08
+					39 00 00 40 00 00 05 E0 41 01 01 01
+					39 00 00 40 00 00 02 6F 06
+					39 00 00 40 00 00 03 E0 00 00
+					39 00 00 40 00 00 02 6F 13
+					39 00 00 40 00 00 13 E0 00 01 01 2C 01 9B 02 52 03 CB 04 10 04 40 08 51 0B 6A
+					39 00 00 40 00 00 0F E1 06 0D 30 1A 1A 1A 1A 1A 1A 15 0C 07 07 0C
+					39 00 00 40 00 00 0F E2 0A 15 30 2A 2A 2A 2A 2A 23 1D 12 0E 0D 0D
+					39 00 00 40 00 00 0F E3 00 00 00 07 07 07 07 07 07 07 07 08 0B 06
+					39 00 00 40 00 00 02 6F 0E
+					39 00 00 40 00 00 0F E1 04 08 20 0F 0F 0F 0F 0F 07 07 06 06 09 0B
+					39 00 00 40 00 00 02 6F 0E
+					39 00 00 40 00 00 0F E2 05 0A 20 13 13 13 13 13 0A 07 06 06 07 09
+					39 00 00 40 00 00 02 6F 0E
+					39 00 00 40 00 00 0F E3 00 00 00 00 00 00 00 00 00 00 0A 0B 0E 11
+					39 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 0F E1 02 04 1B 07 07 07 07 07 04 03 06 07 0B 0E
+					39 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 0F E2 03 06 1B 0D 0D 0C 0C 0C 06 06 06 07 09 0B
+					39 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 0F E3 00 00 00 00 00 00 00 00 00 0B 0A 0B 0D 10
+					39 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 0F E1 02 04 11 08 07 06 05 04 03 05 08 09 0C 10
+					39 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 0F E2 03 06 11 0D 0B 0A 08 06 04 05 06 08 0A 0E
+					39 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 0F E3 00 00 00 00 00 00 00 00 04 07 09 0C 0F 13
+					39 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 0F E1 02 04 0B 07 06 05 04 03 05 08 0B 0C 0D 11
+					39 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 0F E2 02 04 0B 08 07 06 05 04 05 07 09 0B 0C 0E
+					39 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 0F E3 00 00 00 02 02 02 02 02 05 08 09 0A 0C 0F
+					39 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 0F E1 02 03 09 06 06 05 04 04 06 09 0A 0B 0D 11
+					39 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 0F E2 02 03 09 06 06 05 04 04 05 07 09 0B 0B 0E
+					39 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 0F E3 00 00 00 00 01 02 03 04 05 09 0A 0B 0C 0F
+					39 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 0F E1 02 03 08 06 06 05 04 04 06 0A 0B 0C 0E 11
+					39 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 0F E2 02 04 08 08 07 06 05 04 06 08 0A 0B 0C 0F
+					39 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 0F E3 00 00 00 03 03 04 04 04 06 09 0A 0B 0D 10
+					39 00 00 40 00 00 02 6F 62
+					39 00 00 40 00 00 0F E1 00 01 03 02 02 03 04 04 07 08 0A 0C 0E 13
+					39 00 00 40 00 00 02 6F 62
+					39 00 00 40 00 00 0F E2 00 01 03 02 02 03 04 04 06 08 09 0B 0D 10
+					39 00 00 40 00 00 02 6F 62
+					39 00 00 40 00 00 0F E3 00 00 00 02 02 03 04 04 06 09 0C 0E 11 16
+					39 00 00 40 00 00 02 6F 70
+					39 00 00 40 00 00 0F E1 00 01 02 02 02 03 04 04 06 08 0B 0D 0F 14
+					39 00 00 40 00 00 02 6F 70
+					39 00 00 40 00 00 0F E2 00 01 02 02 02 03 04 04 05 07 09 0C 0F 13
+					39 00 00 40 00 00 02 6F 70
+					39 00 00 00 00 00 0F E3 00 00 00 02 02 03 04 04 06 09 0B 0F 11 15
+
+					//Modified to vrgh8.5V
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					39 00 00 40 00 00 03 B0 37 37
+					39 00 00 40 00 00 05 B2 AA 2A 55 15
+					39 00 00 00 00 00 08 B7 2D 2D 2D 2D 2D 00 2D
+					//Switch DBV to 00
+					39 00 00 40 00 00 08 A9 02 00 C0 0B 0C 64 00
+					39 00 00 00 00 00 03 51 00 00
+					//Shuibowen
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					39 00 00 40 00 00 02 6F 47
+					39 00 00 40 00 00 02 F2 21
+					05 00 00 00 78 00 01 11 // Sleep out
+					05 00 00 00 00 00 01 29 // Display out
+					39 00 00 00 00 00 07 A9 01 00 2F 00 00 01
+				];
+
+				oplus,dsi-timing-switch-command-state = "dsi_ls_mode";
+				oplus,dsi-on-command-state = "dsi_lp_mode";
+
+				oplus,dsc-params-entries = <&dsc_params>;
+				//oplus,phy-timcon {
+				//	hs-trail = <14>;
+				//	clk-trail = <15>;
+				//};
+				oplus,dyn-fps {
+					switch_en = <1>;
+					vact_timing_fps = <120>;
+					dyn_fps_data_rate;
+					oplus_dyn_fps_dfps_cmd_table0 = [00 3D A9 02 08 E0 00 00 40 02 08 E1 01 01 30 02 08 E2 01 01 30 02 08 E1 10 10 20 02 08 E2 10 10 20 02 08 E1 1E 1E 1B 02 08 E2 1E 1E 1B 02 08 E1 2C 2C 11 02 08 E2 2C 2C 11 02 08 E1 3A 3A 0B];
+					oplus_dyn_fps_dfps_cmd_table1 = [00 3D A9 02 08 E2 3A 3A 0B 02 08 E1 48 48 09 02 08 E2 48 48 09 02 08 E1 56 56 08 02 08 E2 56 56 08 02 08 E1 64 64 03 02 08 E2 64 64 03 02 08 E1 72 72 02 02 08 E2 72 72 02 02 08 E0 00 00 41];
+					oplus_dyn_fps_dfps_cmd_table2 = [00 07 A9 01 00 2F 00 00 01];
+				};
+				oplus,display-mode {
+					display-mode@0 {
+						hdisplay = <1280>;
+						vdisplay = <2800>;
+						fhd-hfp = <112>;
+						fhd-hsa = <4>;
+						fhd-hbp = <4>;
+						fhd-vfp = <124>;
+						fhd-vsa = <2>;
+						fhd-vbp = <26>;
+						hskew = <STANDARD_ADFR>;
+					};
+					display-mode@1 {
+						hdisplay = <1080>;
+						vdisplay = <2362>;
+						fhd-hfp = <112>;
+						fhd-hsa = <4>;
+						fhd-hbp = <4>;
+						fhd-vfp = <124>;
+						fhd-vsa = <2>;
+						fhd-vbp = <26>;
+						hskew = <STANDARD_ADFR>;
+					};
+				};
+			};
+		};
+	};
+};
+
+&panel_ab968_p_3_a0026_dsi_vdo {
+	oplus,dsi-display-panel@0 {
+		res-switch = <2>;
+		/* Hardware config */
+		oplus,panel-supply-entries = <&dsi_panel_pwr_supply>;
+		oplus,panel-power-on-sequence = "3", "vddio", "3", "vci", "3", "vddr", "10";
+		oplus,panel-power-off-sequence = "3", "vddr", "3", "vci", "3", "vddio", "3";
+		reset-gpios = <&pio 41 0>;
+		oplus,panel-reset-sequence = <2 10>, <1 1>, <0 1>, <1 26>;
+		/* Panel config */
+		oplus,dsi-serial-number-enabled = <1>;
+		oplus,dsi-serial-number-switch-page;
+		oplus,dsi-serial-number-index = <0>;
+		oplus,dsi-serial-number-switch-page-command = <0xF0 0x55 0xAA 0x52 0x08 0x01>;
+		oplus,dsi-serial-number-default-switch-page-command = <0xF0 0x55 0xAA 0x52 0x08 0x00>;
+		oplus,dsi-serial-number-reg = <0xD7>;
+		oplus,dsi-serial-number-read-count = <7>;
+		// oplus,dsi-serial-number-year-offset = <0>;
+		oplus,backlight-check-disable;
+		/*color*/
+		oplus,color-vivid-status;
+		oplus,color-srgb-status;
+		// oplus,color-softiris-status;
+		// oplus,color-dual-panel-status;
+		oplus,color-dual-brightness-status;
+		oplus,color-oplus-calibrate-status;
+		// oplus,color-samsung-status;
+		oplus,color-loading-status;
+		oplus,color-2nit-status;
+		// oplus,color-nature-profession-status;
+		/* ESD */
+		oplus,cust-esd-check = <0>;
+		oplus,esd-check-enable = <1>;
+		oplus,esd_check_cmd = [
+			0A
+			AB
+		];
+		oplus,esd_check_count = [
+			01
+			02
+		];
+		oplus,esd_check_value = [
+			9C
+			00 00
+		];
+		oplus,esd_check_mask = [
+			FF
+			07 0F
+		];
+		/* ext_params */
+		oplus,panel-type = <0>;
+		oplus,keep_ulps = <1>;
+		oplus,lane-swap-en = <0>;
+		oplus,lane-swap = <
+			MIPITX_PHY_LANE_0 MIPITX_PHY_LANE_1 MIPITX_PHY_LANE_3 MIPITX_PHY_LANE_2 MIPITX_PHY_LANE_CK MIPITX_PHY_LANE_RX
+			MIPITX_PHY_LANE_0 MIPITX_PHY_LANE_1 MIPITX_PHY_LANE_3 MIPITX_PHY_LANE_2 MIPITX_PHY_LANE_CK MIPITX_PHY_LANE_RX
+		>;
+		oplus,lcm-color-mode = <MTK_DRM_COLOR_MODE_DISPLAY_P3>;
+		oplus,output-mode = <MTK_PANEL_DSC_SINGLE_PORT>;
+		oplus,panel-bpp = <10>;
+		oplus,physical-width-um = <71680>;
+		oplus,physical-height-um = <157080>;
+
+		/* vdo mode setting */
+		oplus,change_fps_by_vfp_send_cmd_need_delay = <1>;
+		oplus,vdo-per-frame-lp-enable = <1>;
+
+		/* OFP config */
+		oplus,ofp-fp-type = <0x210>;
+		oplus,ofp-longrui-aod-config = <0x06>;
+		oplus,ofp-fp-local-hbm-calibration;
+		/*pwm config*/
+		oplus,pwm-turbo-support = <1>;
+		oplus,pwm-switch-backlight-threshold = <1087>;
+		oplus,pwm-aid-switch-enable;
+		oplus,pwm-onepulse-support = <1>;
+		//oplus,pwm-onepulse-enabled = <0>;
+		//oplus,pwm-turbo-wait-te = <1>;
+	};
+};

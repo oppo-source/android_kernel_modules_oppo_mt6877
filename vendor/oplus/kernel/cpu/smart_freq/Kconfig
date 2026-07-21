@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: GPL-2.0-only
+# Copyright (C) 2025 Oplus. All rights reserved.
+
+config OPLUS_FEATURE_SMART_FREQ
+	tristate "add IPC based smart frequency management"
+	default n
+	help
+	  The features adds support for smart freq. management at different IPC
+	  levels, whenever any core of a cluster crosses configured IPC level
+	  it's associated frequency is set as the IPC smart frequency.

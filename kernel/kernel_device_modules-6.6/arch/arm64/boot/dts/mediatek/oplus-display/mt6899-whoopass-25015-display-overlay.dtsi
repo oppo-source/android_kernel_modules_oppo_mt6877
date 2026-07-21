@@ -1,0 +1,183 @@
+#include "mt6899-dsi-display-conf.h"
+#include "ac332-p-7-a0020-dsi-cmd-panel-ext-params.dtsi"
+#include "ac332-p-3-a0036-dsi-cmd-panel-ext-params.dtsi"
+
+&dsi0 {
+	ac332_p_7_a0020_dsi_cmd_panel: oplus,ac332_p_7_a0020_dsi_cmd_panel {};
+	ac332_p_3_a0036_dsi_cmd_panel: oplus,ac332_p_3_a0036_dsi_cmd_panel {};
+};
+
+#include "ac332-p-7-a0020-dsi-cmd-panel-cmd.dtsi"
+#include "ac332-p-3-a0036-dsi-cmd-panel-cmd.dtsi"
+
+&mtk_leds {
+	status = "okay";
+
+	backlight {
+		label = "lcd-backlight";
+		led_mode = <4>;
+		min-brightness = <1>;
+		max-brightness = <4095>;
+		min-hw-brightness = <1>;
+		max-hw-brightness = <4095>;
+		oplus-brightness-default-percent = <35>;
+		oplus-brightness-normal-max = <3084>;
+		led-bits = <13>;
+		trans-bits = <13>;
+		default-state = "oplus";
+	};
+};
+&dispsys_config {
+	helper-value = <0>, /*MTK_DRM_OPT_STAGE*/
+		<1>, /*MTK_DRM_OPT_USE_CMDQ*/
+		<1>, /*MTK_DRM_OPT_USE_M4U*/
+		<1>, /*MTK_DRM_OPT_MMQOS_SUPPORT*/
+		<1>, /*MTK_DRM_OPT_MMDVFS_SUPPORT*/
+		<0>, /*MTK_DRM_OPT_SODI_SUPPORT*/
+		<1>, /*MTK_DRM_OPT_IDLE_MGR*/
+		<0>, /*MTK_DRM_OPT_IDLEMGR_SWTCH_DECOUPLE*/
+		<1>, /*MTK_DRM_OPT_IDLEMGR_BY_REPAINT*/
+		<0>, /*MTK_DRM_OPT_IDLEMGR_ENTER_ULPS*/
+		<0>, /*MTK_DRM_OPT_IDLEMGR_KEEP_LP11*/
+		<0>, /*MTK_DRM_OPT_DYNAMIC_RDMA_GOLDEN_SETTING*/
+		<1>, /*MTK_DRM_OPT_IDLEMGR_DISABLE_ROUTINE_IRQ*/
+		<1>, /*MTK_DRM_OPT_IDLEMGR_ASYNC*/
+		<0>, /*MTK_DRM_OPT_MET_LOG*/
+		<1>, /*MTK_DRM_OPT_USE_PQ*/
+		<1>, /*MTK_DRM_OPT_ESD_CHECK_RECOVERY*/
+		<1>, /*MTK_DRM_OPT_ESD_CHECK_SWITCH*/
+		<1>, /*MTK_DRM_OPT_PRESENT_FENCE*/
+		<0>, /*MTK_DRM_OPT_RDMA_UNDERFLOW_AEE*/
+		<0>, /*MTK_DRM_OPT_DSI_UNDERRUN_AEE*/
+		<1>, /*MTK_DRM_OPT_DSI_UNDERRUN_AEE_V2*/
+		<0>, /*MTK_DRM_OPT_ODDMR_UNDERRUN_AEE*/
+		<1>, /*MTK_DRM_OPT_HRT*/
+		<1>, /*MTK_DRM_OPT_HRT_MODE*/
+		<0>, /*MTK_DRM_OPT_DELAYED_TRIGGER*/
+		<1>, /*MTK_DRM_OPT_OVL_EXT_LAYER*/
+		<1>, /*MTK_DRM_OPT_AOD*/
+		<1>, /*MTK_DRM_OPT_RPO*/
+		<0>, /*MTK_DRM_OPT_DUAL_PIPE*/
+		<0>, /*MTK_DRM_OPT_DC_BY_HRT*/
+		<1>, /*MTK_DRM_OPT_OVL_WCG*/
+		<0>, /*MTK_DRM_OPT_OVL_SBCH*/
+		<1>, /*MTK_DRM_OPT_COMMIT_NO_WAIT_VBLANK*/
+		<0>, /*MTK_DRM_OPT_MET*/
+		<0>, /*MTK_DRM_OPT_REG_PARSER_RAW_DUMP*/
+		<0>, /*MTK_DRM_OPT_VP_PQ*/
+		<0>, /*MTK_DRM_OPT_GAME_PQ*/
+		<0>, /*MTK_DRM_OPT_MMPATH*/
+		<0>, /*MTK_DRM_OPT_HBM*/
+		<0>, /*MTK_DRM_OPT_VDS_PATH_SWITCH*/
+		<0>, /*MTK_DRM_OPT_LAYER_REC*/
+		<1>, /*MTK_DRM_OPT_CLEAR_LAYER*/
+		<0>, /*MTK_DRM_OPT_LFR*/
+		<0>, /*MTK_DRM_OPT_SF_PF*/
+		<0>, /*MTK_DRM_OPT_DYN_MIPI_CHANGE*/
+		<0>, /*MTK_DRM_OPT_PRIM_DUAL_PIPE*/
+		<0>, /*MTK_DRM_OPT_MSYNC2_0*/
+		<1>, /*MTK_DRM_OPT_MML_PRIMARY*/
+		<1>, /*MTK_DRM_OPT_MML_SUPPORT_CMD_MODE*/
+		<1>, /*MTK_DRM_OPT_MML_PQ*/
+		<1>, /*MTK_DRM_OPT_MML_IR*/
+		<0>, /*MTK_DRM_OPT_DUAL_TE*/
+		<1>, /*MTK_DRM_OPT_RES_SWITCH*/
+		<1>, /*MTK_DRM_OPT_RES_SWITCH_ON_AP*/
+		<0>, /*MTK_DRM_OPT_PREFETCH_TE*/
+		<0>, /*MTK_DRM_OPT_VIDLE_APSRC_OFF*/
+		<0>, /*MTK_DRM_OPT_VIDLE_DSI_PLL_OFF*/
+		<1>, /*MTK_DRM_OPT_CHECK_TRIGGER_MERGE*/
+		<0>, /*MTK_DRM_OPT_VIRTUAL_DISP*/
+		<1>, /*MTK_DRM_OPT_OVL_BW_MONITOR*/
+		<0>, /*MTK_DRM_OPT_GPU_CACHE*/
+		<1>, /*MTK_DRM_OPT_SPHRT*/
+		<0>, /*MTK_DRM_OPT_SDPA_OVL_SWITCH*/
+		<0>, /*MTK_DRM_OPT_HRT_BY_LARB*/
+		<1>, /*MTK_DRM_OPT_MAX_CHANNEL_HRT*/
+		<0>, /*MTK_DRM_OPT_TILE_OVERHEAD*/
+		<0>, /*MTK_DRM_OPT_VIDLE_TOP_EN*/
+		<0>, /*MTK_DRM_OPT_VIDLE_MTCMOS_DT_EN*/
+		<0>, /*MTK_DRM_OPT_VIDLE_MMINFRA_DT_EN*/
+		<0>, /*MTK_DRM_OPT_VIDLE_DVFS_DT_EN*/
+		<0>, /*MTK_DRM_OPT_VIDLE_QOS_DT_EN*/
+		<0>, /*MTK_DRM_OPT_VIDLE_GCE_TS_EN*/
+		<0>, /*MTK_DRM_OPT_DPC_PRE_TE_EN*/
+		<1>, /*MTK_DRM_OPT_PARTIAL_UPDATE*/
+		<0>, /*MTK_DRM_OPT_SLC_ALL_CACHE*/
+		<1>, /*MTK_DRM_OPT_OVL_WCG_BY_COLOR_MODE*/
+		<0>; /*"MTK_DRM_OPT_OVLSYS_CASCADE"*/
+};
+&dsi0 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	/* choose second panel which support spr */
+	/* choose MTK SPR IP */
+	panel7@6 {
+		compatible = "oplus_display_dsi_primary";
+		reg = <1>;
+		vddio-supply = <&mt6368_vrf18_aif>;
+		vci-supply = <&mt6368_vmc>;
+		pinctrl-names = "default";
+		port {
+			oplus_panel_in1: endpoint {
+				remote-endpoint = <&oplus_dsi_out1>;
+			};
+		};
+	};
+
+	panel8@7 {
+		compatible = "oplus_display_dsi_primary";
+		reg = <2>;
+		vddio-supply = <&mt6368_vrf18_aif>;
+		vci-supply = <&mt6368_vmc>;
+		pinctrl-names = "default";
+		port {
+			oplus_panel_in2: endpoint {
+				remote-endpoint = <&oplus_dsi_out2>;
+			};
+		};
+	};
+
+	ports {
+		port {
+			oplus_dsi_out1: endpoint {
+				remote-endpoint = <&oplus_panel_in1>;
+			};
+			oplus_dsi_out2: endpoint2 {
+				remote-endpoint = <&oplus_panel_in2>;
+			};
+		};
+	};
+};
+
+&dsi0 {
+	dsi_panel_pwr_supply: oplus,dsi_panel_pwr_supply {
+		oplus,panel-supply-entry@0 {
+			reg = <0>;
+			oplus,supply-name = "vddio";
+			oplus,supply-type = <OPLUS_SUPPLY_TYPE_LDO>;
+			oplus,supply-min-voltage = <1800000>;
+			oplus,supply-max-voltage = <1800000>;
+		};
+		oplus,panel-supply-entry@1 {
+			reg = <1>;
+			oplus,supply-name = "vddr";
+			oplus,supply-type = <OPLUS_SUPPLY_TYPE_GPIO>;
+			oplus,supply-gpios = <&pio 64 0>;
+		};
+		oplus,panel-supply-entry@2 {
+			reg = <2>;
+			oplus,supply-name = "vci";
+			oplus,supply-type = <OPLUS_SUPPLY_TYPE_LDO>;
+			oplus,supply-min-voltage = <3000000>;
+			oplus,supply-max-voltage = <3000000>;
+		};
+		oplus,panel-supply-entry@3 {
+			reg = <3>;
+			oplus,supply-name = "vddr-rst";
+			oplus,supply-type = <OPLUS_SUPPLY_TYPE_GPIO>;
+			oplus,supply-gpios = <&pio 121 0>;
+		};
+	};
+};

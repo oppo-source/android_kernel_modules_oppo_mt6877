@@ -1,0 +1,857 @@
+&ac332_p_7_a0020_dsi_cmd_panel {
+	oplus,dsi-display-panel@0 {
+		reg = <0>;
+		oplus,dsi-vendor-name = "A0020";
+		oplus,dsi-manufacture = "P_7";
+		oplus,dsi-display-timings {
+			timing@sa_fhd_120 {
+				cell-index = <2>;
+				oplus,dsi-panel-framerate = <120>;
+				oplus,dsi-panel-pllclk = <553>;
+				oplus,merge-trig-offset = <333>;
+				//oplus,cmd-null-pkt-en = <1>;
+				//oplus,cmd-null-pkt-len = <0>;
+				/* OPLUS_FEATURE_DISPLAY_ONSCREENFINGERPRINT */
+				oplus,ofp_need_keep_apart_backlight;
+				/*oplus,ofp-hbm-on-delay = <0>;
+				oplus,ofp-pre-hbm-off-delay = <2>;
+				oplus,ofp-hbm-off-delay = <0>;
+				oplus,ofp-need-to-sync-data-in-aod-unlocking;
+				oplus,ofp-aod-off-insert-black = <1>;
+				oplus,ofp-aod-off-black-frame-total-time = <42>;*/
+				#include "ac332-p-7-a0020-dsi-cmd-panel-common.dtsi"
+				oplus,dsi-timing-switch-command = [//Switch To 120Hz normal
+					39 00 00 40 00 00 04 FF 5A A5 00
+					15 00 00 40 00 00 02 60 00
+				];
+				oplus,dsi-pwm-switch-1to3pul-command = [
+				];
+				oplus,dsi-pwm-switch-1to18pul-command = [
+				];
+				oplus,dsi-pwm-switch-18to3pul-command = [
+				];
+				oplus,dsi-pwm-switch-3to18pul-command = [
+				];
+				oplus,dsi-timing-switch-1pulse-command = [
+				];
+				oplus,dsi-pwm-switch-3to1pul-command = [
+				];
+				oplus,dsi-pwm-switch-18to1pul-command = [
+				];
+				oplus,dsi-on-command = [
+					//OTP Don’t reload
+					39 00 00 00 00 00 04 FF 5A A5 08
+					15 00 00 00 00 00 02 C8 62
+					//Page 21
+					39 00 00 00 00 00 04 FF 5A A5 21
+					//flash reload enable
+					15 00 00 00 00 00 02 A4 38
+					39 00 00 00 00 00 04 FF 5A A5 23
+					15 00 00 00 00 00 02 85 15
+					//1Bist ESD
+					39 00 00 00 00 00 04 FF 5A A5 06
+					15 00 00 00 00 00 02 C6 01
+					15 00 00 00 00 00 02 AB 03
+					15 00 00 00 00 00 02 AE 12
+					39 00 00 00 00 00 04 FF 5A A5 08
+					15 00 00 00 00 00 02 D2 05
+					15 00 00 00 00 00 02 D3 01
+					15 00 00 00 00 00 02 E0 22
+					39 00 00 00 00 00 09 ED FF FF FF FF FF FF 45 FF
+					39 00 00 00 00 00 09 EE FF FD FF FD F9 FA BE 76
+					// PHBM/LHBM
+					39 00 00 00 00 00 04 FF 5A A5 00
+					15 00 00 00 00 00 02 96 09
+					15 00 00 00 00 00 02 97 60
+					15 00 00 00 00 00 02 98 02
+					15 00 00 00 00 00 02 99 60
+					39 00 00 00 00 00 04 FF 5A A5 1E
+					39 00 00 00 00 00 27 C5 44 00 00 44 00 00 43 00 FF 21 BD FE 11 67 06 00 D1 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					39 00 00 00 00 00 04 FF 5A A5 1F
+					39 00 00 00 00 00 1F C2 FF FF A7 87 87 FF 87 D7 D7 D7 FF D7 D7 D7 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+					//Page 0
+					39 00 00 00 00 00 04 FF 5A A5 00
+					//Skip frame Enable
+					15 00 00 00 00 00 02 5E 01
+					//Normal = 120Hz
+					15 00 00 00 00 00 02 60 00
+					//AOD in = 30Hz
+					15 00 00 00 00 00 02 61 02
+					//IRC enable
+					15 00 00 00 00 00 02 6D 01
+					//TE On
+					15 00 00 00 00 00 02 35 00
+					//BC On, Dimming Off
+					15 00 00 00 00 00 02 53 20
+
+					39 00 00 00 00 00 02 96 09
+					39 00 00 00 00 00 02 97 60
+					39 00 00 00 00 00 02 98 02
+					39 00 00 00 00 00 02 99 60
+
+					15 00 00 00 78 00 02 11 00
+
+					// shadow
+					39 00 00 40 00 00 04 FF 5A A5 49
+					39 00 00 40 00 00 11 81 02 00 B1 00 12 01 82 01 41 02 A6 03 DD 06 FF 07
+					39 00 00 40 00 00 13 82 02 00 B1 00 12 01 82 01 41 02 A6 03 DD 06 FF 07 00 00
+					15 00 00 40 00 00 02 83 07
+					15 00 00 40 00 00 02 84 0A
+					15 00 00 40 00 00 02 E0 01
+					39 00 00 40 00 00 04 FF 5A A5 5A
+					39 00 00 40 00 00 04 80 02 03 FD
+					39 00 00 40 00 00 04 81 0F 16 08
+					39 00 00 40 00 00 04 82 0C 14 06
+					39 00 00 40 00 00 04 83 14 19 09
+					39 00 00 40 00 00 04 84 11 17 07
+					39 00 00 40 00 00 04 85 09 0F 04
+					39 00 00 40 00 00 04 86 15 1F F8
+					39 00 00 40 00 00 04 87 13 1C FA
+					39 00 00 40 00 00 04 88 0E 15 FC
+					39 00 00 40 00 00 04 89 03 05 FF
+					39 00 00 40 00 00 04 8A 14 1E 05
+					39 00 00 40 00 00 04 8B 13 1B 04
+					39 00 00 40 00 00 04 8C 11 16 03
+					39 00 00 40 00 00 04 8D 06 0D 04
+					39 00 00 40 00 00 04 8E 01 01 0E
+					39 00 00 40 00 00 04 8F 12 1D 07
+					39 00 00 40 00 00 04 FF 5A A5 5C
+					39 00 00 40 00 00 04 C8 04 07 02
+					39 00 00 00 00 00 04 FF 5A A5 00
+
+					// LVD ON
+					39 00 00 40 00 00 04 FF 5A A5 05
+					39 00 00 40 00 00 02 83 03
+					39 00 00 40 00 00 02 84 03
+					39 00 00 40 00 00 02 AA 94
+					39 00 00 40 00 00 02 AB C9
+					39 00 00 40 00 00 02 AC 05
+					39 00 00 40 00 00 04 FF 5A A5 08
+					39 00 00 40 00 00 02 B0 55
+					39 00 00 40 00 00 04 FF 5A A5 1C
+					39 00 00 40 00 00 03 FD 00 94
+					39 00 00 40 00 00 02 E1 A2
+					39 00 00 40 00 00 03 FD 00 00
+					39 00 00 40 00 00 04 FF 5A A5 08
+					39 00 00 40 00 00 02 B0 00
+					39 00 00 00 00 00 04 FF 5A A5 00
+
+					15 00 00 00 14 00 02 29 00
+				];
+				oplus,dsi-aod-off-command = [
+					39 00 00 40 00 00 04 FF 5A A5 08
+					15 00 00 40 00 00 02 98 02
+					39 00 00 40 00 00 04 FF 5A A5 4F
+					15 00 00 40 00 00 02 80 01
+					15 00 00 40 00 00 02 81 06
+					15 00 00 40 00 00 02 88 78
+					39 00 00 40 00 00 04 FF 5A A5 02
+					39 00 00 40 00 00 03 84 01 05
+					39 00 00 40 00 00 04 FF 5A A5 00
+					15 00 00 40 00 00 02 38 00
+					39 00 00 40 00 00 04 FF 5A A5 08
+					15 00 00 40 00 00 02 98 A6
+					39 00 00 40 00 00 04 FF 5A A5 00
+					15 00 00 40 00 00 02 00 00
+					39 00 00 40 00 00 04 FF 5A A5 4F
+					15 00 00 40 00 00 02 8B 78
+					39 00 00 40 00 00 04 FF 5A A5 00
+					39 00 00 00 00 00 03 51 00 00
+				];
+				oplus,dsi-panel-aod-off-insert-black-command = [
+					39 00 00 40 00 00 04 FF 5A A5 08
+					15 00 00 40 00 00 02 98 02
+					39 00 00 40 00 00 04 FF 5A A5 4F
+					15 00 00 40 00 00 02 80 01
+					15 00 00 40 00 00 02 81 06
+					15 00 00 40 00 00 02 88 78
+					39 00 00 40 00 00 04 FF 5A A5 02
+					39 00 00 40 00 00 03 84 01 05
+					39 00 00 40 00 00 04 FF 5A A5 00
+					15 00 00 40 00 00 02 38 00
+					39 00 00 40 00 00 04 FF 5A A5 08
+					15 00 00 40 00 00 02 98 A6
+					39 00 00 40 00 00 04 FF 5A A5 00
+					15 00 00 40 00 00 02 00 00
+					39 00 00 40 00 00 04 FF 5A A5 4F
+					15 00 00 40 00 00 02 8B 78
+					39 00 00 40 00 00 04 FF 5A A5 00
+					39 00 00 00 00 00 03 51 00 00
+				];
+				oplus,dsi-lhbm-pressed-icon-on-command = [
+					39 00 00 40 00 00 04 FF 5A A5 00
+					39 00 00 00 00 00 02 6E 03
+				];
+				oplus,dsi-lhbm-pressed-icon-on-pwm-command = [
+
+				];
+				oplus,dsi-adfr-min-fps-120hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-60hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-30hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-20hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-10hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-5hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-1hz-command = [
+				];
+
+				oplus,dsi-timing-switch-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-timing-switch-1pulse-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-on-command-state = "dsi_lp_mode";
+				oplus,dsi-aod-off-command-state = "dsi_ls_mode";
+				oplus,dsi-panel-aod-off-insert-black-command-state = "dsi_ls_mode";
+				oplus,dsi-lhbm-pressed-icon-on-command-state = "dsi_hs_mode";
+				oplus,dsi-lhbm-pressed-icon-on-pwm-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-120hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-60hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-30hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-20hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-10hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-5hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-1hz-command-state = "dsi_hs_mode";
+
+				oplus,dsc-params-entries = <&dsc_params>;
+/*				oplus,phy-timcon {
+					hs-trail = <14>;
+					clk-trail = <15>;
+				};*/
+				oplus,dyn-fps {
+					switch_en = <1>;
+					vact_timing_fps = <120>;
+					apollo_limit_superior_us = <4900>;
+					apollo_limit_inferior_us = <6750>;
+					apollo_transfer_time_us = <6200>;
+				};
+				oplus,display-mode {
+					display-mode@0 {
+						hdisplay = <1216>;
+						vdisplay = <2640>;
+/*						fhd-hfp = <9>;
+						fhd-hsa = <2>;
+						fhd-hbp = <21>;
+						fhd-vfp = <52>;
+						fhd-vsa = <14>;
+						fhd-vbp = <22>;*/
+						hskew = <STANDARD_ADFR>;
+					};
+					display-mode@1 {
+						hdisplay = <1080>;
+						vdisplay = <2344>;
+/*						fhd-hfp = <9>;
+						fhd-hsa = <2>;
+						fhd-hbp = <21>;
+						fhd-vfp = <52>;
+						fhd-vsa = <14>;
+						fhd-vbp = <22>;*/
+						hskew = <STANDARD_ADFR>;
+					};
+				};
+			};
+
+			timing@sa_fhd_90 {
+				cell-index = <1>;
+				oplus,dsi-panel-framerate = <90>;
+				oplus,dsi-panel-pllclk = <414>;
+				oplus,merge-trig-offset = <461>;
+				/* OPLUS_FEATURE_DISPLAY_ONSCREENFINGERPRINT */
+				oplus,ofp_need_keep_apart_backlight;
+				/*oplus,ofp-hbm-on-delay = <0>;
+				oplus,ofp-pre-hbm-off-delay = <9>;
+				oplus,ofp-hbm-off-delay = <0>;
+				oplus,ofp-need-to-sync-data-in-aod-unlocking;
+				oplus,ofp-aod-off-insert-black = <2>;
+				oplus,ofp-aod-off-black-frame-total-time = <45>;*/
+				#include "ac332-p-7-a0020-dsi-cmd-panel-common.dtsi"
+				oplus,dsi-timing-switch-command = [//Switch To 90Hz normal
+					39 00 00 40 00 00 04 FF 5A A5 00
+					15 00 00 40 00 00 02 60 03
+				];
+				oplus,dsi-pwm-switch-1to3pul-command = [
+				];
+				oplus,dsi-pwm-switch-1to18pul-command = [
+				];
+				oplus,dsi-pwm-switch-18to3pul-command = [
+				];
+				oplus,dsi-pwm-switch-3to18pul-command = [
+				];
+				oplus,dsi-timing-switch-1pulse-command = [
+				];
+				oplus,dsi-pwm-switch-3to1pul-command = [
+				];
+				oplus,dsi-pwm-switch-18to1pul-command = [
+				];
+				oplus,dsi-on-command = [
+					//OTP Don’t reload
+					39 00 00 00 00 00 04 FF 5A A5 08
+					15 00 00 00 00 00 02 C8 62
+					//Page 21
+					39 00 00 00 00 00 04 FF 5A A5 21
+					//flash reload enable
+					15 00 00 00 00 00 02 A4 38
+					39 00 00 00 00 00 04 FF 5A A5 23
+					15 00 00 00 00 00 02 85 15
+					//1Bist ESD
+					39 00 00 00 00 00 04 FF 5A A5 06
+					15 00 00 00 00 00 02 C6 01
+					15 00 00 00 00 00 02 AB 03
+					15 00 00 00 00 00 02 AE 12
+					39 00 00 00 00 00 04 FF 5A A5 08
+					15 00 00 00 00 00 02 D2 05
+					15 00 00 00 00 00 02 D3 01
+					15 00 00 00 00 00 02 E0 22
+					39 00 00 00 00 00 09 ED FF FF FF FF FF FF 45 FF
+					39 00 00 00 00 00 09 EE FF FD FF FD F9 FA BE 76
+					// PHBM/LHBM
+					39 00 00 00 00 00 04 FF 5A A5 00
+					15 00 00 00 00 00 02 96 09
+					15 00 00 00 00 00 02 97 60
+					15 00 00 00 00 00 02 98 02
+					15 00 00 00 00 00 02 99 60
+					39 00 00 00 00 00 04 FF 5A A5 1E
+					39 00 00 00 00 00 27 C5 44 00 00 44 00 00 43 00 FF 21 BD FE 11 67 06 00 D1 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					39 00 00 00 00 00 04 FF 5A A5 1F
+					39 00 00 00 00 00 1F C2 FF FF A7 87 87 FF 87 D7 D7 D7 FF D7 D7 D7 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+					//Page 0
+					39 00 00 00 00 00 04 FF 5A A5 00
+					//Skip frame Enable
+					15 00 00 00 00 00 02 5E 01
+					//Normal = 90Hz
+					15 00 00 00 00 00 02 60 03
+					//AOD in = 30Hz
+					15 00 00 00 00 00 02 61 02
+					//IRC enable
+					15 00 00 00 00 00 02 6D 01
+					//TE On
+					15 00 00 00 00 00 02 35 00
+					//BC On, Dimming Off
+					15 00 00 00 00 00 02 53 20
+
+					39 00 00 00 00 00 02 96 09
+					39 00 00 00 00 00 02 97 60
+					39 00 00 00 00 00 02 98 02
+					39 00 00 00 00 00 02 99 60
+
+					15 00 00 00 78 00 02 11 00
+
+					// shadow
+					39 00 00 40 00 00 04 FF 5A A5 49
+					39 00 00 40 00 00 11 81 02 00 B1 00 12 01 82 01 41 02 A6 03 DD 06 FF 07
+					39 00 00 40 00 00 13 82 02 00 B1 00 12 01 82 01 41 02 A6 03 DD 06 FF 07 00 00
+					15 00 00 40 00 00 02 83 07
+					15 00 00 40 00 00 02 84 0A
+					15 00 00 40 00 00 02 E0 01
+					39 00 00 40 00 00 04 FF 5A A5 5A
+					39 00 00 40 00 00 04 80 02 03 FD
+					39 00 00 40 00 00 04 81 0F 16 08
+					39 00 00 40 00 00 04 82 0C 14 06
+					39 00 00 40 00 00 04 83 14 19 09
+					39 00 00 40 00 00 04 84 11 17 07
+					39 00 00 40 00 00 04 85 09 0F 04
+					39 00 00 40 00 00 04 86 15 1F F8
+					39 00 00 40 00 00 04 87 13 1C FA
+					39 00 00 40 00 00 04 88 0E 15 FC
+					39 00 00 40 00 00 04 89 03 05 FF
+					39 00 00 40 00 00 04 8A 14 1E 05
+					39 00 00 40 00 00 04 8B 13 1B 04
+					39 00 00 40 00 00 04 8C 11 16 03
+					39 00 00 40 00 00 04 8D 06 0D 04
+					39 00 00 40 00 00 04 8E 01 01 0E
+					39 00 00 40 00 00 04 8F 12 1D 07
+					39 00 00 40 00 00 04 FF 5A A5 5C
+					39 00 00 40 00 00 04 C8 04 07 02
+					39 00 00 00 00 00 04 FF 5A A5 00
+
+					// LVD ON
+					39 00 00 40 00 00 04 FF 5A A5 05
+					39 00 00 40 00 00 02 83 03
+					39 00 00 40 00 00 02 84 03
+					39 00 00 40 00 00 02 AA 94
+					39 00 00 40 00 00 02 AB C9
+					39 00 00 40 00 00 02 AC 05
+					39 00 00 40 00 00 04 FF 5A A5 08
+					39 00 00 40 00 00 02 B0 55
+					39 00 00 40 00 00 04 FF 5A A5 1C
+					39 00 00 40 00 00 03 FD 00 94
+					39 00 00 40 00 00 02 E1 A2
+					39 00 00 40 00 00 03 FD 00 00
+					39 00 00 40 00 00 04 FF 5A A5 08
+					39 00 00 40 00 00 02 B0 00
+					39 00 00 00 00 00 04 FF 5A A5 00
+
+					15 00 00 00 14 00 02 29 00
+				];
+				oplus,dsi-aod-off-command = [
+					39 00 00 40 00 00 04 FF 5A A5 08
+					15 00 00 40 00 00 02 98 02
+					39 00 00 40 00 00 04 FF 5A A5 4F
+					15 00 00 40 00 00 02 80 01
+					15 00 00 40 00 00 02 81 06
+					15 00 00 40 00 00 02 88 78
+					39 00 00 40 00 00 04 FF 5A A5 02
+					39 00 00 40 00 00 03 84 01 05
+					39 00 00 40 00 00 04 FF 5A A5 00
+					15 00 00 40 00 00 02 38 00
+					39 00 00 40 00 00 04 FF 5A A5 08
+					15 00 00 40 00 00 02 98 A6
+					39 00 00 40 00 00 04 FF 5A A5 00
+					15 00 00 40 00 00 02 00 00
+					39 00 00 40 00 00 04 FF 5A A5 4F
+					15 00 00 40 00 00 02 8B 78
+					39 00 00 40 00 00 04 FF 5A A5 00
+					39 00 00 00 00 00 03 51 00 00
+				];
+				oplus,dsi-panel-aod-off-insert-black-command = [
+					39 00 00 40 00 00 04 FF 5A A5 08
+					15 00 00 40 00 00 02 98 02
+					39 00 00 40 00 00 04 FF 5A A5 4F
+					15 00 00 40 00 00 02 80 01
+					15 00 00 40 00 00 02 81 06
+					15 00 00 40 00 00 02 88 78
+					39 00 00 40 00 00 04 FF 5A A5 02
+					39 00 00 40 00 00 03 84 01 05
+					39 00 00 40 00 00 04 FF 5A A5 00
+					15 00 00 40 00 00 02 38 00
+					39 00 00 40 00 00 04 FF 5A A5 08
+					15 00 00 40 00 00 02 98 A6
+					39 00 00 40 00 00 04 FF 5A A5 00
+					15 00 00 40 00 00 02 00 00
+					39 00 00 40 00 00 04 FF 5A A5 4F
+					15 00 00 40 00 00 02 8B 78
+					39 00 00 40 00 00 04 FF 5A A5 00
+					39 00 00 00 00 00 03 51 00 00
+				];
+				oplus,dsi-lhbm-pressed-icon-on-command = [
+					39 00 00 40 00 00 04 FF 5A A5 00
+					39 00 00 00 00 00 02 6E 03
+				];
+				oplus,dsi-lhbm-pressed-icon-on-pwm-command = [
+
+				];
+				oplus,dsi-adfr-min-fps-90hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-45hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-30hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-15hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-10hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-5hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-1hz-command = [
+				];
+
+				oplus,dsi-timing-switch-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-timing-switch-1pulse-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-on-command-state = "dsi_lp_mode";
+				oplus,dsi-aod-off-command-state = "dsi_ls_mode";
+				oplus,dsi-panel-aod-off-insert-black-command-state = "dsi_ls_mode";
+				oplus,dsi-lhbm-pressed-icon-on-command-state = "dsi_hs_mode";
+				oplus,dsi-lhbm-pressed-icon-on-pwm-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-90hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-45hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-30hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-15hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-10hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-5hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-1hz-command-state = "dsi_hs_mode";
+
+				oplus,dsc-params-entries = <&dsc_params>;
+/*				oplus,phy-timcon {
+					hs-trail = <14>;
+					clk-trail = <15>;
+				};*/
+				oplus,dyn-fps {
+					switch_en = <1>;
+					vact_timing_fps = <90>;
+					apollo_limit_superior_us = <2910>;
+					apollo_limit_inferior_us = <10000>;
+					apollo_transfer_time_us = <8400>;
+				};
+				oplus,display-mode {
+					display-mode@0 {
+						hdisplay = <1216>;
+						vdisplay = <2640>;
+/*						fhd-hfp = <9>;
+						fhd-hsa = <2>;
+						fhd-hbp = <21>;
+						fhd-vfp = <52>;
+						fhd-vsa = <14>;
+						fhd-vbp = <22>;*/
+						hskew = <STANDARD_ADFR>;
+					};
+					display-mode@1 {
+						hdisplay = <1080>;
+						vdisplay = <2344>;
+/*						fhd-hfp = <9>;
+						fhd-hsa = <2>;
+						fhd-hbp = <21>;
+						fhd-vfp = <52>;
+						fhd-vsa = <14>;
+						fhd-vbp = <22>;*/
+						hskew = <STANDARD_ADFR>;
+					};
+				};
+			};
+
+			timing@sa_fhd_60 {
+				cell-index = <0>;
+				oplus,dsi-panel-framerate = <60>;
+				oplus,dsi-panel-pllclk = <414>;
+				oplus,merge-trig-offset = <766>;
+				/* OPLUS_FEATURE_DISPLAY_ONSCREENFINGERPRINT */
+				oplus,ofp_need_keep_apart_backlight;
+				/*oplus,ofp-hbm-on-delay = <0>;
+				oplus,ofp-pre-hbm-off-delay = <12>;
+				oplus,ofp-hbm-off-delay = <0>;
+				oplus,ofp-need-to-sync-data-in-aod-unlocking;
+				oplus,ofp-aod-off-insert-black = <2>;
+				oplus,ofp-aod-off-black-frame-total-time = <59>;*/
+				#include "ac332-p-7-a0020-dsi-cmd-panel-common.dtsi"
+				oplus,dsi-timing-switch-command = [//Switch To 60Hz normal
+					39 00 00 40 00 00 04 FF 5A A5 00
+					15 00 00 40 00 00 02 60 04
+				];
+				oplus,dsi-pwm-switch-1to3pul-command = [
+				];
+				oplus,dsi-pwm-switch-1to18pul-command = [
+				];
+				oplus,dsi-pwm-switch-18to3pul-command = [
+				];
+				oplus,dsi-pwm-switch-3to18pul-command = [
+				];
+				oplus,dsi-timing-switch-1pulse-command = [
+				];
+				oplus,dsi-pwm-switch-3to1pul-command = [
+				];
+				oplus,dsi-pwm-switch-18to1pul-command = [
+				];
+				oplus,dsi-on-command = [
+					//OTP Don’t reload
+					39 00 00 00 00 00 04 FF 5A A5 08
+					15 00 00 00 00 00 02 C8 62
+					//Page 21
+					39 00 00 00 00 00 04 FF 5A A5 21
+					//flash reload enable
+					15 00 00 00 00 00 02 A4 38
+					39 00 00 00 00 00 04 FF 5A A5 23
+					15 00 00 00 00 00 02 85 15
+					//1Bist ESD
+					39 00 00 00 00 00 04 FF 5A A5 06
+					15 00 00 00 00 00 02 C6 01
+					15 00 00 00 00 00 02 AB 03
+					15 00 00 00 00 00 02 AE 12
+					39 00 00 00 00 00 04 FF 5A A5 08
+					15 00 00 00 00 00 02 D2 05
+					15 00 00 00 00 00 02 D3 01
+					15 00 00 00 00 00 02 E0 22
+					39 00 00 00 00 00 09 ED FF FF FF FF FF FF 45 FF
+					39 00 00 00 00 00 09 EE FF FD FF FD F9 FA BE 76
+					// PHBM/LHBM
+					39 00 00 00 00 00 04 FF 5A A5 00
+					15 00 00 00 00 00 02 96 09
+					15 00 00 00 00 00 02 97 60
+					15 00 00 00 00 00 02 98 02
+					15 00 00 00 00 00 02 99 60
+					39 00 00 00 00 00 04 FF 5A A5 1E
+					39 00 00 00 00 00 27 C5 44 00 00 44 00 00 43 00 FF 21 BD FE 11 67 06 00 D1 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					39 00 00 00 00 00 04 FF 5A A5 1F
+					39 00 00 00 00 00 1F C2 FF FF A7 87 87 FF 87 D7 D7 D7 FF D7 D7 D7 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
+					//Page 0
+					39 00 00 00 00 00 04 FF 5A A5 00
+					//Skip frame Enable
+					15 00 00 00 00 00 02 5E 01
+					//Normal = 60Hz
+					15 00 00 00 00 00 02 60 04
+					//AOD in = 30Hz
+					15 00 00 00 00 00 02 61 02
+					//IRC enable
+					15 00 00 00 00 00 02 6D 01
+					//TE On
+					15 00 00 00 00 00 02 35 00
+					//BC On, Dimming Off
+					15 00 00 00 00 00 02 53 20
+
+					39 00 00 00 00 00 02 96 09
+					39 00 00 00 00 00 02 97 60
+					39 00 00 00 00 00 02 98 02
+					39 00 00 00 00 00 02 99 60
+
+					15 00 00 00 78 00 02 11 00
+
+					// shadow
+					39 00 00 40 00 00 04 FF 5A A5 49
+					39 00 00 40 00 00 11 81 02 00 B1 00 12 01 82 01 41 02 A6 03 DD 06 FF 07
+					39 00 00 40 00 00 13 82 02 00 B1 00 12 01 82 01 41 02 A6 03 DD 06 FF 07 00 00
+					15 00 00 40 00 00 02 83 07
+					15 00 00 40 00 00 02 84 0A
+					15 00 00 40 00 00 02 E0 01
+					39 00 00 40 00 00 04 FF 5A A5 5A
+					39 00 00 40 00 00 04 80 02 03 FD
+					39 00 00 40 00 00 04 81 0F 16 08
+					39 00 00 40 00 00 04 82 0C 14 06
+					39 00 00 40 00 00 04 83 14 19 09
+					39 00 00 40 00 00 04 84 11 17 07
+					39 00 00 40 00 00 04 85 09 0F 04
+					39 00 00 40 00 00 04 86 15 1F F8
+					39 00 00 40 00 00 04 87 13 1C FA
+					39 00 00 40 00 00 04 88 0E 15 FC
+					39 00 00 40 00 00 04 89 03 05 FF
+					39 00 00 40 00 00 04 8A 14 1E 05
+					39 00 00 40 00 00 04 8B 13 1B 04
+					39 00 00 40 00 00 04 8C 11 16 03
+					39 00 00 40 00 00 04 8D 06 0D 04
+					39 00 00 40 00 00 04 8E 01 01 0E
+					39 00 00 40 00 00 04 8F 12 1D 07
+					39 00 00 40 00 00 04 FF 5A A5 5C
+					39 00 00 40 00 00 04 C8 04 07 02
+					39 00 00 00 00 00 04 FF 5A A5 00
+
+					// LVD ON
+					39 00 00 40 00 00 04 FF 5A A5 05
+					39 00 00 40 00 00 02 83 03
+					39 00 00 40 00 00 02 84 03
+					39 00 00 40 00 00 02 AA 94
+					39 00 00 40 00 00 02 AB C9
+					39 00 00 40 00 00 02 AC 05
+					39 00 00 40 00 00 04 FF 5A A5 08
+					39 00 00 40 00 00 02 B0 55
+					39 00 00 40 00 00 04 FF 5A A5 1C
+					39 00 00 40 00 00 03 FD 00 94
+					39 00 00 40 00 00 02 E1 A2
+					39 00 00 40 00 00 03 FD 00 00
+					39 00 00 40 00 00 04 FF 5A A5 08
+					39 00 00 40 00 00 02 B0 00
+					39 00 00 00 00 00 04 FF 5A A5 00
+
+					15 00 00 00 14 00 02 29 00
+				];
+				oplus,dsi-aod-off-command = [
+					39 00 00 40 00 00 04 FF 5A A5 08
+					15 00 00 40 00 00 02 98 02
+					39 00 00 40 00 00 04 FF 5A A5 4F
+					15 00 00 40 00 00 02 80 01
+					15 00 00 40 00 00 02 81 06
+					15 00 00 40 00 00 02 88 78
+					39 00 00 40 00 00 04 FF 5A A5 02
+					39 00 00 40 00 00 03 84 01 05
+					39 00 00 40 00 00 04 FF 5A A5 00
+					15 00 00 40 00 00 02 38 00
+					39 00 00 40 00 00 04 FF 5A A5 08
+					15 00 00 40 00 00 02 98 A6
+					39 00 00 40 00 00 04 FF 5A A5 00
+					15 00 00 40 00 00 02 00 00
+					39 00 00 40 00 00 04 FF 5A A5 4F
+					15 00 00 40 00 00 02 8B 78
+					39 00 00 40 00 00 04 FF 5A A5 00
+					39 00 00 00 00 00 03 51 00 00
+				];
+				oplus,dsi-panel-aod-off-insert-black-command = [
+					39 00 00 40 00 00 04 FF 5A A5 08
+					15 00 00 40 00 00 02 98 02
+					39 00 00 40 00 00 04 FF 5A A5 4F
+					15 00 00 40 00 00 02 80 01
+					15 00 00 40 00 00 02 81 06
+					15 00 00 40 00 00 02 88 78
+					39 00 00 40 00 00 04 FF 5A A5 02
+					39 00 00 40 00 00 03 84 01 05
+					39 00 00 40 00 00 04 FF 5A A5 00
+					15 00 00 40 00 00 02 38 00
+					39 00 00 40 00 00 04 FF 5A A5 08
+					15 00 00 40 00 00 02 98 A6
+					39 00 00 40 00 00 04 FF 5A A5 00
+					15 00 00 40 00 00 02 00 00
+					39 00 00 40 00 00 04 FF 5A A5 4F
+					15 00 00 40 00 00 02 8B 78
+					39 00 00 40 00 00 04 FF 5A A5 00
+					39 00 00 00 00 00 03 51 00 00
+				];
+				oplus,dsi-lhbm-pressed-icon-on-command = [
+					39 00 00 40 00 00 04 FF 5A A5 00
+					39 00 00 00 00 00 02 6E 03
+				];
+				oplus,dsi-lhbm-pressed-icon-on-pwm-command = [
+
+				];
+				oplus,dsi-adfr-min-fps-60hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-30hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-20hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-10hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-5hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-1hz-command = [
+				];
+
+				oplus,dsi-timing-switch-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-timing-switch-1pulse-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-on-command-state = "dsi_lp_mode";
+				oplus,dsi-aod-off-command-state = "dsi_ls_mode";
+				oplus,dsi-panel-aod-off-insert-black-command-state = "dsi_ls_mode";
+				oplus,dsi-lhbm-pressed-icon-on-command-state = "dsi_hs_mode";
+				oplus,dsi-lhbm-pressed-icon-on-pwm-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-60hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-30hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-20hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-10hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-5hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-1hz-command-state = "dsi_hs_mode";
+
+				oplus,dsc-params-entries = <&dsc_params>;
+/*				oplus,phy-timcon {
+					hs-trail = <14>;
+					clk-trail = <15>;
+				};*/
+				oplus,dyn-fps {
+					switch_en = <1>;
+					vact_timing_fps = <60>;
+					apollo_limit_superior_us = <10000>;
+					apollo_limit_inferior_us = <13596>;
+					apollo_transfer_time_us = <8200>;
+				};
+				oplus,display-mode {
+					display-mode@0 {
+						hdisplay = <1216>;
+						vdisplay = <2640>;
+/*						fhd-hfp = <9>;
+						fhd-hsa = <2>;
+						fhd-hbp = <21>;
+						fhd-vfp = <52>;
+						fhd-vsa = <14>;
+						fhd-vbp = <22>;*/
+						hskew = <STANDARD_ADFR>;
+					};
+					display-mode@1 {
+						hdisplay = <1080>;
+						vdisplay = <2344>;
+/*						fhd-hfp = <9>;
+						fhd-hsa = <2>;
+						fhd-hbp = <21>;
+						fhd-vfp = <52>;
+						fhd-vsa = <14>;
+						fhd-vbp = <22>;*/
+						hskew = <STANDARD_ADFR>;
+					};
+				};
+			};
+		};
+	};
+};
+
+&ac332_p_7_a0020_dsi_cmd_panel {
+	oplus,dsi-display-panel@0 {
+		res-switch = <2>;
+		/* Hardware config */
+		oplus,panel-supply-entries = <&dsi_panel_pwr_supply>;
+		oplus,panel-power-on-sequence = "1", "vddio", "5", "vddr-rst", "5", "vddr", "5", "vci", "1";
+		oplus,panel-power-off-sequence = "2", "vci", "5", "vddr", "0", "vddio", "5", "vddr-rst", "1";
+		reset-gpios = <&pio 41 0>;
+		oplus,panel-reset-sequence = <2 10>, <1 1>, <0 1>, <1 20>;
+		/* Panel config */
+		oplus,dsi-serial-number-enabled=<1>;
+		oplus,dsi-serial-number-switch-page;
+		oplus,dsi-serial-number-index= <0>;
+		oplus,dsi-serial-number-switch-page-command = <0xFF 0x5A 0xA5 0x1D>;
+		oplus,dsi-serial-number-default-switch-page-command = <0xFF 0x5A 0xA5 0x00>;
+		oplus,dsi-serial-number-reg= <0x80>;
+		oplus,dsi-serial-number-read-count= <7>;
+		oplus,dsi-serial-number-year-offset= <9>;
+		//oplus,mode-switch-h2l-delay;
+		oplus,backlight-check-disable;
+		/* demura */
+		//oplus,demura-dbv-enable;
+		//oplus,demura-dbv-cfg = <1153 4095>;
+		/*color*/
+		oplus,color-vivid-status;
+		oplus,color-srgb-status;
+		// oplus,color-softiris-status;
+		// oplus,color-dual-panel-status;
+		oplus,color-dual-brightness-status;
+		oplus,color-oplus-calibrate-status;
+		// oplus,color-samsung-status;
+		oplus,color-loading-status;
+		//oplus,color-2nit-status;
+		// oplus,color-nature-profession-status;
+		/* ESD */
+		oplus,cust-esd-check = <0>; //both check TE and reg
+		oplus,esd-check-enable = <1>;
+		oplus,esd_check_cmd = [
+			0A
+		];
+		oplus,esd_check_count = [
+			01
+		];
+		oplus,esd_check_value = [
+			9C
+		];
+		oplus,esd_check_mask = [
+			FF
+		];
+		/* ext_params */
+		oplus,panel-type = <2>;
+		oplus,keep_ulps = <1>;
+		oplus,lane-swap-en = <0>;
+		oplus,lane-swap = <
+			MIPITX_PHY_LANE_0 MIPITX_PHY_LANE_1 MIPITX_PHY_LANE_3 MIPITX_PHY_LANE_2 MIPITX_PHY_LANE_CK MIPITX_PHY_LANE_RX
+			MIPITX_PHY_LANE_0 MIPITX_PHY_LANE_1 MIPITX_PHY_LANE_3 MIPITX_PHY_LANE_2 MIPITX_PHY_LANE_CK MIPITX_PHY_LANE_RX
+		>;
+		oplus,lcm-color-mode = <MTK_DRM_COLOR_MODE_DISPLAY_P3>;
+		oplus,output-mode = <MTK_PANEL_DSC_SINGLE_PORT>;
+		oplus,panel-bpp = <10>;
+		oplus,physical-width-um = <67123>;
+		oplus,physical-height-um = <145728>;
+
+		/*adfr config*/
+		//oplus-adfr-config = <0x201>;
+		//oplus-adfr-test-te-gpios = <&pio 42 0>;
+
+		/* OFP config */
+		oplus,ofp-fp-type = <0x410>;
+		oplus,ofp-fp-local-hbm-calibration;
+		oplus,ofp-longrui-aod-config = <0x06>;
+		//oplus,ofp-need-aod-off-insert-black-frame;
+		/*pwm config*/
+		//oplus,pwm-turbo-support = <1>;
+		//oplus,pwm-switch-backlight-threshold = <1162>;
+		//oplus,pwm-aid-switch-enable;
+		//oplus,pwm-onepulse-support = <1>;
+		//oplus,pwm-onepulse-enabled = <0>;
+		//oplus,pwm-turbo-wait-te = <1>;
+
+		/*OPLUS_FEATURE_AP_UIR_DIMMING ili*/
+		/*oplus,apuir-upnit-ds-list   = <DX1X0   DS1X3   DS2X0>; no changes needed*/
+		/*oplus,apuir-lessnit-ds-list = <DX1X0   DS1X3>; changes needed*/
+		oplus,apuir-ic-type = <1>;
+		oplus,apuir-upnit-ds-list        = <745   840   1023>;
+		oplus,apuir-lessnit-ds-list      = <902   1023>;
+		oplus,apuir-nit-index-list       = <0   2   3   4>;
+		oplus,apuir-dim-list             = <0x00   0x12   0x17>;
+	};
+};

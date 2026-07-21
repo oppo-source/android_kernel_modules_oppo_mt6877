@@ -1,0 +1,9 @@
+# SPDX-License-Identifier: GPL-2.0-only
+# Copyright (C) 2018-2020 Oplus. All rights reserved.
+
+MODULE = oplus_ss_sleep_monitor
+
+$(MODULE)-objs := \
+	oplus_subsys_sleep_monitor.o
+
+obj-$(CONFIG_OPLUS_SUBSYS_SLEEP_MONITOR) += $(MODULE).o
