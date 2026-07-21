@@ -1,0 +1,20 @@
+#!/bin/bash
+
+source kernel/oplus/build/oplus_setup.sh $1 $2
+init_build_environment
+IS_INTRANET="no"
+
+source kernel/oplus/build/oplus_rebuild_img_function.sh
+build_start_time
+is_intranet
+download_prebuild_image
+get_image_info
+get_modules_list
+rebuild_boot_image
+rebuild_vendor_boot_image
+rebuild_dtbo_image
+rebuild_vendor_dlkm_image
+rebuild_system_dlkm_image
+rebuild_vbmeta_image
+print_end_help
+build_end_time

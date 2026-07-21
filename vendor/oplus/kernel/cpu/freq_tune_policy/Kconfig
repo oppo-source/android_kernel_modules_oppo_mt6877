@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: GPL-2.0-only
+# Copyright (C) 2025-2035 Oplus. All rights reserved.
+
+config OPLUS_FEATURE_FREQ_TUNE
+    tristate "oplus freq tune policy"
+    default n
+    help
+      oplus freq tune policy

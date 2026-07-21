@@ -1,0 +1,96 @@
+// SPDX-License-Identifier: GPL-2.0
+/* Copyright (c) 2020 MediaTek Inc. */
+
+&accdet {
+	headset-three-key-threshold = <0 82 170 306>;
+	accdet-mic-vol = <7>;
+	headset-eint0-disable = <1>;
+	typec_switch_type = <3>;
+};
+
+&pio {
+	sia91xx_gpio_L: sia91xx_gpio_L {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO21__FUNC_GPIO21>;
+			output-high;
+		};
+	};
+
+	sia91xx_gpio_R: sia91xx_gpio_R {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO24__FUNC_GPIO24>;
+			output-high;
+		};
+	};
+};
+
+&i2c6 {
+	clock-frequency = <400000>;
+
+	sipa_i2c_L: sipa_i2c@6c {
+		compatible = "si,sia91xx-i2c";
+		#sound-dai-cells = <0>;
+		reg = <0x6c>;
+		si,sipa-dev = <&si_pa_L>;
+		status = "okay";
+	};
+
+	sipa_i2c_R: sipa_i2c@6f{
+		compatible = "si,sia91xx-i2c";
+		#sound-dai-cells = <0>;
+		reg = <0x6f>;
+		si,sipa-dev = <&si_pa_R>;
+		status = "okay";
+	};
+};
+
+&audio_extend {
+	//for sia speaker
+	oplus,speaker-vendor = "sipa";
+	oplus,speaker-i2s-id = <10>;
+	oplus,speaker-i2s-id-in = <11>;
+	oplus,speaker-codec-name = "sipa_i2c.6-006c","sipa_i2c.6-006f";
+	oplus,speaker-codec-dai-name = "sia91xx-aif-6-6c","sia91xx-aif-6-6f";
+	oplus,spk-i2s-index = <21 20>;
+};
+
+&si_pa_L {
+	compatible = "si,sia91xx";
+	si,si_pa_type = "sia917x";
+	si,si_pa_reset = <&pio 21 0>;
+	pinctrl-names = "si_pa_gpio";
+	pinctrl-0 = <&sia91xx_gpio_L>;
+	si,si_pa_disable_pin = <0>;
+	sipa_min_range = <5300>;
+	sipa_max_range = <7500>;
+	sipa_f0_min_range = <200>;
+	sipa_f0_max_range = <2000>;
+	// 2: 2 spk, 0: mean no spk need f0 cali
+	oplus_need_f0_cali = <2>;
+	channel_num = <0>;
+};
+
+&si_pa_R {
+	compatible = "si,sia91xx";
+	si,si_pa_type = "sia917x";
+	si,si_pa_reset = <&pio 24 0>;
+	pinctrl-names = "si_pa_gpio";
+	pinctrl-0 = <&sia91xx_gpio_R>;
+	si,si_pa_disable_pin = <0>;
+	sipa_min_range = <5300>;
+	sipa_max_range = <7500>;
+	sipa_f0_min_range = <200>;
+	sipa_f0_max_range = <2000>;
+	// 2: 2 spk, 0: mean no spk need f0 cali
+	oplus_need_f0_cali = <2>;
+	channel_num = <1>;
+};
+
+&sound {
+	si,sia81xx-max-num = <2>;
+	si,sia81xx-aux-devs = <&sipa_i2c_L>, <&sipa_i2c_R>;
+	si,sia81xx-aux-devs-prefix = "SpkrLeft", "SpkrRight";
+	mediatek,speaker-codec {
+		sound-dai = <&sipa_i2c_L>, <&sipa_i2c_R>;
+	};
+};

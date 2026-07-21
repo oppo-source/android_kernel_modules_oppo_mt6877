@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: GPL-2.0-only
+
+config OPLUS_FEATURE_OSML_MONITOR
+  tristate "collect perf_event for system."
+  default n
+  help
+    collect perf_event for system/task.

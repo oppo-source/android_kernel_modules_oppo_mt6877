@@ -1,0 +1,945 @@
+&ac302_p_3_a0026_dsi_vdo_panel {
+	oplus,dsi-display-panel@1 {
+		reg = <0>;
+		oplus,dsi-vendor-name = "A0026";
+		oplus,dsi-manufacture = "P_3";
+		oplus,dsi-display-timings {
+			timing@sa_fhd_120 {
+				cell-index = <0>;
+				oplus,dsi-panel-framerate = <120>;
+				oplus,dsi-panel-pllclk = <553>;
+				oplus,cmd-null-pkt-en = <0>;
+				oplus,cmd-null-pkt-len = <0>;
+				oplus,vdo-per-frame-lp-enable = <1>;
+				/* OPLUS_FEATURE_DISPLAY_ONSCREENFINGERPRINT */
+				//oplus,ofp_need_keep_apart_backlight;
+				#include "ac302-p-3-a0026-dsi-vdo-panel-common-ID3-2.dtsi"
+				oplus,dsi-timing-switch-command = [   // 120Hz DC(1pulse) to Normal(3+18pulse)
+					//15 00 00 00 00 00 02 2F 01
+				];
+				oplus,dsi-pwm-switch-1to3pul-command = [  // 120Hz DC(1pulse) to Normal(3pulse)
+
+				];
+				oplus,dsi-pwm-switch-1to18pul-command = [  // 120Hz DC(1pulse) to Normal(18pulse)
+
+				];
+				oplus,dsi-pwm-switch-18to3pul-command = [
+
+				];
+				oplus,dsi-pwm-switch-18to3pul-wake-command = [
+
+				];
+				oplus,dsi-pwm-switch-3to18pul-command = [
+
+				];
+
+				oplus,dsi-timing-switch-1pulse-command = [  // 120Hz Normal(3+18pulse) to DC(1pulse)
+
+				];
+				oplus,dsi-pwm-switch-3to1pul-command = [  // 120Hz Normal(3+18pulse) to DC(1pulse)
+
+				];
+				oplus,dsi-pwm-switch-18to1pul-command = [  // 120Hz Normal(3+18pulse) to DC(1pulse)
+
+				];
+
+				oplus,dsi-on-command = [
+					/* OSC2 = 138.9Mhz */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 03
+					15 00 00 40 00 00 02 C4 62
+					/* VGXP by pad cap */
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 1F
+					15 00 00 40 00 00 02 F4 0F
+					15 00 00 40 00 00 02 6F 20
+					39 00 00 40 00 00 02 F4 0F
+					15 00 00 40 00 00 02 6F 08
+					15 00 00 40 00 00 02 FC 01
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 24
+					15 00 00 40 00 00 02 F8 FF
+					/* esd enhance*/
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 0F
+					15 00 00 40 00 00 02 D8 42
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F D4
+					15 00 00 40 00 00 02 BA 20
+					39 00 00 40 00 00 06 F0 55 AA 52 08 03
+					15 00 00 40 00 00 02 C6 87
+					/* For idle enter BIST */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 C0 00
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 02 D2 00
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 02 F8 02
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 F2 15
+					/* LCTC Constraint for esd improve*/
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 6F A9
+					15 00 00 40 00 00 02 F4 F3
+					/* Resolution Setting */
+					39 00 00 40 00 00 05 2A 00 00 04 FF
+					39 00 00 40 00 00 05 2B 00 00 0A EF
+					/* Vesa1.2 10bit 3.75 Dsc Setting */
+					15 00 00 40 00 00 02 90 03
+					15 00 00 40 00 00 02 6F 01
+					39 00 00 40 00 00 02 90 43
+					39 00 00 40 00 00 13 91 AB A8 00 28 D2 00 02 5C 04 06 00 08 02 AB 02 20 10 E0
+					/* Dimming Off */
+					15 00 00 40 00 00 02 53 20
+					/* video mode ext_vfp,vbp setting */
+					39 00 00 40 00 00 11 3B 00 1C 00 58 00 1C 00 54 00 1C 04 0C 00 1C 0B B4
+					15 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 05 3B 00 1C 00 54
+					/* DPC Temperature Setting */
+					39 00 00 40 00 00 03 81 01 19
+					/* FPR1 EN */
+					15 00 00 40 00 00 02 88 01
+					/* 120Hz sleep out */
+					39 00 00 40 00 00 07 A9 01 00 2F 00 00 01
+					/* TE on */
+					15 00 00 40 00 00 02 35 00
+					/* Setting loading effect x1.0 */
+					39 00 00 40 00 00 03 5F 00 00
+					/* swire pulse */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 03
+					15 00 00 00 00 00 02 B5 D5
+					//lhbm position
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 07
+					39 00 00 40 00 00 03 DF 02 1C
+					39 00 00 40 00 00 02 6F 09
+					39 00 00 40 00 00 03 DF 09 8C
+					39 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 03 DF 02 E6
+					39 00 00 40 00 00 02 6F 0D
+					39 00 00 40 00 00 03 DF 0A 56
+
+					39 00 00 40 00 00 06 F0 55 AA 52 08 08
+					39 00 00 40 00 00 05 E0 41 01 01 01
+
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 05 E1 01 07 0D 05
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 05 E1 01 0B 0D 04
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 05 E1 02 0B 0A 08
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 05 E1 02 09 08 05
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 05 E1 01 07 09 04
+
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 05 E2 01 09 0D 05
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 05 E2 02 0D 0E 06
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 05 E2 02 09 0A 07
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 05 E2 02 09 09 07
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 05 E2 02 07 0B 02
+
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 9B
+					15 00 00 40 00 00 02 B9 80
+					15 00 00 40 00 00 02 6F C3
+					39 00 00 40 00 00 03 B9 01 80
+					15 00 00 40 00 00 02 6F CB
+					39 00 00 40 00 00 03 B9 01 80
+					15 00 00 40 00 00 02 6F D3
+					39 00 00 40 00 00 03 B9 01 80
+
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 47
+					15 00 00 40 00 00 02 F2 21
+
+					15 00 00 00 78 00 02 11 00
+					15 00 00 00 14 00 02 29 00
+					//code setting,DMR_HIGH_KEEP_DC = 0
+					39 00 00 40 00 00 06 F0 55 AA 52 08 04
+					15 00 00 40 00 00 02 CB 06
+				];
+
+				oplus,dsi-timing-switch-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to3pul-wake-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-timing-switch-1pulse-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-on-command-state = "dsi_lp_mode";
+
+				oplus,dsc-params-entries = <&dsc_params>;
+				// oplus,phy-timcon {
+				// 	hs-trail = <14>;
+				// 	clk-trail = <15>;
+				// };
+				oplus,dyn-fps {
+					switch_en = <1>;
+					vact_timing_fps = <120>;
+					dyn_fps_data_rate;
+					oplus_dyn_fps_dfps_cmd_table0 = [00 07 A9 01 00 2F 00 00 01];
+				};
+				oplus,display-mode {
+					display-mode@0 {
+						hdisplay = <1280>;
+						vdisplay = <2800>;
+						fhd-hfp = <60>;
+						fhd-hsa = <4>;
+						fhd-hbp = <32>;
+						fhd-vfp = <84>;
+						fhd-vsa = <2>;
+						fhd-vbp = <26>;
+						hskew = <STANDARD_ADFR>;
+					};
+					display-mode@1 {
+						hdisplay = <1080>;
+						vdisplay = <2362>;
+						fhd-hfp = <60>;
+						fhd-hsa = <4>;
+						fhd-hbp = <32>;
+						fhd-vfp = <84>;
+						fhd-vsa = <2>;
+						fhd-vbp = <26>;
+						hskew = <STANDARD_ADFR>;
+					};
+				};
+			};
+			timing@sa_fhd_90 {
+				cell-index = <1>;
+				oplus,dsi-panel-framerate = <90>;
+				oplus,dsi-panel-pllclk = <553>;
+				oplus,cmd-null-pkt-en = <0>;
+				oplus,cmd-null-pkt-len = <0>;
+				oplus,vdo-per-frame-lp-enable = <1>;
+				/* OPLUS_FEATURE_DISPLAY_ONSCREENFINGERPRINT */
+				//oplus,ofp_need_keep_apart_backlight;
+				#include "ac302-p-3-a0026-dsi-vdo-panel-common-ID3-2.dtsi"
+				oplus,dsi-timing-switch-command = [   // 90Hz DC(1pulse) to Normal(3+18pulse)
+					//15 00 00 00 00 00 02 2F 02
+				];
+				oplus,dsi-pwm-switch-1to3pul-command = [  // 90Hz DC(1pulse) to Normal(3pulse)
+
+				];
+				oplus,dsi-pwm-switch-1to18pul-command = [  // 90Hz DC(1pulse) to Normal(18pulse)
+
+				];
+				oplus,dsi-pwm-switch-18to3pul-command = [
+
+				];
+				oplus,dsi-pwm-switch-18to3pul-wake-command = [
+
+				];
+				oplus,dsi-pwm-switch-3to18pul-command = [
+
+				];
+
+				oplus,dsi-timing-switch-1pulse-command = [  // 90Hz Normal(3+18pulse) to DC(1pulse)
+
+				];
+				oplus,dsi-pwm-switch-3to1pul-command = [  // 90Hz Normal(3+18pulse) to DC(1pulse)
+
+				];
+				oplus,dsi-pwm-switch-18to1pul-command = [  // 90Hz Normal(3+18pulse) to DC(1pulse)
+
+				];
+
+				oplus,dsi-on-command = [
+					/* OSC2 = 138.9Mhz */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 03
+					15 00 00 40 00 00 02 C4 62
+					/* VGXP by pad cap */
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 1F
+					15 00 00 40 00 00 02 F4 0F
+					15 00 00 40 00 00 02 6F 20
+					39 00 00 40 00 00 02 F4 0F
+					15 00 00 40 00 00 02 6F 08
+					15 00 00 40 00 00 02 FC 01
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 24
+					15 00 00 40 00 00 02 F8 FF
+					/* esd enhance*/
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 0F
+					15 00 00 40 00 00 02 D8 42
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F D4
+					15 00 00 40 00 00 02 BA 20
+					39 00 00 40 00 00 06 F0 55 AA 52 08 03
+					15 00 00 40 00 00 02 C6 87
+					/* For idle enter BIST */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 C0 00
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 02 D2 00
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 02 F8 02
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 F2 15
+					/* LCTC Constraint for esd improve*/
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 6F A9
+					15 00 00 40 00 00 02 F4 F3
+					/* Resolution Setting */
+					39 00 00 40 00 00 05 2A 00 00 04 FF
+					39 00 00 40 00 00 05 2B 00 00 0A EF
+					/* Vesa1.2 10bit 3.75 Dsc Setting */
+					15 00 00 40 00 00 02 90 03
+					15 00 00 40 00 00 02 6F 01
+					39 00 00 40 00 00 02 90 43
+					39 00 00 40 00 00 13 91 AB A8 00 28 D2 00 02 5C 04 06 00 08 02 AB 02 20 10 E0
+					/* Dimming Off */
+					15 00 00 40 00 00 02 53 20
+					/* video mode ext_vfp,vbp setting */
+					39 00 00 40 00 00 11 3B 00 1C 00 58 00 1C 00 54 00 1C 04 0C 00 1C 0B B4
+					15 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 05 3B 00 1C 00 54
+					/* DPC Temperature Setting */
+					39 00 00 40 00 00 03 81 01 19
+					/* FPR1 EN */
+					15 00 00 40 00 00 02 88 01
+					/* 120Hz sleep out */
+					39 00 00 40 00 00 07 A9 01 00 2F 00 00 02
+					/* TE on */
+					15 00 00 40 00 00 02 35 00
+					/* Setting loading effect x1.0 */
+					39 00 00 40 00 00 03 5F 00 00
+					/* swire pulse */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 03
+					15 00 00 00 00 00 02 B5 D5
+
+					//lhbm position
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 07
+					39 00 00 40 00 00 03 DF 02 1C
+					39 00 00 40 00 00 02 6F 09
+					39 00 00 40 00 00 03 DF 09 8C
+					39 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 03 DF 02 E6
+					39 00 00 40 00 00 02 6F 0D
+					39 00 00 40 00 00 03 DF 0A 56
+
+					39 00 00 40 00 00 06 F0 55 AA 52 08 08
+					39 00 00 40 00 00 05 E0 41 01 01 01
+
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 05 E1 01 07 0D 05
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 05 E1 01 0B 0D 04
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 05 E1 02 0B 0A 08
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 05 E1 02 09 08 05
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 05 E1 01 07 09 04
+
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 05 E2 01 09 0D 05
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 05 E2 02 0D 0E 06
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 05 E2 02 09 0A 07
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 05 E2 02 09 09 07
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 05 E2 02 07 0B 02
+
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 9B
+					15 00 00 40 00 00 02 B9 80
+					15 00 00 40 00 00 02 6F C3
+					39 00 00 40 00 00 03 B9 01 80
+					15 00 00 40 00 00 02 6F CB
+					39 00 00 40 00 00 03 B9 01 80
+					15 00 00 40 00 00 02 6F D3
+					39 00 00 40 00 00 03 B9 01 80
+
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 47
+					15 00 00 40 00 00 02 F2 21
+
+					15 00 00 00 78 00 02 11 00
+					15 00 00 00 14 00 02 29 00
+					//code setting,DMR_HIGH_KEEP_DC = 0
+					39 00 00 40 00 00 06 F0 55 AA 52 08 04
+					15 00 00 40 00 00 02 CB 06
+				];
+
+				oplus,dsi-timing-switch-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to3pul-wake-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-timing-switch-1pulse-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-on-command-state = "dsi_lp_mode";
+
+				oplus,dsc-params-entries = <&dsc_params>;
+				// oplus,phy-timcon {
+				// 	hs-trail = <14>;
+				// 	clk-trail = <15>;
+				// };
+				oplus,dyn-fps {
+					switch_en = <1>;
+					vact_timing_fps = <90>;
+					dyn_fps_data_rate;
+					oplus_dyn_fps_dfps_cmd_table0 = [00 07 A9 01 00 2F 00 00 02];
+				};
+				oplus,display-mode {
+					display-mode@0 {
+						hdisplay = <1280>;
+						vdisplay = <2800>;
+						fhd-hfp = <60>;
+						fhd-hsa = <4>;
+						fhd-hbp = <32>;
+						fhd-vfp = <1036>;
+						fhd-vsa = <2>;
+						fhd-vbp = <26>;
+						hskew = <STANDARD_ADFR>;
+					};
+					display-mode@1 {
+						hdisplay = <1080>;
+						vdisplay = <2362>;
+						fhd-hfp = <60>;
+						fhd-hsa = <4>;
+						fhd-hbp = <32>;
+						fhd-vfp = <1036>;
+						fhd-vsa = <2>;
+						fhd-vbp = <26>;
+						hskew = <STANDARD_ADFR>;
+					};
+				};
+			};
+			timing@sa_fhd_60 {
+				cell-index = <2>;
+				oplus,dsi-panel-framerate = <60>;
+				oplus,dsi-panel-pllclk = <553>;
+				oplus,cmd-null-pkt-en = <0>;
+				oplus,cmd-null-pkt-len = <0>;
+				oplus,vdo-per-frame-lp-enable = <1>;
+				/* OPLUS_FEATURE_DISPLAY_ONSCREENFINGERPRINT */
+				//oplus,ofp_need_keep_apart_backlight;
+				#include "ac302-p-3-a0026-dsi-vdo-panel-common-ID3-2.dtsi"
+				oplus,dsi-timing-switch-command = [   // 60Hz DC(1pulse) to Normal(3+18pulse)
+					//15 00 00 00 00 00 02 2F 03
+				];
+				oplus,dsi-pwm-switch-1to3pul-command = [  // 60Hz DC(1pulse) to Normal(3pulse)
+
+				];
+				oplus,dsi-pwm-switch-1to18pul-command = [  // 60Hz DC(1pulse) to Normal(18pulse)
+
+				];
+				oplus,dsi-pwm-switch-18to3pul-command = [
+
+				];
+				oplus,dsi-pwm-switch-18to3pul-wake-command = [
+
+				];
+				oplus,dsi-pwm-switch-3to18pul-command = [
+
+				];
+
+				oplus,dsi-timing-switch-1pulse-command = [  // 60Hz Normal(3+18pulse) to DC(1pulse)
+
+				];
+				oplus,dsi-pwm-switch-3to1pul-command = [  // 60Hz Normal(3+18pulse) to DC(1pulse)
+
+				];
+				oplus,dsi-pwm-switch-18to1pul-command = [  // 60Hz Normal(3+18pulse) to DC(1pulse)
+
+				];
+
+				oplus,dsi-on-command = [
+					/* OSC2 = 138.9Mhz */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 03
+					15 00 00 40 00 00 02 C4 62
+					/* VGXP by pad cap */
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 1F
+					15 00 00 40 00 00 02 F4 0F
+					15 00 00 40 00 00 02 6F 20
+					39 00 00 40 00 00 02 F4 0F
+					15 00 00 40 00 00 02 6F 08
+					15 00 00 40 00 00 02 FC 01
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 24
+					15 00 00 40 00 00 02 F8 FF
+					/* esd enhance*/
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 0F
+					15 00 00 40 00 00 02 D8 42
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F D4
+					15 00 00 40 00 00 02 BA 20
+					39 00 00 40 00 00 06 F0 55 AA 52 08 03
+					15 00 00 40 00 00 02 C6 87
+					/* For idle enter BIST */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 C0 00
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 02 D2 00
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 02 F8 02
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 F2 15
+					/* LCTC Constraint for esd improve*/
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 6F A9
+					15 00 00 40 00 00 02 F4 F3
+					/* Resolution Setting */
+					39 00 00 40 00 00 05 2A 00 00 04 FF
+					39 00 00 40 00 00 05 2B 00 00 0A EF
+					/* Vesa1.2 10bit 3.75 Dsc Setting */
+					15 00 00 40 00 00 02 90 03
+					15 00 00 40 00 00 02 6F 01
+					39 00 00 40 00 00 02 90 43
+					39 00 00 40 00 00 13 91 AB A8 00 28 D2 00 02 5C 04 06 00 08 02 AB 02 20 10 E0
+					/* Dimming Off */
+					15 00 00 40 00 00 02 53 20
+					/* video mode ext_vfp,vbp setting */
+					39 00 00 40 00 00 11 3B 00 1C 00 58 00 1C 00 54 00 1C 04 0C 00 1C 0B B4
+					15 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 05 3B 00 1C 00 54
+					/* DPC Temperature Setting */
+					39 00 00 40 00 00 03 81 01 19
+					/* FPR1 EN */
+					15 00 00 40 00 00 02 88 01
+					/* 120Hz sleep out */
+					39 00 00 40 00 00 07 A9 01 00 2F 00 00 03
+					/* TE on */
+					15 00 00 40 00 00 02 35 00
+					/* Setting loading effect x1.0 */
+					39 00 00 40 00 00 03 5F 00 00
+					/* swire pulse */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 03
+					15 00 00 00 00 00 02 B5 D5
+
+					//lhbm position
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 07
+					39 00 00 40 00 00 03 DF 02 1C
+					39 00 00 40 00 00 02 6F 09
+					39 00 00 40 00 00 03 DF 09 8C
+					39 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 03 DF 02 E6
+					39 00 00 40 00 00 02 6F 0D
+					39 00 00 40 00 00 03 DF 0A 56
+
+					39 00 00 40 00 00 06 F0 55 AA 52 08 08
+					39 00 00 40 00 00 05 E0 41 01 01 01
+
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 05 E1 01 07 0D 05
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 05 E1 01 0B 0D 04
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 05 E1 02 0B 0A 08
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 05 E1 02 09 08 05
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 05 E1 01 07 09 04
+
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 05 E2 01 09 0D 05
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 05 E2 02 0D 0E 06
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 05 E2 02 09 0A 07
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 05 E2 02 09 09 07
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 05 E2 02 07 0B 02
+
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 9B
+					15 00 00 40 00 00 02 B9 80
+					15 00 00 40 00 00 02 6F C3
+					39 00 00 40 00 00 03 B9 01 80
+					15 00 00 40 00 00 02 6F CB
+					39 00 00 40 00 00 03 B9 01 80
+					15 00 00 40 00 00 02 6F D3
+					39 00 00 40 00 00 03 B9 01 80
+
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 47
+					15 00 00 40 00 00 02 F2 21
+
+					15 00 00 00 78 00 02 11 00
+					15 00 00 00 14 00 02 29 00
+					//code setting,DMR_HIGH_KEEP_DC = 0
+					39 00 00 40 00 00 06 F0 55 AA 52 08 04
+					15 00 00 40 00 00 02 CB 06
+				];
+
+				oplus,dsi-timing-switch-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to3pul-wake-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-timing-switch-1pulse-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-on-command-state = "dsi_lp_mode";
+
+				oplus,dsc-params-entries = <&dsc_params>;
+				// oplus,phy-timcon {
+				// 	hs-trail = <14>;
+				// 	clk-trail = <15>;
+				// };
+				oplus,dyn-fps {
+					switch_en = <1>;
+					vact_timing_fps = <60>;
+					dyn_fps_data_rate;
+					oplus_dyn_fps_dfps_cmd_table0 = [00 07 A9 01 00 2F 00 00 03];
+				};
+				oplus,display-mode {
+					display-mode@0 {
+						hdisplay = <1280>;
+						vdisplay = <2800>;
+						fhd-hfp = <60>;
+						fhd-hsa = <4>;
+						fhd-hbp = <32>;
+						fhd-vfp = <2996>;
+						fhd-vsa = <2>;
+						fhd-vbp = <26>;
+						hskew = <STANDARD_ADFR>;
+					};
+					display-mode@1 {
+						hdisplay = <1080>;
+						vdisplay = <2362>;
+						fhd-hfp = <60>;
+						fhd-hsa = <4>;
+						fhd-hbp = <32>;
+						fhd-vfp = <2996>;
+						fhd-vsa = <2>;
+						fhd-vbp = <26>;
+						hskew = <STANDARD_ADFR>;
+					};
+				};
+			};
+			timing@sa_fhd_30 {
+				cell-index = <3>;
+				oplus,dsi-panel-framerate = <30>;
+				oplus,dsi-panel-pllclk = <553>;
+				oplus,cmd-null-pkt-en = <0>;
+				oplus,cmd-null-pkt-len = <0>;
+				oplus,vdo-per-frame-lp-enable = <1>;
+				/* OPLUS_FEATURE_DISPLAY_ONSCREENFINGERPRINT */
+				#include "ac302-p-3-a0026-dsi-vdo-panel-common-ID3-2.dtsi"
+				oplus,dsi-on-command = [
+					/* OSC2 = 138.9Mhz */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 03
+					15 00 00 40 00 00 02 C4 62
+					/* VGXP by pad cap */
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 1F
+					15 00 00 40 00 00 02 F4 0F
+					15 00 00 40 00 00 02 6F 20
+					39 00 00 40 00 00 02 F4 0F
+					15 00 00 40 00 00 02 6F 08
+					15 00 00 40 00 00 02 FC 01
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 24
+					15 00 00 40 00 00 02 F8 FF
+					/* esd enhance*/
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 0F
+					15 00 00 40 00 00 02 D8 42
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F D4
+					15 00 00 40 00 00 02 BA 20
+					39 00 00 40 00 00 06 F0 55 AA 52 08 03
+					15 00 00 40 00 00 02 C6 87
+					/* For idle enter BIST */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 C0 00
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 02 D2 00
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 02 F8 02
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 F2 15
+					/* LCTC Constraint for esd improve*/
+					39 00 00 40 00 00 05 FF AA 55 A5 84
+					15 00 00 40 00 00 02 6F A9
+					15 00 00 40 00 00 02 F4 F3
+					/* Resolution Setting */
+					39 00 00 40 00 00 05 2A 00 00 04 FF
+					39 00 00 40 00 00 05 2B 00 00 0A EF
+					/* Vesa1.2 10bit 3.75 Dsc Setting */
+					15 00 00 40 00 00 02 90 03
+					15 00 00 40 00 00 02 6F 01
+					39 00 00 40 00 00 02 90 43
+					39 00 00 40 00 00 13 91 AB A8 00 28 D2 00 02 5C 04 06 00 08 02 AB 02 20 10 E0
+					/* Dimming Off */
+					15 00 00 40 00 00 02 53 20
+					/* video mode ext_vfp,vbp setting */
+					39 00 00 40 00 00 11 3B 00 1C 00 58 00 1C 00 54 00 1C 04 0C 00 1C 0B B4
+					15 00 00 40 00 00 02 6F 10
+					39 00 00 40 00 00 05 3B 00 1C 00 54
+					/* DPC Temperature Setting */
+					39 00 00 40 00 00 03 81 01 19
+					/* FPR1 EN */
+					15 00 00 40 00 00 02 88 01
+					/* 120Hz sleep out */
+					39 00 00 40 00 00 07 A9 01 00 2F 00 00 01
+					/* TE on */
+					15 00 00 40 00 00 02 35 00
+					/* Setting loading effect x1.0 */
+					39 00 00 40 00 00 03 5F 00 00
+					/* swire pulse */
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					15 00 00 40 00 00 02 6F 03
+					15 00 00 00 00 00 02 B5 D5
+					//lhbm position
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 07
+					39 00 00 40 00 00 03 DF 02 1C
+					39 00 00 40 00 00 02 6F 09
+					39 00 00 40 00 00 03 DF 09 8C
+					39 00 00 40 00 00 02 6F 0B
+					39 00 00 40 00 00 03 DF 02 E6
+					39 00 00 40 00 00 02 6F 0D
+					39 00 00 40 00 00 03 DF 0A 56
+
+					39 00 00 40 00 00 06 F0 55 AA 52 08 08
+					39 00 00 40 00 00 05 E0 41 01 01 01
+
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 05 E1 01 07 0D 05
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 05 E1 01 0B 0D 04
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 05 E1 02 0B 0A 08
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 05 E1 02 09 08 05
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 05 E1 01 07 09 04
+
+					15 00 00 40 00 00 02 6F 1C
+					39 00 00 40 00 00 05 E2 01 09 0D 05
+					15 00 00 40 00 00 02 6F 2A
+					39 00 00 40 00 00 05 E2 02 0D 0E 06
+					15 00 00 40 00 00 02 6F 38
+					39 00 00 40 00 00 05 E2 02 09 0A 07
+					15 00 00 40 00 00 02 6F 46
+					39 00 00 40 00 00 05 E2 02 09 09 07
+					15 00 00 40 00 00 02 6F 54
+					39 00 00 40 00 00 05 E2 02 07 0B 02
+
+					39 00 00 40 00 00 06 F0 55 AA 52 08 01
+					15 00 00 40 00 00 02 6F 9B
+					15 00 00 40 00 00 02 B9 80
+					15 00 00 40 00 00 02 6F C3
+					39 00 00 40 00 00 03 B9 01 80
+					15 00 00 40 00 00 02 6F CB
+					39 00 00 40 00 00 03 B9 01 80
+					15 00 00 40 00 00 02 6F D3
+					39 00 00 40 00 00 03 B9 01 80
+
+					39 00 00 40 00 00 05 FF AA 55 A5 80
+					15 00 00 40 00 00 02 6F 47
+					15 00 00 40 00 00 02 F2 21
+
+					15 00 00 00 78 00 02 11 00
+					15 00 00 00 14 00 02 29 00
+					//code setting,DMR_HIGH_KEEP_DC = 0
+					39 00 00 40 00 00 06 F0 55 AA 52 08 04
+					15 00 00 40 00 00 02 CB 06
+				];
+				oplus,dsi-on-command-state = "dsi_lp_mode";
+
+				oplus,dsc-params-entries = <&dsc_params>;
+
+				oplus,dyn-fps {
+					switch_en = <1>;
+					vact_timing_fps = <30>;
+					dyn_fps_data_rate;
+				};
+				oplus,display-mode {
+					display-mode@0 {
+						hdisplay = <1280>;
+						vdisplay = <2800>;
+						fhd-hfp = <1637>;
+						fhd-hsa = <4>;
+						fhd-hbp = <32>;
+						fhd-vfp = <84>;
+						fhd-vsa = <2>;
+						fhd-vbp = <26>;
+						hskew = <STANDARD_ADFR>;
+					};
+					display-mode@1 {
+						hdisplay = <1080>;
+						vdisplay = <2362>;
+						fhd-hfp = <1637>;
+						fhd-hsa = <4>;
+						fhd-hbp = <32>;
+						fhd-vfp = <84>;
+						fhd-vsa = <2>;
+						fhd-vbp = <26>;
+						hskew = <STANDARD_ADFR>;
+					};
+				};
+			};
+		};
+		oplus,vdo-aod-params {
+			oplus,vdo-aod-mode@0{
+				porch_change_flag = <0x03>;
+				dst-hfp = <1637>;
+				dst-vfp = <84>;
+				oplus-vdo-aod-cmd-table0 = [01 39];
+				oplus-vdo-aod-cmd-table1 = [02 6F 04];
+				oplus-vdo-aod-cmd-table2 = [03 51 0F FE];
+			};
+			oplus,vdo-aod-mode@1{ //120hz
+				porch_change_flag = <0x03>;
+				dst-hfp = <60>;
+				dst-vfp = <84>;
+				oplus-vdo-aod-cmd-table0 = [01 38];
+			};
+			oplus,vdo-aod-mode@2{ //90hz
+				porch_change_flag = <0x03>;
+				dst-hfp = <60>;
+				dst-vfp = <1036>;
+				oplus-vdo-aod-cmd-table0 = [01 38];
+			};
+			oplus,vdo-aod-mode@3{ //60hz
+				porch_change_flag = <0x03>;
+				dst-hfp = <60>;
+				dst-vfp = <2996>;
+				oplus-vdo-aod-cmd-table0 = [01 38];
+			};
+		};
+	};
+};
+
+&ac302_p_3_a0026_dsi_vdo_panel {
+	oplus,dsi-display-panel@1 {
+		res-switch = <2>;
+		/* Hardware config */
+		oplus,panel-supply-entries = <&dsi_panel_pwr_supply>;
+		oplus,panel-power-on-sequence = "1", "vddio", "5", "vddr", "5", "vci", "2";
+		oplus,panel-power-off-sequence = "6", "vci", "6", "vddr", "6", "vddio", "1";
+		reset-gpios = <&pio 41 0>;
+		oplus,panel-reset-sequence = <2 10>, <1 1>, <0 1>, <1 26>;
+		/* Panel config */
+		oplus,dsi-serial-number-enabled = <1>;
+		oplus,dsi-serial-number-switch-page;
+		oplus,dsi-serial-number-index = <0>;
+		oplus,dsi-serial-number-switch-page-command = <0xF0 0x55 0xAA 0x52 0x08 0x01>;
+		oplus,dsi-serial-number-default-switch-page-command = <0xF0 0x55 0xAA 0x52 0x08 0x00>;
+		oplus,dsi-serial-number-reg = <0xD7>;
+		oplus,dsi-serial-number-read-count = <7>;
+		oplus,backlight-check-disable;
+		// oplus,dsi-serial-number-year-offset = <0>;
+		/*color*/
+		oplus,color-vivid-status;
+		//oplus,color-srgb-status;
+		// oplus,color-softiris-status;
+		// oplus,color-dual-panel-status;
+		//oplus,color-dual-brightness-status;
+		//oplus,color-oplus-calibrate-status;
+		// oplus,color-samsung-status;
+		//oplus,color-loading-status;
+		//oplus,color-2nit-status;
+		// oplus,color-nature-profession-status;
+		/* ESD */
+		oplus,cust-esd-check = <1>;
+		oplus,esd-check-enable = <1>;
+		oplus,esd_check_cmd = [
+			0A
+			AB
+			0D
+		];
+		oplus,esd_check_count = [
+			01
+			02
+			01
+		];
+		oplus,esd_check_value = [
+			9C
+			00 00
+			00
+		];
+		oplus,esd_check_mask = [
+			FF
+			07 0F
+		];
+		/* MIPI error check config */
+		/*
+		 ** BIT(0): enable/disable check
+		 ** BIT(1): enable/disable page switch
+		 */
+		// oplus,mipi-err-check-config = <0x01>; // 0b0000'0111
+		// oplus,mipi-err-check-reg = [
+		// 	AB
+		// ];
+		// oplus,mipi-err-check-value = [
+		// 	00 00
+		// ];
+		// oplus,mipi-err-check-count = [
+		// 	02
+		// ];
+		/*  32-bit binary flag
+		 ** Bit value identified how to match the return value of each register.
+		 ** The value 0(default) means equal, and the value 1 means not equal.
+		 */
+		oplus,mipi-err-check-match-modes = <0x00000000>;
+		/* ext_params */
+		oplus,panel-type = <0>;
+		oplus,keep_ulps = <1>;
+		oplus,lane-swap-en = <0>;
+		oplus,lane-swap = <
+			MIPITX_PHY_LANE_0 MIPITX_PHY_LANE_1 MIPITX_PHY_LANE_3 MIPITX_PHY_LANE_2 MIPITX_PHY_LANE_CK MIPITX_PHY_LANE_RX
+			MIPITX_PHY_LANE_0 MIPITX_PHY_LANE_1 MIPITX_PHY_LANE_3 MIPITX_PHY_LANE_2 MIPITX_PHY_LANE_CK MIPITX_PHY_LANE_RX
+		>;
+		oplus,lcm-color-mode = <MTK_DRM_COLOR_MODE_DISPLAY_P3>;
+		oplus,output-mode = <MTK_PANEL_DSC_SINGLE_PORT>;
+		oplus,panel-bpp = <10>;
+		oplus,physical-width-um = <72000>;
+		oplus,physical-height-um = <157000>;
+
+		oplus,vdo-per-frame-lp-enable = <1>;
+		oplus,change_fps_by_vfp_send_cmd = <1>;
+		oplus,esd-check-repeatedly-cnt = <3>;
+		oplus,oplus-esd-sleep-status = <1>;
+		oplus,oplus-esd-sleep-ms = <5000>;
+
+		/* OFP config */
+		oplus,ofp-fp-type = <0xA10>;
+		oplus,ofp-fp-local-hbm-calibration;
+		oplus,ofp-video-mode-30hz-aod-accelerate;
+		/*pwm config*/
+		oplus,pwm-turbo-support = <1>;
+		oplus,pwm-switch-backlight-threshold = <1162>;
+		oplus,pwm-aid-switch-enable;
+		oplus,pwm-onepulse-support = <0>;
+		oplus,pwm-onepulse-enabled = <0>;
+		oplus,pwm-turbo-wait-te = <1>;
+	};
+};

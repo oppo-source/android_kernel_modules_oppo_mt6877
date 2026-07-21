@@ -1,0 +1,1038 @@
+&ac332_p_3_a0036_dsi_cmd_panel {
+	oplus,dsi-display-panel@0 {
+		reg = <0>;
+		oplus,dsi-vendor-name = "A0036";
+		oplus,dsi-manufacture = "P_3";
+		oplus,dsi-display-timings {
+			timing@sa_fhd_120 {
+				cell-index = <2>;
+				oplus,dsi-panel-framerate = <120>;
+				oplus,dsi-panel-pllclk = <553>;
+				oplus,merge-trig-offset = <333>;
+				//oplus,cmd-null-pkt-en = <1>;
+				//oplus,cmd-null-pkt-len = <0>;
+				/* OPLUS_FEATURE_DISPLAY_ONSCREENFINGERPRINT */
+				oplus,ofp_need_keep_apart_backlight;
+				/*oplus,ofp-hbm-on-delay = <0>;
+				oplus,ofp-pre-hbm-off-delay = <2>;
+				oplus,ofp-hbm-off-delay = <0>;
+				oplus,ofp-need-to-sync-data-in-aod-unlocking;
+				oplus,ofp-aod-off-insert-black = <1>;
+				oplus,ofp-aod-off-black-frame-total-time = <42>;*/
+				#include "ac332-p-3-a0036-dsi-cmd-panel-common.dtsi"
+				oplus,dsi-timing-switch-command = [//Switch To 120Hz normal
+					39 00 00 40 00 00 2D A9 01 00 2F 00 00 00 01 00 A2 00 20 07 02 01 DD 02 03 00 00 00 00 00 00 00 00 02 04 B5 02 03 00 03 00 00 00 00 00 00 01 00 9D 00 00 AA
+				];
+				oplus,dsi-pwm-switch-1to3pul-command = [
+				];
+				oplus,dsi-pwm-switch-1to18pul-command = [
+				];
+				oplus,dsi-pwm-switch-18to3pul-command = [
+				];
+				oplus,dsi-pwm-switch-3to18pul-command = [
+				];
+				oplus,dsi-timing-switch-1pulse-command = [
+				];
+				oplus,dsi-pwm-switch-3to1pul-command = [
+				];
+				oplus,dsi-pwm-switch-18to1pul-command = [
+				];
+				oplus,dsi-on-command = [
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 04 C5 22 22 00
+					// APL BLK Setting
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 02 6F 78
+					39 00 00 00 00 00 11 B0 10 00 2A 00 C2 01 DA 03 7C 05 B1 08 80 0B EE 0F
+					15 00 00 00 00 00 02 6F 88
+					39 00 00 00 00 00 08 B0 FF 05 55 05 56 05 55
+
+					// shadow
+					39 00 00 00 00 00 06 F0 55 AA 52 08 08
+					39 00 00 00 00 00 2B E1 10 0D 0D 0D 0D 0C 10 1D 26 20 0B 0A 0A 0A 10 10 10 10 10 0E 0E 0E 0E 0E 0A 0A 08 08 0A 0B 0B 0B 0B 0E 0E 0B 0D 03 06 10 12 17
+					15 00 00 00 00 00 02 6F 2A
+					39 00 00 00 00 00 2B E1 03 03 1E 0D 0E 0E 0E 0B 0B 07 0B 0F 13 19 0E 0A 0B 0A 0A 0A 0A 0A 0A 09 0B 0F 12 12 03 05 0A 0A 0C 0E 0E 07 07 03 03 03 03 03
+					15 00 00 00 00 00 02 6F 54
+					39 00 00 00 00 00 2B E1 05 06 07 08 08 09 0A 0A 0B 06 06 06 06 08 03 04 05 06 06 06 08 03 03 04 06 06 08 0D 00 01 02 02 02 02 02 01 02 04 08 09 0A 0E
+					39 00 00 00 00 00 2B E2 14 1F 08 08 0C 0C 0C 1A 20 20 0E 0E 0E 0E 10 10 10 10 10 10 14 14 14 14 0D 0D 08 08 0B 0E 0F 10 10 13 13 0F 0F 09 09 0B 0E 12
+					15 00 00 00 00 00 02 6F 2A
+					39 00 00 00 00 00 2B E2 03 03 1E 0D 0E 12 12 0F 0F 07 09 0C 0F 14 0E 0C 0D 0C 0C 0C 0C 0C 0C 0B 0B 0D 10 17 03 04 08 08 0B 0B 0B 08 08 04 04 03 03 03
+					15 00 00 00 00 00 02 6F 54
+					39 00 00 00 00 00 2B E2 05 06 07 08 08 09 0A 06 08 0B 0C 0F 10 14 03 04 05 06 06 07 08 03 03 03 06 07 08 0D 01 02 02 03 04 04 04 02 03 04 08 09 0B 0E
+					39 00 00 00 00 00 2B E3 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 00 00 00 02 6F 2A
+					39 00 00 00 00 00 2B E3 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 13 13 13 12 00 00 00 00 00 00 04 04 02 02 02 05 06 08 09 0A 0A 0A
+					15 00 00 00 00 00 02 6F 54
+					39 00 00 00 00 00 2B E3 00 00 00 00 00 00 00 00 07 06 06 06 07 08 00 00 00 00 00 00 00 04 06 09 0A 0A 0A 0A 01 02 02 03 04 04 04 05 08 0C 0F 11 10 13
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+
+					// EM_DT_NP_TH2 for FSET0/1/2/3/Idle
+					15 00 00 00 00 00 02 6F 71
+					39 00 00 00 00 00 03 B2 00 00
+					15 00 00 00 00 00 02 6F 75
+					39 00 00 00 00 00 09 B2 00 00 00 00 00 00 00 00
+
+					39 00 00 00 00 00 06 F0 55 AA 52 08 01
+					15 00 00 00 00 00 02 6F 08
+					15 00 00 00 00 00 02 CA 00
+
+					// Data Scale Ratio
+					39 00 00 00 00 00 06 F0 55 AA 52 08 08
+
+					// DS_DBV_TH for Data Scale DBV setting
+					39 00 00 00 00 00 11 BA 00 01 00 D2 00 D2 01 3D 01 3D 01 B2 01 B2 02 FF
+					15 00 00 00 00 00 02 6F 10
+					39 00 00 00 00 00 11 BA 02 FF 04 7B 04 7B 04 7C 04 7C 07 48 07 48 0C 08
+					15 00 00 00 00 00 02 6F 20
+					39 00 00 00 00 00 0D BA 0C 08 0D BB 0D BB 0F FF 0F FF 0F FF
+					15 00 00 00 00 00 02 6F C5
+					39 00 00 00 00 00 04 BC 20 00 40
+
+					// HBM_LV0/1/2  & APL_L&H setting
+					15 00 00 00 00 00 02 6F 1D
+					39 00 00 00 00 00 11 C1 00 80 FF 0F 29 FF 0E 33 EE 33 33 EE 33 33 EE 33
+					15 00 00 00 00 00 02 6F 2D
+					39 00 00 00 00 00 11 C1 33 EE 33 33 BE 33 AC BB AC AC 0F FF FF FF FF FF
+					15 00 00 00 00 00 02 6F 3D
+					39 00 00 00 00 00 11 C1 FF FF FF FF FF FF FF FF DF FF 27 DD 27 27 0E 33
+					15 00 00 00 00 00 02 6F 4D
+					39 00 00 00 00 00 11 C1 EE 33 33 EE 33 33 EE 33 33 EE 33 33 BE 33 AC BB
+					15 00 00 00 00 00 02 6F 5D
+					39 00 00 00 00 00 11 C1 AC AC 0F FF FF FF FF FF FF FF FF FF FF FF FF FF
+					15 00 00 00 00 00 02 6F 6D
+					39 00 00 00 00 00 11 C1 FF FF FF FF FF FF 0E 33 EE 33 33 EE 33 33 EE 33
+					15 00 00 00 00 00 02 6F 7D
+					39 00 00 00 00 00 0B C1 33 EE 33 33 BE 33 AC BB AC AC
+
+					// Lut Gain Sel
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 02 6F 31
+					39 00 00 00 00 00 04 C0 02 00 00
+					15 00 00 00 00 00 02 6F 39
+					39 00 00 00 00 00 04 C0 13 10 00
+
+					// mtp_vgh_setting
+					39 00 00 00 00 00 05 FF AA 55 A5 80
+					15 00 00 00 00 00 02 6F 04
+					15 00 00 00 00 00 02 F2 1D
+
+					//power on/off sequence
+					15 00 00 00 00 00 02 6F 0A
+					39 00 00 00 00 00 06 F6 70 70 70 70 70
+
+					//OSC1/OSC2
+					39 00 00 00 00 00 05 FF AA 55 A5 80
+					15 00 00 00 00 00 02 6F 07
+					15 00 00 00 00 00 02 F8 4D
+					15 00 00 00 00 00 02 6F 23
+					15 00 00 00 00 00 02 F8 4D
+
+					// stop_hclk_fskip & stop_hclk_vfp = 1
+					39 00 00 00 00 00 05 FF AA 55 A5 81
+					15 00 00 00 00 00 02 6F 0E
+					15 00 00 00 00 00 02 F5 2B
+
+					// bois clk idle vfp clk off
+					15 00 00 00 00 00 02 6F 0F
+					15 00 00 00 00 00 02 F5 22
+
+					// porch source setting
+					15 00 00 00 00 00 02 6F 05
+					39 00 00 00 00 00 03 FE 3C 3C
+
+					// mipi timing optimize
+					39 00 00 00 00 00 05 FF AA 55 A5 82
+					15 00 00 00 00 00 02 6F 12
+					39 00 00 00 00 00 03 F2 23 25
+
+					// source status @ mtp status = hi-z
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 02 6F 04
+					15 00 00 00 00 00 02 C2 32
+
+					// goa status @ mtp status = toggle
+					39 00 00 00 00 00 06 F0 55 AA 52 08 01
+					15 00 00 00 00 00 02 6F 08
+					15 00 00 00 00 00 02 CA 00
+
+					// CMD3 disable
+					39 00 00 00 00 00 05 FF AA 55 A5 00
+					// CMD2 disable
+					39 00 00 00 00 00 06 F0 55 AA 52 00 00
+
+					// keep command mode
+					15 00 00 00 00 00 02 6F 02
+					15 00 00 00 00 00 02 17 12
+					15 00 00 00 00 00 02 35 08
+
+					// BC Dimming OFF
+					15 00 00 00 00 00 02 53 20
+
+					// H_res = 1216   V_res = 2640
+					39 00 00 00 00 00 05 2A 00 00 04 BF
+					39 00 00 00 00 00 05 2B 00 00 0A 4F
+
+					// normal gma
+					15 00 00 00 00 00 02 26 00
+
+					// cmd1 dpc temperature
+					39 00 00 00 00 00 03 81 01 19
+
+					//compression method selection,2dsc & slice high 20 (2-dec) & vesa 1.2
+					15 00 00 00 00 00 02 90 43
+					39 00 00 00 00 00 13 91 AB A8 00 14 C2 00 02 31 02 05 00 08 05 0E 04 7B 10 E0
+
+					// cctc command
+					15 00 00 00 00 00 02 62 81
+					15 00 00 00 00 00 02 6F 01
+					39 00 00 00 00 00 05 62 12 12 12 12
+					15 00 00 00 00 00 02 6F 05
+					39 00 00 00 00 00 05 62 1F 1F 1F 1F
+
+					// fpr position
+					39 00 00 00 00 00 06 88 01 02 60 09 60
+
+					// vdc & peak luminance
+					39 00 00 00 00 00 03 5F 00 00
+
+					// GIR 1.0X (as default)
+					15 00 00 00 00 00 02 6F 07
+					15 00 00 00 00 00 02 51 00
+
+					// Fcon setting 120Hz
+					15 00 00 00 00 00 02 2F 00
+
+					// 3 VS
+					39 00 00 00 00 00 05 FF AA 55 A5 81
+					15 00 00 00 00 00 02 6F 0D
+					15 00 00 00 00 00 02 FD 00
+
+					15 00 00 00 78 00 02 11 00
+					15 00 00 00 00 00 02 29 00
+
+					// reload 120Hz flash
+					39 00 00 40 00 00 2D A9 01 00 2F 00 00 00 01 00 A2 00 20 07 02 01 DD 02 03 00 00 00 00 00 00 00 00 02 04 B5 02 03 00 03 00 00 00 00 00 00 01 00 9D 00 00 AA
+
+					// OPR 1% setting
+					39 00 00 00 00 00 06 F0 55 AA 52 08 08
+					15 00 00 00 00 00 02 6F 20
+					39 00 00 00 00 00 04 C1 0F 29 FF
+
+					// LVD
+					39 00 00 00 00 00 06 F0 55 AA 52 08 01
+					15 00 00 00 00 00 02 6F 03
+					15 00 00 00 00 00 02 C7 47
+				];
+				oplus,dsi-aod-off-command = [
+					15 00 00 40 00 00 02 38 00
+					39 00 00 00 00 00 03 51 00 00
+				];
+				oplus,dsi-panel-aod-off-insert-black-command = [
+					15 00 00 40 00 00 02 38 00
+					39 00 00 00 00 00 03 51 00 00
+				];
+				oplus,dsi-lhbm-pressed-icon-on-command = [
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 30
+					39 00 00 40 00 00 02 DF 00
+					39 00 00 00 00 00 13 A9 01 00 87 00 00 05 02 00 DF 31 31 06 02 08 B8 87 87 01
+				];
+				oplus,dsi-lhbm-pressed-icon-on-pwm-command = [
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 30
+					39 00 00 40 00 00 02 DF 00
+					39 00 00 00 00 00 1A A9 01 00 87 00 00 25 02 00 DF 31 31 16 02 08 B8 87 87 00 01 00 51 09 0A 84 7C
+				];
+				oplus,dsi-adfr-min-fps-120hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-60hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-30hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-20hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-10hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-5hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-1hz-command = [
+				];
+
+				oplus,dsi-timing-switch-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-timing-switch-1pulse-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-on-command-state = "dsi_lp_mode";
+				oplus,dsi-aod-off-command-state = "dsi_ls_mode";
+				oplus,dsi-panel-aod-off-insert-black-command-state = "dsi_ls_mode";
+				oplus,dsi-lhbm-pressed-icon-on-command-state = "dsi_hs_mode";
+				oplus,dsi-lhbm-pressed-icon-on-pwm-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-120hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-60hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-30hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-20hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-10hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-5hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-1hz-command-state = "dsi_hs_mode";
+
+				oplus,dsc-params-entries = <&dsc_params2>;
+/*				oplus,phy-timcon {
+					hs-trail = <14>;
+					clk-trail = <15>;
+				};*/
+				oplus,dyn-fps {
+					switch_en = <1>;
+					vact_timing_fps = <120>;
+					apollo_limit_superior_us = <4900>;
+					apollo_limit_inferior_us = <6750>;
+					apollo_transfer_time_us = <6200>;
+				};
+				oplus,display-mode {
+					display-mode@0 {
+						hdisplay = <1216>;
+						vdisplay = <2640>;
+/*						fhd-hfp = <9>;
+						fhd-hsa = <2>;
+						fhd-hbp = <21>;
+						fhd-vfp = <52>;
+						fhd-vsa = <14>;
+						fhd-vbp = <22>;*/
+						hskew = <STANDARD_ADFR>;
+					};
+					display-mode@1 {
+						hdisplay = <1080>;
+						vdisplay = <2344>;
+/*						fhd-hfp = <9>;
+						fhd-hsa = <2>;
+						fhd-hbp = <21>;
+						fhd-vfp = <52>;
+						fhd-vsa = <14>;
+						fhd-vbp = <22>;*/
+						hskew = <STANDARD_ADFR>;
+					};
+				};
+			};
+
+			timing@sa_fhd_90 {
+				cell-index = <1>;
+				oplus,dsi-panel-framerate = <90>;
+				oplus,dsi-panel-pllclk = <414>;
+				oplus,merge-trig-offset = <461>;
+				/* OPLUS_FEATURE_DISPLAY_ONSCREENFINGERPRINT */
+				oplus,ofp_need_keep_apart_backlight;
+				/*oplus,ofp-hbm-on-delay = <0>;
+				oplus,ofp-pre-hbm-off-delay = <9>;
+				oplus,ofp-hbm-off-delay = <0>;
+				oplus,ofp-need-to-sync-data-in-aod-unlocking;
+				oplus,ofp-aod-off-insert-black = <2>;
+				oplus,ofp-aod-off-black-frame-total-time = <45>;*/
+				#include "ac332-p-3-a0036-dsi-cmd-panel-common.dtsi"
+				oplus,dsi-timing-switch-command = [//Switch To 90Hz normal
+					39 00 00 40 00 00 2D A9 01 00 2F 00 00 01 01 00 A2 00 20 07 02 01 DD 02 03 00 00 00 00 00 00 00 00 02 04 B5 02 03 00 03 00 00 00 00 00 00 01 00 9D 00 00 AA
+				];
+				oplus,dsi-pwm-switch-1to3pul-command = [
+				];
+				oplus,dsi-pwm-switch-1to18pul-command = [
+				];
+				oplus,dsi-pwm-switch-18to3pul-command = [
+				];
+				oplus,dsi-pwm-switch-3to18pul-command = [
+				];
+				oplus,dsi-timing-switch-1pulse-command = [
+				];
+				oplus,dsi-pwm-switch-3to1pul-command = [
+				];
+				oplus,dsi-pwm-switch-18to1pul-command = [
+				];
+				oplus,dsi-on-command = [
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 04 C5 22 22 00
+					// APL BLK Setting
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 02 6F 78
+					39 00 00 00 00 00 11 B0 10 00 2A 00 C2 01 DA 03 7C 05 B1 08 80 0B EE 0F
+					15 00 00 00 00 00 02 6F 88
+					39 00 00 00 00 00 08 B0 FF 05 55 05 56 05 55
+
+					// shadow
+					39 00 00 00 00 00 06 F0 55 AA 52 08 08
+					39 00 00 00 00 00 2B E1 10 0D 0D 0D 0D 0C 10 1D 26 20 0B 0A 0A 0A 10 10 10 10 10 0E 0E 0E 0E 0E 0A 0A 08 08 0A 0B 0B 0B 0B 0E 0E 0B 0D 03 06 10 12 17
+					15 00 00 00 00 00 02 6F 2A
+					39 00 00 00 00 00 2B E1 03 03 1E 0D 0E 0E 0E 0B 0B 07 0B 0F 13 19 0E 0A 0B 0A 0A 0A 0A 0A 0A 09 0B 0F 12 12 03 05 0A 0A 0C 0E 0E 07 07 03 03 03 03 03
+					15 00 00 00 00 00 02 6F 54
+					39 00 00 00 00 00 2B E1 05 06 07 08 08 09 0A 0A 0B 06 06 06 06 08 03 04 05 06 06 06 08 03 03 04 06 06 08 0D 00 01 02 02 02 02 02 01 02 04 08 09 0A 0E
+					39 00 00 00 00 00 2B E2 14 1F 08 08 0C 0C 0C 1A 20 20 0E 0E 0E 0E 10 10 10 10 10 10 14 14 14 14 0D 0D 08 08 0B 0E 0F 10 10 13 13 0F 0F 09 09 0B 0E 12
+					15 00 00 00 00 00 02 6F 2A
+					39 00 00 00 00 00 2B E2 03 03 1E 0D 0E 12 12 0F 0F 07 09 0C 0F 14 0E 0C 0D 0C 0C 0C 0C 0C 0C 0B 0B 0D 10 17 03 04 08 08 0B 0B 0B 08 08 04 04 03 03 03
+					15 00 00 00 00 00 02 6F 54
+					39 00 00 00 00 00 2B E2 05 06 07 08 08 09 0A 06 08 0B 0C 0F 10 14 03 04 05 06 06 07 08 03 03 03 06 07 08 0D 01 02 02 03 04 04 04 02 03 04 08 09 0B 0E
+					39 00 00 00 00 00 2B E3 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 00 00 00 02 6F 2A
+					39 00 00 00 00 00 2B E3 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 13 13 13 12 00 00 00 00 00 00 04 04 02 02 02 05 06 08 09 0A 0A 0A
+					15 00 00 00 00 00 02 6F 54
+					39 00 00 00 00 00 2B E3 00 00 00 00 00 00 00 00 07 06 06 06 07 08 00 00 00 00 00 00 00 04 06 09 0A 0A 0A 0A 01 02 02 03 04 04 04 05 08 0C 0F 11 10 13
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+
+					// EM_DT_NP_TH2 for FSET0/1/2/3/Idle
+					15 00 00 00 00 00 02 6F 71
+					39 00 00 00 00 00 03 B2 00 00
+					15 00 00 00 00 00 02 6F 75
+					39 00 00 00 00 00 09 B2 00 00 00 00 00 00 00 00
+
+					39 00 00 00 00 00 06 F0 55 AA 52 08 01
+					15 00 00 00 00 00 02 6F 08
+					15 00 00 00 00 00 02 CA 00
+
+					// Data Scale Ratio
+					39 00 00 00 00 00 06 F0 55 AA 52 08 08
+
+					// DS_DBV_TH for Data Scale DBV setting
+					39 00 00 00 00 00 11 BA 00 01 00 D2 00 D2 01 3D 01 3D 01 B2 01 B2 02 FF
+					15 00 00 00 00 00 02 6F 10
+					39 00 00 00 00 00 11 BA 02 FF 04 7B 04 7B 04 7C 04 7C 07 48 07 48 0C 08
+					15 00 00 00 00 00 02 6F 20
+					39 00 00 00 00 00 0D BA 0C 08 0D BB 0D BB 0F FF 0F FF 0F FF
+					15 00 00 00 00 00 02 6F C5
+					39 00 00 00 00 00 04 BC 20 00 40
+
+					// HBM_LV0/1/2  & APL_L&H setting
+					15 00 00 00 00 00 02 6F 1D
+					39 00 00 00 00 00 11 C1 00 80 FF 0F 29 FF 0E 33 EE 33 33 EE 33 33 EE 33
+					15 00 00 00 00 00 02 6F 2D
+					39 00 00 00 00 00 11 C1 33 EE 33 33 BE 33 AC BB AC AC 0F FF FF FF FF FF
+					15 00 00 00 00 00 02 6F 3D
+					39 00 00 00 00 00 11 C1 FF FF FF FF FF FF FF FF DF FF 27 DD 27 27 0E 33
+					15 00 00 00 00 00 02 6F 4D
+					39 00 00 00 00 00 11 C1 EE 33 33 EE 33 33 EE 33 33 EE 33 33 BE 33 AC BB
+					15 00 00 00 00 00 02 6F 5D
+					39 00 00 00 00 00 11 C1 AC AC 0F FF FF FF FF FF FF FF FF FF FF FF FF FF
+					15 00 00 00 00 00 02 6F 6D
+					39 00 00 00 00 00 11 C1 FF FF FF FF FF FF 0E 33 EE 33 33 EE 33 33 EE 33
+					15 00 00 00 00 00 02 6F 7D
+					39 00 00 00 00 00 0B C1 33 EE 33 33 BE 33 AC BB AC AC
+
+					// Lut Gain Sel
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 02 6F 31
+					39 00 00 00 00 00 04 C0 02 00 00
+					15 00 00 00 00 00 02 6F 39
+					39 00 00 00 00 00 04 C0 13 10 00
+
+					// mtp_vgh_setting
+					39 00 00 00 00 00 05 FF AA 55 A5 80
+					15 00 00 00 00 00 02 6F 04
+					15 00 00 00 00 00 02 F2 1D
+
+					//power on/off sequence
+					15 00 00 00 00 00 02 6F 0A
+					39 00 00 00 00 00 06 F6 70 70 70 70 70
+
+					//OSC1/OSC2
+					39 00 00 00 00 00 05 FF AA 55 A5 80
+					15 00 00 00 00 00 02 6F 07
+					15 00 00 00 00 00 02 F8 4D
+					15 00 00 00 00 00 02 6F 23
+					15 00 00 00 00 00 02 F8 4D
+
+					// stop_hclk_fskip & stop_hclk_vfp = 1
+					39 00 00 00 00 00 05 FF AA 55 A5 81
+					15 00 00 00 00 00 02 6F 0E
+					15 00 00 00 00 00 02 F5 2B
+
+					// bois clk idle vfp clk off
+					15 00 00 00 00 00 02 6F 0F
+					15 00 00 00 00 00 02 F5 22
+
+					// porch source setting
+					15 00 00 00 00 00 02 6F 05
+					39 00 00 00 00 00 03 FE 3C 3C
+
+					// mipi timing optimize
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 02 6F 12
+					39 00 00 00 00 00 03 F2 23 25
+
+					// source status @ mtp status = hi-z
+					39 00 00 00 00 00 05 FF AA 55 A5 80
+					15 00 00 00 00 00 02 6F 04
+					15 00 00 00 00 00 02 C2 32
+
+					// goa status @ mtp status = toggle
+					39 00 00 00 00 00 06 F0 55 AA 52 08 01
+					15 00 00 00 00 00 02 6F 08
+					15 00 00 00 00 00 02 CA 00
+
+					// CMD3 disable
+					39 00 00 00 00 00 05 FF AA 55 A5 00
+					// CMD2 disable
+					39 00 00 00 00 00 06 F0 55 AA 52 00 00
+
+					// keep command mode
+					15 00 00 00 00 00 02 6F 02
+					15 00 00 00 00 00 02 17 12
+					15 00 00 00 00 00 02 35 08
+
+					// BC Dimming OFF
+					15 00 00 00 00 00 02 53 20
+
+					// H_res = 1216   V_res = 2640
+					39 00 00 00 00 00 05 2A 00 00 04 BF
+					39 00 00 00 00 00 05 2B 00 00 0A 4F
+
+					// normal gma
+					15 00 00 00 00 00 02 26 00
+
+					// cmd1 dpc temperature
+					39 00 00 00 00 00 03 81 01 19
+
+					//compression method selection,2dsc & slice high 20 (2-dec) & vesa 1.2
+					15 00 00 00 00 00 02 90 43
+					39 00 00 00 00 00 13 91 AB A8 00 14 C2 00 02 31 02 05 00 08 05 0E 04 7B 10 E0
+
+					// cctc command
+					15 00 00 00 00 00 02 62 81
+					15 00 00 00 00 00 02 6F 01
+					39 00 00 00 00 00 05 62 12 12 12 12
+					15 00 00 00 00 00 02 6F 05
+					39 00 00 00 00 00 05 62 1F 1F 1F 1F
+
+					// fpr position
+					39 00 00 00 00 00 06 88 01 02 60 09 60
+
+					// vdc & peak luminance
+					39 00 00 00 00 00 03 5F 00 00
+
+					// GIR 1.0X (as default)
+					15 00 00 00 00 00 02 6F 07
+					15 00 00 00 00 00 02 51 00
+
+					// Fcon setting 120Hz
+					15 00 00 00 00 00 02 2F 00
+
+					// 3 VS
+					39 00 00 00 00 00 05 FF AA 55 A5 81
+					15 00 00 00 00 00 02 6F 0D
+					15 00 00 00 00 00 02 FD 00
+
+					15 00 00 00 78 00 02 11 00
+					15 00 00 00 00 00 02 29 00
+
+					// reload 90Hz flash
+					39 00 00 40 00 00 2D A9 01 00 2F 00 00 01 01 00 A2 00 20 07 02 01 DD 02 03 00 00 00 00 00 00 00 00 02 04 B5 02 03 00 03 00 00 00 00 00 00 01 00 9D 00 00 AA
+
+					// OPR 1% setting
+					39 00 00 00 00 00 06 F0 55 AA 52 08 08
+					15 00 00 00 00 00 02 6F 20
+					39 00 00 00 00 00 04 C1 0F 29 FF
+
+					// LVD
+					39 00 00 00 00 00 06 F0 55 AA 52 08 01
+					15 00 00 00 00 00 02 6F 03
+					15 00 00 00 00 00 02 C7 47
+				];
+				oplus,dsi-aod-off-command = [
+					15 00 00 40 00 00 02 38 00
+					39 00 00 00 00 00 03 51 00 00
+				];
+				oplus,dsi-panel-aod-off-insert-black-command = [
+					15 00 00 40 00 00 02 38 00
+					39 00 00 00 00 00 03 51 00 00
+				];
+				oplus,dsi-lhbm-pressed-icon-on-command = [
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 30
+					39 00 00 40 00 00 02 DF 01
+					39 00 00 00 00 00 13 A9 01 00 87 00 00 05 02 00 DF 31 31 06 02 08 B8 87 87 01
+				];
+				oplus,dsi-lhbm-pressed-icon-on-pwm-command = [
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 30
+					39 00 00 40 00 00 02 DF 01
+					39 00 00 00 00 00 1A A9 01 00 87 00 00 25 02 00 DF 31 31 16 02 08 B8 87 87 00 01 00 51 09 0A 84 7C
+				];
+				oplus,dsi-adfr-min-fps-90hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-45hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-30hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-15hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-10hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-5hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-1hz-command = [
+				];
+
+				oplus,dsi-timing-switch-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-timing-switch-1pulse-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-on-command-state = "dsi_lp_mode";
+				oplus,dsi-aod-off-command-state = "dsi_ls_mode";
+				oplus,dsi-panel-aod-off-insert-black-command-state = "dsi_ls_mode";
+				oplus,dsi-lhbm-pressed-icon-on-command-state = "dsi_hs_mode";
+				oplus,dsi-lhbm-pressed-icon-on-pwm-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-90hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-45hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-30hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-15hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-10hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-5hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-1hz-command-state = "dsi_hs_mode";
+
+				oplus,dsc-params-entries = <&dsc_params2>;
+/*				oplus,phy-timcon {
+					hs-trail = <14>;
+					clk-trail = <15>;
+				};*/
+				oplus,dyn-fps {
+					switch_en = <1>;
+					vact_timing_fps = <90>;
+					apollo_limit_superior_us = <2910>;
+					apollo_limit_inferior_us = <10000>;
+					apollo_transfer_time_us = <8400>;
+				};
+				oplus,display-mode {
+					display-mode@0 {
+						hdisplay = <1216>;
+						vdisplay = <2640>;
+/*						fhd-hfp = <9>;
+						fhd-hsa = <2>;
+						fhd-hbp = <21>;
+						fhd-vfp = <52>;
+						fhd-vsa = <14>;
+						fhd-vbp = <22>;*/
+						hskew = <STANDARD_ADFR>;
+					};
+					display-mode@1 {
+						hdisplay = <1080>;
+						vdisplay = <2344>;
+/*						fhd-hfp = <9>;
+						fhd-hsa = <2>;
+						fhd-hbp = <21>;
+						fhd-vfp = <52>;
+						fhd-vsa = <14>;
+						fhd-vbp = <22>;*/
+						hskew = <STANDARD_ADFR>;
+					};
+				};
+			};
+
+			timing@sa_fhd_60 {
+				cell-index = <0>;
+				oplus,dsi-panel-framerate = <60>;
+				oplus,dsi-panel-pllclk = <414>;
+				oplus,merge-trig-offset = <766>;
+				/* OPLUS_FEATURE_DISPLAY_ONSCREENFINGERPRINT */
+				oplus,ofp_need_keep_apart_backlight;
+				/*oplus,ofp-hbm-on-delay = <0>;
+				oplus,ofp-pre-hbm-off-delay = <12>;
+				oplus,ofp-hbm-off-delay = <0>;
+				oplus,ofp-need-to-sync-data-in-aod-unlocking;
+				oplus,ofp-aod-off-insert-black = <2>;
+				oplus,ofp-aod-off-black-frame-total-time = <59>;*/
+				#include "ac332-p-3-a0036-dsi-cmd-panel-common.dtsi"
+				oplus,dsi-timing-switch-command = [//Switch To 60Hz normal
+					39 00 00 40 00 00 2D A9 01 00 2F 00 00 02 01 00 A2 00 20 07 02 01 DD 02 03 04 15 00 00 00 00 00 00 02 04 B5 02 03 00 0C 00 00 00 00 00 00 01 00 9D 00 00 AA
+				];
+				oplus,dsi-pwm-switch-1to3pul-command = [
+				];
+				oplus,dsi-pwm-switch-1to18pul-command = [
+				];
+				oplus,dsi-pwm-switch-18to3pul-command = [
+				];
+				oplus,dsi-pwm-switch-3to18pul-command = [
+				];
+				oplus,dsi-timing-switch-1pulse-command = [
+				];
+				oplus,dsi-pwm-switch-3to1pul-command = [
+				];
+				oplus,dsi-pwm-switch-18to1pul-command = [
+				];
+				oplus,dsi-on-command = [
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 04 C5 22 22 00
+					// APL BLK Setting
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 02 6F 78
+					39 00 00 00 00 00 11 B0 10 00 2A 00 C2 01 DA 03 7C 05 B1 08 80 0B EE 0F
+					15 00 00 00 00 00 02 6F 88
+					39 00 00 00 00 00 08 B0 FF 05 55 05 56 05 55
+
+					// shadow
+					39 00 00 00 00 00 06 F0 55 AA 52 08 08
+					39 00 00 00 00 00 2B E1 10 0D 0D 0D 0D 0C 10 1D 26 20 0B 0A 0A 0A 10 10 10 10 10 0E 0E 0E 0E 0E 0A 0A 08 08 0A 0B 0B 0B 0B 0E 0E 0B 0D 03 06 10 12 17
+					15 00 00 00 00 00 02 6F 2A
+					39 00 00 00 00 00 2B E1 03 03 1E 0D 0E 0E 0E 0B 0B 07 0B 0F 13 19 0E 0A 0B 0A 0A 0A 0A 0A 0A 09 0B 0F 12 12 03 05 0A 0A 0C 0E 0E 07 07 03 03 03 03 03
+					15 00 00 00 00 00 02 6F 54
+					39 00 00 00 00 00 2B E1 05 06 07 08 08 09 0A 0A 0B 06 06 06 06 08 03 04 05 06 06 06 08 03 03 04 06 06 08 0D 00 01 02 02 02 02 02 01 02 04 08 09 0A 0E
+					39 00 00 00 00 00 2B E2 14 1F 08 08 0C 0C 0C 1A 20 20 0E 0E 0E 0E 10 10 10 10 10 10 14 14 14 14 0D 0D 08 08 0B 0E 0F 10 10 13 13 0F 0F 09 09 0B 0E 12
+					15 00 00 00 00 00 02 6F 2A
+					39 00 00 00 00 00 2B E2 03 03 1E 0D 0E 12 12 0F 0F 07 09 0C 0F 14 0E 0C 0D 0C 0C 0C 0C 0C 0C 0B 0B 0D 10 17 03 04 08 08 0B 0B 0B 08 08 04 04 03 03 03
+					15 00 00 00 00 00 02 6F 54
+					39 00 00 00 00 00 2B E2 05 06 07 08 08 09 0A 06 08 0B 0C 0F 10 14 03 04 05 06 06 07 08 03 03 03 06 07 08 0D 01 02 02 03 04 04 04 02 03 04 08 09 0B 0E
+					39 00 00 00 00 00 2B E3 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+					15 00 00 00 00 00 02 6F 2A
+					39 00 00 00 00 00 2B E3 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 13 13 13 12 00 00 00 00 00 00 04 04 02 02 02 05 06 08 09 0A 0A 0A
+					15 00 00 00 00 00 02 6F 54
+					39 00 00 00 00 00 2B E3 00 00 00 00 00 00 00 00 07 06 06 06 07 08 00 00 00 00 00 00 00 04 06 09 0A 0A 0A 0A 01 02 02 03 04 04 04 05 08 0C 0F 11 10 13
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+
+					// EM_DT_NP_TH2 for FSET0/1/2/3/Idle
+					15 00 00 00 00 00 02 6F 71
+					39 00 00 00 00 00 03 B2 00 00
+					15 00 00 00 00 00 02 6F 75
+					39 00 00 00 00 00 09 B2 00 00 00 00 00 00 00 00
+
+					39 00 00 00 00 00 06 F0 55 AA 52 08 01
+					15 00 00 00 00 00 02 6F 08
+					15 00 00 00 00 00 02 CA 00
+
+					// Data Scale Ratio
+					39 00 00 00 00 00 06 F0 55 AA 52 08 08
+
+					// DS_DBV_TH for Data Scale DBV setting
+					39 00 00 00 00 00 11 BA 00 01 00 D2 00 D2 01 3D 01 3D 01 B2 01 B2 02 FF
+					15 00 00 00 00 00 02 6F 10
+					39 00 00 00 00 00 11 BA 02 FF 04 7B 04 7B 04 7C 04 7C 07 48 07 48 0C 08
+					15 00 00 00 00 00 02 6F 20
+					39 00 00 00 00 00 0D BA 0C 08 0D BB 0D BB 0F FF 0F FF 0F FF
+					15 00 00 00 00 00 02 6F C5
+					39 00 00 00 00 00 04 BC 20 00 40
+
+					// HBM_LV0/1/2  & APL_L&H setting
+					15 00 00 00 00 00 02 6F 1D
+					39 00 00 00 00 00 11 C1 00 80 FF 0F 29 FF 0E 33 EE 33 33 EE 33 33 EE 33
+					15 00 00 00 00 00 02 6F 2D
+					39 00 00 00 00 00 11 C1 33 EE 33 33 BE 33 AC BB AC AC 0F FF FF FF FF FF
+					15 00 00 00 00 00 02 6F 3D
+					39 00 00 00 00 00 11 C1 FF FF FF FF FF FF FF FF DF FF 27 DD 27 27 0E 33
+					15 00 00 00 00 00 02 6F 4D
+					39 00 00 00 00 00 11 C1 EE 33 33 EE 33 33 EE 33 33 EE 33 33 BE 33 AC BB
+					15 00 00 00 00 00 02 6F 5D
+					39 00 00 00 00 00 11 C1 AC AC 0F FF FF FF FF FF FF FF FF FF FF FF FF FF
+					15 00 00 00 00 00 02 6F 6D
+					39 00 00 00 00 00 11 C1 FF FF FF FF FF FF 0E 33 EE 33 33 EE 33 33 EE 33
+					15 00 00 00 00 00 02 6F 7D
+					39 00 00 00 00 00 0B C1 33 EE 33 33 BE 33 AC BB AC AC
+
+					// Lut Gain Sel
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 02 6F 31
+					39 00 00 00 00 00 04 C0 02 00 00
+					15 00 00 00 00 00 02 6F 39
+					39 00 00 00 00 00 04 C0 13 10 00
+
+					// mtp_vgh_setting
+					39 00 00 00 00 00 05 FF AA 55 A5 80
+					15 00 00 00 00 00 02 6F 04
+					15 00 00 00 00 00 02 F2 1D
+
+					//power on/off sequence
+					15 00 00 00 00 00 02 6F 0A
+					39 00 00 00 00 00 06 F6 70 70 70 70 70
+
+					//OSC1/OSC2
+					39 00 00 00 00 00 05 FF AA 55 A5 80
+					15 00 00 00 00 00 02 6F 07
+					15 00 00 00 00 00 02 F8 4D
+					15 00 00 00 00 00 02 6F 23
+					15 00 00 00 00 00 02 F8 4D
+
+					// stop_hclk_fskip & stop_hclk_vfp = 1
+					39 00 00 00 00 00 05 FF AA 55 A5 81
+					15 00 00 00 00 00 02 6F 0E
+					15 00 00 00 00 00 02 F5 2B
+
+					// bois clk idle vfp clk off
+					15 00 00 00 00 00 02 6F 0F
+					15 00 00 00 00 00 02 F5 22
+
+					// porch source setting
+					15 00 00 00 00 00 02 6F 05
+					39 00 00 00 00 00 03 FE 3C 3C
+
+					// mipi timing optimize
+					39 00 00 00 00 00 06 F0 55 AA 52 08 00
+					15 00 00 00 00 00 02 6F 12
+					39 00 00 00 00 00 03 F2 23 25
+
+					// source status @ mtp status = hi-z
+					39 00 00 00 00 00 05 FF AA 55 A5 80
+					15 00 00 00 00 00 02 6F 04
+					15 00 00 00 00 00 02 C2 32
+
+					// goa status @ mtp status = toggle
+					39 00 00 00 00 00 06 F0 55 AA 52 08 01
+					15 00 00 00 00 00 02 6F 08
+					15 00 00 00 00 00 02 CA 00
+
+					// CMD3 disable
+					39 00 00 00 00 00 05 FF AA 55 A5 00
+					// CMD2 disable
+					39 00 00 00 00 00 06 F0 55 AA 52 00 00
+
+					// keep command mode
+					15 00 00 00 00 00 02 6F 02
+					15 00 00 00 00 00 02 17 12
+					15 00 00 00 00 00 02 35 08
+
+					// BC Dimming OFF
+					15 00 00 00 00 00 02 53 20
+
+					// H_res = 1216   V_res = 2640
+					39 00 00 00 00 00 05 2A 00 00 04 BF
+					39 00 00 00 00 00 05 2B 00 00 0A 4F
+
+					// normal gma
+					15 00 00 00 00 00 02 26 00
+
+					// cmd1 dpc temperature
+					39 00 00 00 00 00 03 81 01 19
+
+					//compression method selection,2dsc & slice high 20 (2-dec) & vesa 1.2
+					15 00 00 00 00 00 02 90 43
+					39 00 00 00 00 00 13 91 AB A8 00 14 C2 00 02 31 02 05 00 08 05 0E 04 7B 10 E0
+
+					// cctc command
+					15 00 00 00 00 00 02 62 81
+					15 00 00 00 00 00 02 6F 01
+					39 00 00 00 00 00 05 62 12 12 12 12
+					15 00 00 00 00 00 02 6F 05
+					39 00 00 00 00 00 05 62 1F 1F 1F 1F
+
+					// fpr position
+					39 00 00 00 00 00 06 88 01 02 60 09 60
+
+					// vdc & peak luminance
+					39 00 00 00 00 00 03 5F 00 00
+
+					// GIR 1.0X (as default)
+					15 00 00 00 00 00 02 6F 07
+					15 00 00 00 00 00 02 51 00
+
+					// Fcon setting 120Hz
+					15 00 00 00 00 00 02 2F 00
+
+					// 3 VS
+					39 00 00 00 00 00 05 FF AA 55 A5 81
+					15 00 00 00 00 00 02 6F 0D
+					15 00 00 00 00 00 02 FD 00
+
+					15 00 00 00 78 00 02 11 00
+					15 00 00 00 00 00 02 29 00
+
+					// reload 60Hz flash
+					39 00 00 40 00 00 2D A9 01 00 2F 00 00 02 01 00 A2 00 20 07 02 01 DD 02 03 04 15 00 00 00 00 00 00 02 04 B5 02 03 00 0C 00 00 00 00 00 00 01 00 9D 00 00 AA
+
+					// OPR 1% setting
+					39 00 00 00 00 00 06 F0 55 AA 52 08 08
+					15 00 00 00 00 00 02 6F 20
+					39 00 00 00 00 00 04 C1 0F 29 FF
+
+					// LVD
+					39 00 00 00 00 00 06 F0 55 AA 52 08 01
+					15 00 00 00 00 00 02 6F 03
+					15 00 00 00 00 00 02 C7 47
+				];
+				oplus,dsi-aod-off-command = [
+					15 00 00 40 00 00 02 38 00
+					39 00 00 00 00 00 03 51 00 00
+				];
+				oplus,dsi-panel-aod-off-insert-black-command = [
+					15 00 00 40 00 00 02 38 00
+					39 00 00 00 00 00 03 51 00 00
+				];
+				oplus,dsi-lhbm-pressed-icon-on-command = [
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 30
+					39 00 00 40 00 00 02 DF 02
+					39 00 00 00 00 00 13 A9 01 00 87 00 00 05 02 00 DF 31 31 06 02 08 B8 87 87 01
+				];
+				oplus,dsi-lhbm-pressed-icon-on-pwm-command = [
+					39 00 00 40 00 00 06 F0 55 AA 52 08 00
+					39 00 00 40 00 00 02 6F 30
+					39 00 00 40 00 00 02 DF 02
+					39 00 00 00 00 00 1A A9 01 00 87 00 00 25 02 00 DF 31 31 16 02 08 B8 87 87 00 01 00 51 09 0A 84 7C
+				];
+				oplus,dsi-adfr-min-fps-60hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-30hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-20hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-10hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-5hz-command = [
+				];
+				oplus,dsi-adfr-min-fps-1hz-command = [
+				];
+
+				oplus,dsi-timing-switch-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-1to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to3pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to18pul-command-state = "dsi_hs_mode";
+				oplus,dsi-timing-switch-1pulse-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-3to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-pwm-switch-18to1pul-command-state = "dsi_hs_mode";
+				oplus,dsi-on-command-state = "dsi_lp_mode";
+				oplus,dsi-aod-off-command-state = "dsi_ls_mode";
+				oplus,dsi-panel-aod-off-insert-black-command-state = "dsi_ls_mode";
+				oplus,dsi-lhbm-pressed-icon-on-command-state = "dsi_hs_mode";
+				oplus,dsi-lhbm-pressed-icon-on-pwm-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-60hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-30hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-20hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-10hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-5hz-command-state = "dsi_hs_mode";
+				oplus,dsi-adfr-min-fps-1hz-command-state = "dsi_hs_mode";
+
+				oplus,dsc-params-entries = <&dsc_params2>;
+/*				oplus,phy-timcon {
+					hs-trail = <14>;
+					clk-trail = <15>;
+				};*/
+				oplus,dyn-fps {
+					switch_en = <1>;
+					vact_timing_fps = <60>;
+					apollo_limit_superior_us = <10000>;
+					apollo_limit_inferior_us = <13596>;
+					apollo_transfer_time_us = <8200>;
+				};
+				oplus,display-mode {
+					display-mode@0 {
+						hdisplay = <1216>;
+						vdisplay = <2640>;
+/*						fhd-hfp = <9>;
+						fhd-hsa = <2>;
+						fhd-hbp = <21>;
+						fhd-vfp = <52>;
+						fhd-vsa = <14>;
+						fhd-vbp = <22>;*/
+						hskew = <STANDARD_ADFR>;
+					};
+					display-mode@1 {
+						hdisplay = <1080>;
+						vdisplay = <2344>;
+/*						fhd-hfp = <9>;
+						fhd-hsa = <2>;
+						fhd-hbp = <21>;
+						fhd-vfp = <52>;
+						fhd-vsa = <14>;
+						fhd-vbp = <22>;*/
+						hskew = <STANDARD_ADFR>;
+					};
+				};
+			};
+		};
+	};
+};
+
+&ac332_p_3_a0036_dsi_cmd_panel {
+	oplus,dsi-display-panel@0 {
+		res-switch = <2>;
+		/* Hardware config */
+		oplus,panel-supply-entries = <&dsi_panel_pwr_supply>;
+		oplus,panel-power-on-sequence = "1", "vddio", "5", "vddr-rst", "5", "vddr", "5", "vci", "1";
+		oplus,panel-power-off-sequence = "2", "vci", "5", "vddr", "0", "vddio", "5", "vddr-rst", "1";
+		reset-gpios = <&pio 41 0>;
+		oplus,panel-reset-sequence = <2 10>, <1 1>, <0 1>, <1 20>;
+		/* Panel config */
+		oplus,dsi-serial-number-enabled=<1>;
+		oplus,dsi-serial-number-switch-page;
+		oplus,dsi-serial-number-index= <0>;
+		oplus,dsi-serial-number-switch-page-command = <0xF0 0x55 0xAA 0x52 0x08 0x01>;
+		oplus,dsi-serial-number-default-switch-page-command = <0xF0 0x55 0xAA 0x52 0x08 0x00>;
+		oplus,dsi-serial-number-reg= <0xD7>;
+		oplus,dsi-serial-number-read-count= <7>;
+		oplus,dsi-serial-number-year-offset= <9>;
+		//oplus,mode-switch-h2l-delay;
+		oplus,backlight-check-disable;
+		/* demura */
+		//oplus,demura-dbv-enable;
+		//oplus,demura-dbv-cfg = <1153 4095>;
+		/*color*/
+		oplus,color-vivid-status;
+		oplus,color-srgb-status;
+		// oplus,color-softiris-status;
+		// oplus,color-dual-panel-status;
+		oplus,color-dual-brightness-status;
+		oplus,color-oplus-calibrate-status;
+		// oplus,color-samsung-status;
+		oplus,color-loading-status;
+		//oplus,color-2nit-status;
+		// oplus,color-nature-profession-status;
+		oplus,normal-max-backlight = <3000>;
+		/* ESD */
+		oplus,cust-esd-check = <0>; //both check TE and reg
+		oplus,esd-check-enable = <1>;
+		oplus,esd_check_cmd = [
+			0A
+			AB
+			91
+		];
+		oplus,esd_check_count = [
+			01
+			01
+			01
+		];
+		oplus,esd_check_value = [
+			9C
+			00
+			AB
+		];
+		oplus,esd_check_mask = [
+			FF
+			FF
+			FF
+		];
+		/* ext_params */
+		oplus,panel-type = <0>;
+		oplus,keep_ulps = <1>;
+		oplus,lane-swap-en = <0>;
+		oplus,lane-swap = <
+			MIPITX_PHY_LANE_0 MIPITX_PHY_LANE_1 MIPITX_PHY_LANE_3 MIPITX_PHY_LANE_2 MIPITX_PHY_LANE_CK MIPITX_PHY_LANE_RX
+			MIPITX_PHY_LANE_0 MIPITX_PHY_LANE_1 MIPITX_PHY_LANE_3 MIPITX_PHY_LANE_2 MIPITX_PHY_LANE_CK MIPITX_PHY_LANE_RX
+		>;
+		oplus,lcm-color-mode = <MTK_DRM_COLOR_MODE_DISPLAY_P3>;
+		oplus,output-mode = <MTK_PANEL_DSC_SINGLE_PORT>;
+		oplus,panel-bpp = <10>;
+		oplus,physical-width-um = <67123>;
+		oplus,physical-height-um = <145728>;
+
+		/*adfr config*/
+		//oplus-adfr-config = <0x201>;
+		//oplus-adfr-test-te-gpios = <&pio 42 0>;
+
+		/* OFP config */
+		oplus,ofp-fp-type = <0x410>;
+		oplus,ofp-fp-local-hbm-calibration;
+		oplus,ofp-longrui-aod-config = <0x06>;
+		//oplus,ofp-need-aod-off-insert-black-frame;
+		/*pwm config*/
+		//oplus,pwm-turbo-support = <1>;
+		//oplus,pwm-switch-backlight-threshold = <1162>;
+		//oplus,pwm-aid-switch-enable;
+		//oplus,pwm-onepulse-support = <1>;
+		//oplus,pwm-onepulse-enabled = <0>;
+		//oplus,pwm-turbo-wait-te = <1>;
+		oplus,apuir-ic-type = <2>;
+		oplus,apuir-upnit-ds-list            = <2988  3320  4095>;
+		oplus,apuir-lessnit-ds-list          = <3635  4095>;
+		oplus,apuir-upnit-index-list         = <40  48  47  49>;
+		oplus,apuir-lessnit-index-list       = <37  40  39  41>;
+		oplus,apuir-modeset-list             = <73  0x11  0x17>;
+		oplus,apuir-apl_lhset-list           = <60  61  0xFF  0xFF  0x3F  0x33>;
+	};
+};

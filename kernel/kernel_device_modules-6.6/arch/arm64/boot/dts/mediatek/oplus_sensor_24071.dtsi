@@ -1,0 +1,251 @@
+&odm {
+	sensor_fb: sensor_fb {
+		compatible = "oplus,sensor-feedback";
+	};
+	consumer_ir_core: consumer_ir_core {
+		compatible = "oplus,kookong_ir_core";
+		status = "okay";
+		vdd-supply = <&mt6368_vmch>;
+		vdd-min-vol = <3000000>;
+		vdd-max-vol = <3000000>;
+	};
+	consumerIr: consumerIr {
+		compatible = "oplus,kookong_ir_pwm";
+		status = "okay";
+		pwm-num = <1>;
+		pwm-dma-mask = <64>;
+	};
+	ssc_interactive: ssc_interactive {
+		report_brightness = <1>;
+		support_pwm_turbo = <1>;
+		support_bri_to_scp = <1>;
+		need_to_sync_lcd_rate = <0>;
+		report_blank_mode = <1>;
+		receive_screenshot_info = <1>;
+	};
+	oplus_sensor:oplus_sensor {
+		compatible = "oplus,sensor-devinfo";
+		als-row-coe = <1000>;
+		/* sensor start */
+		/*
+		enum {
+			LIS3DH,
+			LSM6DS3,
+			BMI160,
+			LIS2HH12,
+			LSM6DSM,
+			BMI2XY,
+			LSM6DSO,
+			ICM4X6XX,
+			ICM4263X,
+			ICM4N607,
+			BMI22X,
+			SC7A20,
+			MC34X9,
+		};
+		*/
+		gsensor_1: gsensor_1 {
+			status = "okay";
+			sensor_name = <5>;//BMI2XY
+			device_name = "bmi2xy";
+			i2c_num = <1>;
+			direction = <2>;
+			eint_num = <2>;
+			gyro_cali_version= <2>;
+			gyro_cali_range =<350>;
+			acc_cali_range= <300 300 300>;
+			sup_range_change = <1>;
+		};
+
+		/*
+		enum {
+			AKM09911,
+			MMC3530,
+			MMC5603,
+			MXG4300,
+			AKM09918,
+			AKM09919,
+		};
+		*/
+		proximity_1: proximity_1 {
+			status = "okay";
+			sensor_name = <9>;//TCS3720
+			i2c_num = <0>;
+			i2c_addr = <0x39>;
+			direction = <0>;
+			eint_num = <3>;
+			sampling_count = <5>;
+			step_max = <400>;
+			step_min = <100>;
+			step_div = <2000>;
+			sensor-reg = <0xB1 0x0C 0x82 0xE2 0xD9 0xB0 0x1A 0x18>;
+		};
+		ps_panel_P_7_1: ps_panel_P_7_1 {
+			status = "okay";
+			device_name = "tcs3720";
+			low_step = <200>;
+			high_step = <300>;
+			low_limit = <1050>;
+			high_limit = <1250>;
+			dirty_low_step = <900>;
+			dirty_high_step = <1100>;
+			ps_dirty_limit = <8000>;
+			ps_ir_limit = <500>;
+			ps_adjust_min = <0>;
+			ps_adjust_max = <1250>;
+			anti_shake_delta = <150>;
+			dynamic_cali_max = <5000>;
+			raw2offset_radio = <1000>;
+			offset_max = <16000>;
+			offset_range_min = <0>;
+			offset_range_max = <65534>;
+			force_cali_limit = <0>;
+			cali_jitter_limit = <80>;
+			cal_offset_margin = <8000>;
+			60hz_psd_us = <2380>;
+			90hz_psd_us = <2380>;
+			120hz_psd_us = <2380>;
+			ps_check_num = <2>;
+			ps_mid_filter = <0>;
+			need_to_sync_lcd_rate = <0>;
+			dmc_flt_thr = <100>;
+			ps_power_config = <6>;
+		};
+		light_1: light_1 {
+			status = "okay";
+			sensor_name = <9>;//TCS3720
+			i2c_num = <0>;
+			i2c_addr = <0x39>;
+			direction = <0>;
+			eint_num = <3>;
+			als_ratio = <110>;
+			cct_type = <0x02>; //0x01 CCT_NORMAL 0x02 CCT_WISE
+			device_name = "tcs3720";
+			gold_cct_3k = <3415 1580 797 5369 1001 1001>;
+			gold_cct_6k = <2209 1703 969 4576 1001 1001>;
+			lb_bri_max = <4096>;
+			ir_ratio = <10>; // *1000
+			als_delay = <390>;
+			als_delay_60hz = <260>;
+			als_delay_90hz = <220>;
+			als_delay_120hz = <260>;
+			available_sensor = <14>;
+			gold_cct_factor = <1000 1000 1000 1000 1000 1000>;
+			high_pwm_cct = <1>;
+			als_timer_ms = <100>;
+			als_buffer_length = <2>;
+			need_gain_cali = <1>;
+                        scale_gain = <512>;
+		};
+		als_panel_P_7_1: als_panel_P_7_1 {
+			status = "okay";
+			device_name = "tcs3720";
+			decision_table_index = <7>;
+			support_panel = <12>; // 1-SAMSUNG, 2-BOE, 3-TIANMA, 4-NT36672C, 5-HX83112F, 6-TM, 7-P_3, 8-P_B
+			gold_cct_3k = <93400 45885 23984 147854 1001 1001>;
+			gold_cct_6k = <62213 49521 29966 129205 1001 1001>;
+		};
+		msensor_1: msensor_1 {
+			status = "okay";
+			sensor_name = <0x02>; // MMC5603
+			device_name = "mmc5603";
+			i2c_num = <0>;
+			i2c_addr = <0x30>;
+			direction = <1>;
+			eint_num = <0>;
+			alg_flag = <0x02>;
+			soft-mag-parameter = <9904 0 1362 0 167 1 1242 0 8549 0 163 1 420 0 191 1 10829 0>;
+		};
+		rear_cct_1: rear_cct_1 {
+			status = "okay";
+			sensor_name = <3>; // tcs3449
+			i2c_num = <0>;
+			i2c_addr = <0x59>;
+			available_sensor = <23>; // bit 0: rear als, bit 1: rear cct, bit 2: rear flicker, bit 3: rear proximity
+			device_name = "tcs3449";
+			gold_rear_spectrum_3k = <1560 3499 3711 4680 7505 1107 1634 2335 4289 974 5819 3452 919>; // Z Y X NIR VIS F2 F3 F4 F6 F1 F7 F8 F5 F
+			gold_rear_spectrum_6k = <2695 3525 3339 4275 6559 2143 2174 2795 3614 2058 4113 1893 924>;
+			coef_index = <8>;
+			gold_rear_spectrum_factor_512gain =  <951 913 940 1003 953 937 960 960 956 985 947 951 941 1001>; // Z Y X NIR VIS F2 F3 F4 F6 F1 F7 F8 F5 F
+			gold_rear_spectrum_factor_2048gain = <940 898 950 1022 987 930 942 966 977 985 951 961 965 1001>;
+		};
+		pick_up: pick_up {
+			status = "okay";
+			use-proximity = <1>;
+		};
+		lux_aod: lux_aod {
+			status = "okay";
+			use-proximity = <1>;
+			deploy-multi-aod = <1>;
+		};
+		alsps_arch: alsps_arch {
+			status = "okay";
+			new-arch-supported = <1>;
+		};
+		cali_arch: cali_arch {
+			status = "okay";
+			new-arch-supported = <1>;
+		};
+		oplus_fusion: oplus_fusion {
+			status = "okay";
+			use_sub_accgyro = <0>;
+			fusion_style = <2>; // 0:vendor fusion; 1:oppo fusion; 2:mix fusion
+		};
+		smart_prox: smart_prox {
+			status = "okay";
+			support_smart_prox = <1>;
+		};
+		ap_timer: ap_timer {
+			status = "okay";
+			support_ap_timer = <0>;
+		};
+		pocket: pocket {
+			status = "okay";
+			support_pocket = <1>;
+			use_sub_accgyro = <0>;
+			need_als = <0>;
+		};
+		lay_detect: lay_detect{
+			status = "okay";
+			max_angel = <90>;
+			min_angel = <30>;
+			lay_in_time = <10>;
+			lay_out_time = <3>;
+		};
+		free_fall: free_fall{
+			status = "okay";
+			static_judge_length = <400>;
+			static_judge_acc_thresh = <1>;
+			freefall_judge_length = <80>;
+			freefall_judge_acc_thresh = <20>;
+			move_judge_length = <60>;
+			move_judge_acc_thresh = <1>;
+			freefall_start_judge_length  = <50>;
+			freefall_start_acc_thresh = <70>;
+			freefall_throw_judge_length = <700>;
+			freefall_throw_acc_thresh = <50>;
+			freefall_end_acc_thresh = <30>;
+			freefall_valid_time_length = <1000>;
+			freefall_peek_time_length = <800>;
+			freefall_peek_acc_thresh = <60>;
+			freefall_material_thresh = <900>;
+			valid_peek_interval_thresh = <10000>;
+		};
+		oplus_measurement: oplus_measurement{
+			status = "okay";
+			support_oplus_measurement = <1>;
+		};
+
+		elevator: elevator{
+			status = "okay";
+			sup_accel_rpt = <1>;
+		};
+	};
+/* sensor end */
+};
+
+&mt6368_vio28 {
+	regulator-min-microvolt = <3000000>;
+	regulator-max-microvolt = <3000000>;
+	regulator-always-on;
+};
