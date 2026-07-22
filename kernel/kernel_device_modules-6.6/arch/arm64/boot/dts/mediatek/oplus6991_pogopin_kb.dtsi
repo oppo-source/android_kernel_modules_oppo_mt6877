@@ -1,0 +1,113 @@
+&pio {
+	uart1_pins_gpio_mode: uart1-gpio-mode {
+		pins-cmd-dat {
+			pinmux = <PINMUX_GPIO162__FUNC_GPIO162>;
+			slew-rate = <0>;
+			bias-pull-down;
+			input-enable;
+		};
+	};
+	uart1_tx_pin_uart_mode: uart1-tx-pin-uart-mode {
+		pins-cmd-dat {
+			pinmux = <PINMUX_GPIO162__FUNC_UTXD1>;
+			bias-disable;
+		};
+	};
+	uart1_rx_pin_uart_mode: uart1-rx-pin-uart-mode {
+		pins-cmd-dat {
+			pinmux = <PINMUX_GPIO163__FUNC_URXD1>;
+		};
+	};
+
+	uart_rx_set: uart_rx_set {
+		pins-cmd-dat {
+			pinmux = <PINMUX_GPIO163__FUNC_URXD1>;
+			drive-strength = <MTK_DRIVE_2mA>;
+			bias-disable;
+		};
+	};
+
+	uart_rx_clear: uart_rx_clear {
+		pins-cmd-dat {
+			pinmux = <PINMUX_GPIO163__FUNC_GPIO163>;
+			drive-strength = <MTK_DRIVE_2mA>;
+			input-enable;
+			bias-disable;
+		};
+	};
+
+	uart_wake_gpio: uart_wake_gpio {
+		pins-cmd-dat {
+			pinmux = <PINMUX_GPIO8__FUNC_GPIO8>;
+			drive-strength = <MTK_DRIVE_2mA>;
+			bias-pull-up;
+			input-enable;
+		};
+	};
+
+	pogo_power_enable: pogo_power_enable {
+		pins-cmd-dat {
+			pinmux = <PINMUX_GPIO108__FUNC_GPIO108>;
+			output-high;
+		};
+	};
+
+	pogo_power_disable: pogo_power_disable {
+		pins-cmd-dat {
+			pinmux = <PINMUX_GPIO108__FUNC_GPIO108>;
+			output-low;
+		};
+	};
+};
+
+&uart1 {
+	pinctrl-names = "default", "sleep";
+	pinctrl-0 = <&uart1_tx_pin_uart_mode>;
+	pinctrl-1 = <&uart1_pins_gpio_mode>;
+	//satellite-uart1-line = <1>;
+	status = "okay";
+};
+
+&soc {
+	pogo_keyboard {
+		compatible = "tinno,pogo_keyboard";
+		status = "okay";
+
+		uart-tx-en-gpio = <&pio 111 0>;
+		uart-wake-gpio = <&pio 8 0>;
+
+		pinctrl-names = "default", "sleep", "uart_rx_set", "uart_rx_clear", "uart_wake_gpio", "pogo_power_enable", "pogo_power_disable";
+		pinctrl-0 = <&uart_rx_set>;
+		pinctrl-1 = <&uart_rx_set>;
+		pinctrl-2 = <&uart_rx_set>;
+		pinctrl-3 = <&uart_rx_clear>;
+		pinctrl-4 = <&uart_wake_gpio>;
+		pinctrl-5 = <&pogo_power_enable>;
+		pinctrl-6 = <&pogo_power_disable>;
+
+		tty-name-string = "ttyS1";
+
+		pogopin-battery-support;
+		keyboard-name-strings-enc =
+			"Hima Touchpad Keyboard",
+			"Hima Smart Keyboard",
+			"Hima Smart Keyboard";
+		keyboard-ble-name-strings-enc =
+			"Hima Touchpad Keyboard",
+			"Hima Smart Keyboard",
+			"Hima Smart Keyboard";
+
+		keyboard-name-strings =
+			"OPPO Pad 5 Smart Keyboard",
+			"OnePlus Pad 2 Smart Keyboard",
+			"OnePlus Pad 2 Smart Keyboard";
+		keyboard-ble-name-strings =
+			"OPPO Pad 5 Smart Keyboard",
+			"OnePlus Pad 2 Smart Keyboard",
+			"OnePlus Pad 2 Smart Keyboard";
+
+		touchpad-xy-max = <2764 1630>;
+		touchpad-xy-resolution = <26 26>;
+		touchpad-gesture-ignore;
+    };
+};

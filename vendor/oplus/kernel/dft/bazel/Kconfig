@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: GPL-2.0-only
+# Copyright (C) 2020-2022 Oplus. All rights reserved.
+
+config OPLUS_FEATURE_OLC
+    tristate "Add for oplus log core"
+    default n
+    help
+      Add for oplus log core.
+
+
+config OPLUS_FEATURE_FEEDBACK
+    tristate "Oplus system feedback"
+    default n
+    help
+      define this config to init oplus system feedback.

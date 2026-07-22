@@ -1,0 +1,92 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Copyright (c) 2025 MediaTek Inc.
+ */
+#include <dt-bindings/iio/mt635x-auxadc.h>
+#include <dt-bindings/pinctrl/mt6899-pinfunc.h>
+
+&low_battery_throttling {
+	compatible = "mediatek,low_battery_throttling";
+	lvsys-thd-enable = <1>;
+	vbat-thd-enable = <1>;
+	bat0-thd-volts-l = <
+		3340 3200 2900
+		3480 3320 3140
+		3850 3620 3360
+		4200 3900 3540
+		4400 4100 3750>;
+	bat0-thd-volts-h = <
+		3440 3340 3200
+		3580 3480 3320
+		3950 3850 3620
+		4300 4200 3900
+		4450 4400 4100>;
+	bat1-thd-volts-l = <
+		3340 3200 2900
+		3480 3320 3140
+		3850 3620 3360
+		4200 3900 3540
+		4400 4100 3750>;
+	bat1-thd-volts-h = <
+		3440 3340 3200
+		3580 3480 3320
+		3950 3850 3620
+		4300 4200 3900
+		4450 4400 4100>;
+	lvsys-thd-volt-l = <2900>;
+	lvsys-thd-volt-h = <3100>;
+	temperature-stage-threshold = <25 10 0 (-5)>;
+
+	bat0-aging-threshold = <500 1000>;
+	bat0-aging-volts-t0 =  <0 0>;
+	bat0-aging-volts-t1 =  <0 0>;
+	bat0-aging-volts-t2 =  <0 0>;
+	bat0-aging-volts-t3 =  <0 0>;
+	bat1-aging-threshold = <500 1000>;
+	bat1-aging-volts-t0 =  <0 0>;
+	bat1-aging-volts-t1 =  <0 0>;
+	bat1-aging-volts-t2 =  <0 0>;
+	bat1-aging-volts-t3 =  <0 0>;
+
+	pt-shutdown-enable = <0>;
+	throttle-level = <0 1 2 3>,
+				<0 1 2 3>,
+				<0 1 2 3>,
+				<0 1 2 3>,
+				<0 1 2 3>;
+	bootmode = <&chosen>;
+	gauge = <&mtk_gauge>;
+};
+
+&cpu_power_throttling {
+	compatible = "mediatek,cpu-power-throttling";
+
+	lbat-max-level = <3>;
+	lbat-limit-freq-lv1 = < 2147483647 2147483647 2147483647>;
+	lbat-limit-freq-lv2 = < 2147483647 2147483647 2147483647>;
+	lbat-limit-freq-lv3 = < 1200000 1700000 1800000>;
+
+	oc-max-level = <2>;
+	oc-limit-freq-lv1 = < 2147483647 2147483647 2147483647>;
+	oc-limit-freq-lv2 = < 900000 900000 900000>;
+
+	soc-max-level = <1>;
+	soc-core-active-lv1 = < 1 1 1 1 1 1 1 1 >;
+	soc-limit-freq-lv1 = < 2147483647 2147483647 2147483647>;
+};
+
+&gpu_power_throttling {
+	compatible = "mediatek,gpu-power-throttling";
+
+	lbat-max-level = <3>;
+	lbat-limit-freq-lv1 = <2147483647>;
+	lbat-limit-freq-lv2 = <1200000>;
+	lbat-limit-freq-lv3 = <700000>;
+
+	oc-max-level = <2>;
+	oc-limit-freq-lv1 = <1200000>;
+	oc-limit-freq-lv2 = <700000>;
+
+	soc-max-level = <1>;
+	soc-limit-freq-lv1 = <2147483647>;
+};

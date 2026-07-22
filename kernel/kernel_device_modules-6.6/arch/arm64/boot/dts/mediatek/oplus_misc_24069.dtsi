@@ -1,0 +1,136 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+* Copyright (C) 2021-2020 Oplus. All rights reserved.
+*/
+#include <dt-bindings/iio/mt635x-auxadc.h>
+#include <dt-bindings/pinctrl/mt6899-pinfunc.h>
+#include <dt-bindings/pinctrl/mt65xx.h>
+
+/* charge start */
+&regulator_vibrator{
+	status = "disabled";
+};
+
+&ssusb {
+	maximum-speed = "high-speed";
+};
+
+&u2port0 {
+	mediatek,eye-vrt = <5>;
+	mediatek,eye-term = <5>;
+	mediatek,rev6 = <2>;
+	mediatek,eye-vrt-host = <5>;
+	mediatek,eye-term-host = <5>;
+	mediatek,rev6-host = <3>;
+	mediatek,rx-sqth = <2>;
+	mediatek,discth = <0xa>;
+};
+
+&i2c1 {
+	status = "okay";
+	clock-frequency = <1000000>;
+
+	// AWINIC AW8697 Haptic
+	aw8697_haptic@5A {
+		status = "okay";
+		compatible = "awinic,aw8697_haptic";
+		reg = <0x5A>;
+		reset-gpio = <&pio 22 0x00>;
+		irq-gpio = <&pio 25 0x00>;
+		qcom,device_id = <809>;
+		oplus,aw86927_boost_voltage = <85>; /* 0x55 */
+		bus_id-lk = <1>;
+
+		haptic_hv_vmax = /bits/ 8 < 0x28 0x28 0x28 0x28 0x28 0x28 0x2C 0x30 0x34 0x38 0x3C 0x40 0x44 0x48 0x4C 0x50 0x55 >;
+		haptic_hv_gain = /bits/ 8 < 0x49 0x51 0x5A 0x62 0x6B 0x73 0x7C 0x80 0x80 0x80 0x80 0x80 0x80 0x80 0x80 0x80 0x80 >;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&aw_irq_gpio_default>;
+		oplus,livetap_support;
+		oplus,drv2_time = /bits/ 8 <0x30>;
+		oplus,auto_break_mode_support;
+		oplus,d2s_gain = /bits/ 8 <0x5>;
+		oplus,brk_time = /bits/ 8 <0x8>;
+		oplus,brk_gain = /bits/ 8 <0x6>;
+	};
+};
+
+&lk_charger {
+	/*0:pmic_vib 1:gpio_vib 2:si_vib 3:aw_vib*/
+	vibr_scheme = <3>;
+};
+
+&i2c1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&i2c1_mode_default>;
+};
+
+&pio{
+	aw_irq_gpio_default: aw_irq_gpio_default {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO25__FUNC_GPIO25>;
+			input-enable;
+			bias-pull-up;
+		};
+	};
+
+	i2c1_mode_default: i2c1_mode_default {
+	pins_cmd_dat {
+			pinmux = <PINMUX_GPIO139__FUNC_SCL1>,
+				 <PINMUX_GPIO140__FUNC_SDA1>;
+			bias-pull-up = <MTK_PULL_SET_RSEL_111>;
+		};
+	};
+};
+
+&soc {
+	feedback_fb: feedback_fb {
+		compatible = "oplus,haptic-feedback";
+	};
+};
+
+&soc {
+	pwm_fan: pwm_fan {
+		compatible = "oplus,pwm-fan";
+		status = "okay";
+
+		vdd-supply = <&mt6368_vfp>;
+		vdd-min-vol = <3000000>;
+		vdd-max-vol = <3000000>;
+
+		pwm-num = <2>;
+		pinctrl-names = "default";
+		pinctrl-0 = <&fan_irq_gpio_default &fan_pwm_gpio_default>;
+
+		fg-irq-gpio = <&pio 4 0x2008>;
+
+		fan,device_id0 {
+			pulses-per-revolution = <2>;
+			duty-config = <20 35 50 75 85 90>;//level 1 ~ level 6
+			rpm-offset-config = <40 1000 50 1500 100 1800>;
+		};
+
+		fan,device_id1 {
+			pulses-per-revolution = <3>;
+			duty-config = <20 50 60 70 90 100>;//level 1 ~ level 6
+			rpm-offset-config = <40 1000 50 1500 100 1800>;
+		};
+	};
+};
+
+&pio{
+	fan_irq_gpio_default: fan_irq_gpio_default {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO4__FUNC_GPIO4>;
+			input-enable;
+			bias-pull-up;
+		};
+	};
+	fan_pwm_gpio_default: fan_pwm_gpio_default {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO121__FUNC_PWM_2>;
+			output-enable;
+			bias-pull-up;
+		};
+	};
+};

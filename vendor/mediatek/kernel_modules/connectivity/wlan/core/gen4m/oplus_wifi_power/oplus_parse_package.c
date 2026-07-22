@@ -1,0 +1,68 @@
+/******************************************************************************
+** Copyright (C), 2019-2029, Oplus Mobile Comm Corp., Ltd
+** File: - oplus_prase_package.c
+** Description: prase wake up package type
+**
+** Version: 1.0
+** Date : 2023/06/01
+** CONNECTIVITY.WIFI.HARDWARE.26106
+** TAG: OPLUS_FEATURE_WIFI_HARDWARE_POWER
+** ------------------------------- Revision History: ----------------------------
+** <author>  wuguotian                    <data>        <version>       <desc>
+** ------------------------------------------------------------------------------
+**CONNECTIVITY.WIFI.HARDWARE.POWER.26106 2023/06/01        1.0    OPLUS_FEATURE_WIFI_HARDWARE_POWER
+*******************************************************************************/
+
+#include "oplus_parse_package.h"
+#include "precomp.h"
+
+uint16_t oplusStatsParseUDPInfo(struct sk_buff *skb, uint8_t *pucEthBody)
+{
+    uint8_t *pucUdp = &pucEthBody[20];
+    uint16_t u2UdpDstPort;
+    uint16_t u2UdpSrcPort;
+    uint16_t packageType = IP_PRO_UDP;
+
+    u2UdpDstPort = (pucUdp[2] << 8) | pucUdp[3];
+    u2UdpSrcPort = (pucUdp[0] << 8) | pucUdp[1];
+    if (u2UdpDstPort == UDP_PORT_DHCPS || u2UdpDstPort == UDP_PORT_DHCPC) {
+        packageType = UDP_PORT_DHCPS;
+    } else if (u2UdpSrcPort == UDP_PORT_DNS ||
+        u2UdpDstPort == UDP_PORT_DNS) {
+        packageType = UDP_PORT_DNS;
+    }
+    return packageType;
+}
+
+uint16_t oplusStatsParseIPV4Info(struct sk_buff *skb, uint8_t *pucEthBody)
+{
+    /* IP header without options */
+    uint8_t ucIpProto = pucEthBody[9];
+    uint8_t ucIpVersion =
+        (pucEthBody[0] & IPVH_VERSION_MASK)
+            >> IPVH_VERSION_OFFSET;
+    uint16_t u2IpId = pucEthBody[4] << 8 | pucEthBody[5];
+    uint16_t packageType = ETH_P_IPV4;
+
+    if (ucIpVersion != IPVERSION || !skb || !pucEthBody) {
+        return packageType;
+    }
+
+    GLUE_SET_PKT_IP_ID(skb, u2IpId);
+    switch (ucIpProto) {
+        case IP_PRO_ICMP: {
+            packageType = IP_PRO_ICMP;
+            break;
+        }
+        case IP_PRO_TCP: {
+            packageType = IP_PRO_TCP;
+            break;
+        }
+        case IP_PRO_UDP: {
+            packageType = oplusStatsParseUDPInfo(skb, pucEthBody);
+            break;
+        }
+    }
+    DBGLOG(RX, INFO, "wake ipv4 pkttype is %d\n", packageType);
+    return packageType;
+}

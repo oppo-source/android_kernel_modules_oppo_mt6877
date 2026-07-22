@@ -1,0 +1,5 @@
+config SENSOR_OPLUS_MHA100KN_HALL
+	tristate "for oplus hall"
+	default n
+	help
+	  It support sensor_hall.

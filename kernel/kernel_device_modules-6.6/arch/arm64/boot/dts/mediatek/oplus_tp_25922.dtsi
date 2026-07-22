@@ -1,0 +1,148 @@
+&spi6 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	goodix@0{
+		status = "disabled";
+	};
+
+	multi-touchscreen@0{
+		status = "disabled";
+	};
+
+	nt36532@0 {
+		status = "okay";
+		compatible = "novatek,nf_nt36532";
+		reg = <0x0>;
+		chip-num = <1>;
+		chip-name = "NT36532";
+		project_id = <25922>;
+		firmware_name = "0X21N2NI9N19";
+		spi-max-frequency = <12000000>; //4800000,9600000,15000000,19200000
+
+		/* Interrupt && Irq-gpio */
+		// reset-gpio = <&pio 3 0x00>;
+		interrupt-parent = <&pio>;
+		interrupts = <7 0x0>;
+		irq-gpio = <&pio 7 0x2002>;
+
+
+		pinctrl-names = "default", "pin_cs_high","pin_cs_low";
+		pinctrl-0 = <&ctp_oplus_pins_default>;
+		pinctrl-1 = <&ts_cs_active>;
+		pinctrl-2 = <&ts_cs_suspend &ctp_oplus_int_suspend>;
+
+		touchpanel,irq_need_dev_resume_time = <500>;
+		touchpanel,max-num-support = <10>;
+		touchpanel,tx-rx-num = <60 40>;
+		touchpanel,panel-coords = <21200 30000>;
+		touchpanel,display-coords = <2120 3000>;
+		touchpanel,touchmajor-limit = <0 60>;
+
+		touchpanel,pen-tx-rx-num = <12 8>;
+		touchpanel,doze-tx-num = <12>;
+		touchpanel,pen-panel-coords = <21200 30000>;
+		touchpanel,pen-max-pressure = <16384>;
+		touchpanel,pen-max-tilt = <60 60>;
+		touchpanel,msecs-to-jiffies-time = <100>;
+		touchpanel,smooth-level = <255 32 64 96 128 254>;
+		touchpanel,sensitive-level = <255 30 25 20 15 10>;
+		touchpanel,sensitive-level-charging = <255 33 28 23 18 13>;
+		tp_type = <15>;//HUAXING
+		panel_type = <15>;
+
+		platform_support_project = <25922 25975 25923 25976>;
+		platform_support_project_dir = <25922 25922 25922 25922>;
+		platform_support_project_commandline = "panel_x25n16_p_7_a0028_dsi_vdo";
+		platform_support_project_external_name = "FA261";
+		vid_len = <7>;
+
+		incell_screen;
+		//iovcc_shutdown_support;
+		fw_edge_limit_support;
+		black_gesture_support;
+		charger_pump_support;
+		esd_handle_support;
+		black_gesture_test_support;
+		game_switch_support;
+		noflash_support;
+		lcd_trigger_load_tp_fw_support;
+		smart_gesture_support;
+		pressure_report_support;
+		pen_support;
+		//waterproof_support;
+		irq_need_dev_resume_ok;
+		fw_update_app_support;
+		health_monitor_support;
+		fw_update_in_probe_with_headfile;
+		black_gesture_indep_support;
+		report_rate_limit;
+		touchpanel,button-type = <4>;
+		input_timestamp_in_top_irq_support;
+		aiunit_game_info_support;
+		game_enable_in_tddi_support;
+		tp_scene_para_switch_support;
+		exception_upload_support;
+	};
+};
+
+&pio {
+	ctp_oplus_pins_default: pins_default {
+			pins-cmd-dat {
+			pinmux = <PINMUX_GPIO81__FUNC_SPI6_B_CLK>,
+				 <PINMUX_GPIO82__FUNC_SPI6_B_CSB>,
+				 <PINMUX_GPIO83__FUNC_SPI6_B_MO>,
+				 <PINMUX_GPIO84__FUNC_SPI6_B_MI>;
+			drive-strength = <4>;
+		};
+	};
+
+	ts_cs_active: ts_cs_active {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO82__FUNC_SPI6_B_CSB>;
+		};
+	};
+	ts_cs_suspend: ts_cs_suspend {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO82__FUNC_GPIO82>;
+ 			output-low;
+ 		};
+ 	};
+ 	ctp_oplus_int_suspend: int1_suspend {
+ 		pins_cmd_dat {
+ 			pinmux = <PINMUX_GPIO7__FUNC_GPIO7>;
+ 			input-enable;
+ 			bias-pull-down;
+ 		};
+ 	};
+ };
+
+&odm {
+	volume_down_key:volume_down_key {
+		compatible = "gpio-keys";
+		label = "gpio-keys";
+		status = "okay";
+		pinctrl-0 = <&volume_down_key_default>;
+		pinctrl-names = "default";
+		volume-down-button {
+			label = "volume_down_button";
+			gpios = <&pio 11 0x01>;
+			linux,input-type = <1>; /* EV_KEY */
+			linux,code = <114>; /* means: KEY_VOLUMEDOWN */
+			linux,can-disable;
+			gpio-key,wakeup;
+			debounce-interval = <32>; /* standard debounce time 32ms */
+		};
+	};
+};
+&pio {
+	volume_down_key_default:default@volume_down {
+		pins_cmd_dat {
+			pinmux = <PINMUX_GPIO11__FUNC_GPIO11>;
+			slew-rate = <0>;
+			drive-strength = <2>;
+			bias-disable;
+		};
+	};
+};

@@ -1,0 +1,4 @@
+
+config OPLUS_FEATURE_CHOP_DETECT
+	tristate "chop_detecthub for MediaTek package"
+	default n
